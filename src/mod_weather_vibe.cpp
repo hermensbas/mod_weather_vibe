@@ -54,10 +54,10 @@
 #include "Chat.h"
 #include "ChatCommand.h"
 #include "Config.h"
+#include "MapMgr.h"
 #include "Player.h"
 #include "World.h"
 #include "WorldSession.h"
-#include "WorldSessionMgr.h"
 #include "Log.h"
 #include "GameTime.h"
 #include "MiscPackets.h"
@@ -512,6 +512,26 @@ static uint32 ResolveControllerZone(uint32 zoneId)
     return cur;
 }
 
+static bool BroadcastZonePacket(uint32 zoneId, WorldPacket const* packet)
+{
+    bool delivered = false;
+
+    sMapMgr->DoForAllMaps([&](Map* map) -> void
+    {
+        delivered = map->SendZoneMessage(zoneId, packet) || delivered;
+    });
+
+    return delivered;
+}
+
+static void BroadcastZoneText(uint32 zoneId, char const* text)
+{
+    sMapMgr->DoForAllMaps([&](Map* map) -> void
+    {
+        map->SendZoneText(zoneId, text);
+    });
+}
+
 // ======================================
 // Applies weather to a zone (returns true only when actually delivered to at least one player).
 // ======================================
@@ -522,11 +542,12 @@ static bool PushWeatherToClient(uint32 zoneIdRaw, WeatherState state, float rawG
 
     // We send to controller and children
     WorldPackets::Misc::Weather weatherPackage(state, normalizedGrade);
-    bool delivered = sWorldSessionMgr->SendZoneMessage(zoneId, weatherPackage.Write());
+    WorldPacket const* weatherPacket = weatherPackage.Write();
+    bool delivered = BroadcastZonePacket(zoneId, weatherPacket);
     auto itc = g_ZoneChildren.find(zoneId);
     if (itc != g_ZoneChildren.end())
         for (uint32 child : itc->second)
-            delivered = sWorldSessionMgr->SendZoneMessage(child, weatherPackage.Write()) || delivered;
+            delivered = BroadcastZonePacket(child, weatherPacket) || delivered;
 
     // record last-applied for controller (children will reuse controller snapshot)
     LastApplied& snap = g_LastApplied[zoneId];
@@ -543,10 +564,11 @@ static bool PushWeatherToClient(uint32 zoneIdRaw, WeatherState state, float rawG
             << " | grade: " << std::fixed << std::setprecision(2) << normalizedGrade
             << " | zone: " << zoneId
             << " | delivered: " << (delivered ? "true" : "false");
-        WorldSessionMgr::Instance()->SendZoneText(zoneId, zmsg.str().c_str());
+        std::string debugText = zmsg.str();
+        BroadcastZoneText(zoneId, debugText.c_str());
         if (itc != g_ZoneChildren.end())
             for (uint32 child : itc->second)
-                WorldSessionMgr::Instance()->SendZoneText(child, zmsg.str().c_str());
+                BroadcastZoneText(child, debugText.c_str());
     }
 
     return delivered;
