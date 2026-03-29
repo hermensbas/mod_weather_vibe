@@ -234,7 +234,7 @@ WeatherVibe.ZoneProfile.Map = 41=CalmClear       # Deadwind Pass
 WeatherVibe.ZoneProfile.Map = 44=HeavyRain       # Redridge Mountains
 WeatherVibe.ZoneProfile.Map = 45=Moderate        # Arathi Highlands
 WeatherVibe.ZoneProfile.Map = 46=VolcanicAsh     # Burning Steppes
-WeatherVibe.ZoneProfile.Map = 47=Moderate        # Hinterlands
+WeatherVibe.ZoneProfile.Map = 47=Moderate        # The Hinterlands
 WeatherVibe.ZoneProfile.Map = 51=VolcanicAsh     # Searing Gorge
 WeatherVibe.ZoneProfile.Map = 65=VerySnowy       # Dragonblight
 WeatherVibe.ZoneProfile.Map = 66=VerySnowy       # Zul'Drak
@@ -244,7 +244,7 @@ WeatherVibe.ZoneProfile.Map = 130=HeavyRain      # Silverpine Forest
 WeatherVibe.ZoneProfile.Map = 139=CalmClear      # Eastern Plaguelands
 WeatherVibe.ZoneProfile.Map = 141=CalmClear      # Teldrassil
 WeatherVibe.ZoneProfile.Map = 148=StormySea      # Darkshore
-WeatherVibe.ZoneProfile.Map = 207=StormySea      # Great Sea
+WeatherVibe.ZoneProfile.Map = 207=StormySea      # The Great Sea
 WeatherVibe.ZoneProfile.Map = 210=VerySnowy      # Icecrown
 WeatherVibe.ZoneProfile.Map = 215=CalmClear      # Mulgore
 WeatherVibe.ZoneProfile.Map = 267=HeavyRain      # Hillsbrad Foothills
@@ -256,10 +256,72 @@ WeatherVibe.ZoneProfile.Map = 400=Desert         # Thousand Needles
 WeatherVibe.ZoneProfile.Map = 405=DryDusty       # Desolace
 WeatherVibe.ZoneProfile.Map = 406=Moderate       # Stonetalon Mountains
 WeatherVibe.ZoneProfile.Map = 440=Desert         # Tanaris
-WeatherVibe.ZoneProfile.Map = 457=StormySea      # Veiled Sea
+WeatherVibe.ZoneProfile.Map = 457=StormySea      # The Veiled Sea
 WeatherVibe.ZoneProfile.Map = 490=JungleHumid    # Un'Goro Crater
 WeatherVibe.ZoneProfile.Map = 493=CalmClear      # Moonglade
 WeatherVibe.ZoneProfile.Map = 495=BorealMixed    # Howling Fjord
 WeatherVibe.ZoneProfile.Map = 618=VerySnowy      # Winterspring
+WeatherVibe.ZoneProfile.Map = 796=CalmClear      # Scarlet Monastery
+WeatherVibe.ZoneProfile.Map = 1377=Desert        # Silithus
+WeatherVibe.ZoneProfile.Map = 1397=CalmClear     # Emerald Forest
+WeatherVibe.ZoneProfile.Map = 1417=CalmClear     # Sunken Temple
+WeatherVibe.ZoneProfile.Map = 1497=HeavyRain     # Undercity
+WeatherVibe.ZoneProfile.Map = 1519=Moderate      # Stormwind City
+WeatherVibe.ZoneProfile.Map = 1537=VerySnowy     # Ironforge
+WeatherVibe.ZoneProfile.Map = 1637=DryDusty      # Orgrimmar
+WeatherVibe.ZoneProfile.Map = 1638=Moderate      # Thunder Bluff
+WeatherVibe.ZoneProfile.Map = 1657=CalmClear     # Darnassus
+WeatherVibe.ZoneProfile.Map = 1941=CalmClear     # Caverns of Time
+WeatherVibe.ZoneProfile.Map = 1977=JungleHumid   # Zul'Gurub
+WeatherVibe.ZoneProfile.Map = 2017=CalmClear     # Stratholme
+WeatherVibe.ZoneProfile.Map = 2257=CalmClear     # Deeprun Tram
+WeatherVibe.ZoneProfile.Map = 2597=VerySnowy     # Alterac Valley
+WeatherVibe.ZoneProfile.Map = 2817=BorealMixed   # Crystalsong Forest
+WeatherVibe.ZoneProfile.Map = 3277=HeavyRain     # Warsong Gulch
+WeatherVibe.ZoneProfile.Map = 3358=Moderate      # Arathi Basin
+WeatherVibe.ZoneProfile.Map = 3428=Desert        # Ahn'Qiraj
+WeatherVibe.ZoneProfile.Map = 3429=Desert        # Ruins of Ahn'Qiraj
+WeatherVibe.ZoneProfile.Map = 3430=Moderate      # Eversong Woods
+WeatherVibe.ZoneProfile.Map = 3433=HeavyRain     # Ghostlands
+WeatherVibe.ZoneProfile.Map = 3455=StormySea     # The North Sea
+WeatherVibe.ZoneProfile.Map = 3483=FelCorrupted  # Hellfire Peninsula
+WeatherVibe.ZoneProfile.Map = 3487=Moderate      # Silvermoon City
+WeatherVibe.ZoneProfile.Map = 3518=CalmClear     # Nagrand
+WeatherVibe.ZoneProfile.Map = 3519=HeavyRain     # Terokkar Forest
+WeatherVibe.ZoneProfile.Map = 3520=FelCorrupted  # Shadowmoon Valley
+WeatherVibe.ZoneProfile.Map = 3521=Swampy        # Zangarmarsh
+WeatherVibe.ZoneProfile.Map = 3522=DryDusty      # Blade's Edge Mountains
+WeatherVibe.ZoneProfile.Map = 3523=FelCorrupted  # Netherstorm
+WeatherVibe.ZoneProfile.Map = 3524=Moderate      # Azuremyst Isle
+WeatherVibe.ZoneProfile.Map = 3525=HeavyRain     # Bloodmyst Isle
+WeatherVibe.ZoneProfile.Map = 3535=FelCorrupted  # Hellfire Citadel
+WeatherVibe.ZoneProfile.Map = 3540=CalmClear     # Twisting Nether
+WeatherVibe.ZoneProfile.Map = 3557=Moderate      # The Exodar
+WeatherVibe.ZoneProfile.Map = 3605=LightSnow     # Mount Hyjal (past)
+WeatherVibe.ZoneProfile.Map = 3698=CalmClear     # Nagrand Arena
+WeatherVibe.ZoneProfile.Map = 3702=DryDusty      # Blade's Edge Arena
+WeatherVibe.ZoneProfile.Map = 3703=OutlandMixed  # Shattrath City
+WeatherVibe.ZoneProfile.Map = 3711=JungleHumid   # Sholazar Basin
+WeatherVibe.ZoneProfile.Map = 3817=BorealMixed   # Icecrown Forest area
+WeatherVibe.ZoneProfile.Map = 3820=StormySea     # Eye of the Storm
+WeatherVibe.ZoneProfile.Map = 3917=OutlandMixed  # Auchindoun
+WeatherVibe.ZoneProfile.Map = 3979=StormySea     # Frozen Sea
+WeatherVibe.ZoneProfile.Map = 4076=CalmClear     # Sunwell Plateau
+WeatherVibe.ZoneProfile.Map = 4080=StormySea     # Isle of Quel'Danas
+WeatherVibe.ZoneProfile.Map = 4197=NorthrendFrozen # Wintergrasp
+WeatherVibe.ZoneProfile.Map = 4201=BorealMixed   # Vordrassil area
+WeatherVibe.ZoneProfile.Map = 4258=StormySea     # Northrend Sea
+WeatherVibe.ZoneProfile.Map = 4298=HeavyRain     # Scarlet Enclave
+WeatherVibe.ZoneProfile.Map = 4378=CalmClear     # Dalaran Arena
+WeatherVibe.ZoneProfile.Map = 4384=StormySea     # Strand of the Ancients
+WeatherVibe.ZoneProfile.Map = 4395=BorealMixed   # Dalaran
+WeatherVibe.ZoneProfile.Map = 4406=CalmClear     # Ring of Valor
+WeatherVibe.ZoneProfile.Map = 4602=CalmClear     # Instance Interior
+WeatherVibe.ZoneProfile.Map = 4603=NorthrendFrozen # Vault of Archavon
+WeatherVibe.ZoneProfile.Map = 4630=StormySea     # Northrend Sea
+WeatherVibe.ZoneProfile.Map = 4710=StormySea     # Sea Zone
+WeatherVibe.ZoneProfile.Map = 4742=NorthrendFrozen # Icecrown Glacier
+WeatherVibe.ZoneProfile.Map = 4763=BorealMixed   # Icecrown subzone
+WeatherVibe.ZoneProfile.Map = 4764=BorealMixed   # Icecrown subzone
 
 #######################################################################################################
