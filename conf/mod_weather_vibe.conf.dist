@@ -1,221 +1,130 @@
 #######################################################################################################
-# WeatherVibe — baseline + auto-rotation profiles
-# States: 0=Fine, 1=Fog, 3=LightRain, 4=MediumRain, 5=HeavyRain, 6=LightSnow, 7=MediumSnow, 8=HeavySnow,
-#         22=LightSandstorm, 41=MediumSandstorm, 42=HeavySandstorm, 86=Thunders
+#######################################################################################################
+#  mod_weather_vibe
+#
+# Notes
+# - Use admin commands to drive weather per zone:
+#     .wvibe set <zoneId> <type:0|1|2|3|86> <percentage:0..100>
+#     .wvibe setRaw <zoneId> <type:0|1|2|3|86> <raw:0..1>
+#     .wvibe show  (lists last-applied entries)
+#######################################################################################################
 #######################################################################################################
 
-# Toggle + debug
+# Toggle module
+# ----------------------------------------------------------------------
 WeatherVibe.Enable = 1
-WeatherVibe.Debug  = 1
 
-# Season/dayparts (times can be tweaked; auto picks based on local server time)
-WeatherVibe.Season                 = auto
-WeatherVibe.DayPart.Mode           = auto
-WeatherVibe.DayPart.MORNING.Start  = 06:00
-WeatherVibe.DayPart.AFTERNOON.Start= 12:00
-WeatherVibe.DayPart.EVENING.Start  = 18:00
-WeatherVibe.DayPart.NIGHT.Start    = 22:00
+# Optional debug (zone-wide broadcast of pushes)
+# ----------------------------------------------------------------------
+WeatherVibe.Debug = 1
+
+#######################################################################################################
+#######################################################################################################
+# Dayparts & Season
+#######################################################################################################
+
+# Season: auto|spring|summer|autumn|winter.
+# ----------------------------------------------------------------------
+WeatherVibe.Season = auto
+
+# Mode: auto|morning|afternoon|evening|night.
+# ----------------------------------------------------------------------
+WeatherVibe.DayPart.Mode = auto
+
+# DayPart times.
+# ----------------------------------------------------------------------
+WeatherVibe.DayPart.MORNING.Start   = 06:00
+WeatherVibe.DayPart.AFTERNOON.Start = 12:00
+WeatherVibe.DayPart.EVENING.Start   = 18:00
+WeatherVibe.DayPart.NIGHT.Start     = 22:00
 
 
 #######################################################################################################
-# Internal intensity ranges (per daypart/state) — keep caps ≲ 0.65 for routine play
-# 0% ≈ off (we allow 0.00 mins); 5–20% drizzle/light; 20–40% medium; 40–65% heavy (extremes beyond that are manual)
+#######################################################################################################
+# Internal intensity ranges - raw grade clamps per daypart/state
+# Defaults: 0.30 – 0.90 for every WeatherState and every daypart.
 #######################################################################################################
 
 # Fine (0)
-WeatherVibe.Intensity.InternalRange.MORNING.Fine            = 0.00, 1.00
-WeatherVibe.Intensity.InternalRange.AFTERNOON.Fine          = 0.00, 1.00
-WeatherVibe.Intensity.InternalRange.EVENING.Fine            = 0.00, 1.00
-WeatherVibe.Intensity.InternalRange.NIGHT.Fine              = 0.00, 0.20
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.Fine          = 0.00, 0.30
+WeatherVibe.Intensity.InternalRange.AFTERNOON.Fine        = 0.00, 0.30
+WeatherVibe.Intensity.InternalRange.EVENING.Fine          = 0.00, 0.30
+WeatherVibe.Intensity.InternalRange.NIGHT.Fine            = 0.00, 0.30
 
-# Fog (1) — stronger at night, capped to fit most profile max (≤0.60)
-WeatherVibe.Intensity.InternalRange.MORNING.Fog             = 0.30, 0.60
-WeatherVibe.Intensity.InternalRange.AFTERNOON.Fog           = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.Fog             = 0.30, 0.75
-WeatherVibe.Intensity.InternalRange.NIGHT.Fog               = 0.30, 0.80
+# Fog (1)
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.Fog           = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.AFTERNOON.Fog         = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.EVENING.Fog           = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.NIGHT.Fog             = 0.10, 0.30
 
 # Light Rain (3)
-WeatherVibe.Intensity.InternalRange.MORNING.LightRain       = 0.29, 0.32
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightRain     = 0.29, 0.35
-WeatherVibe.Intensity.InternalRange.EVENING.LightRain       = 0.29, 0.37
-WeatherVibe.Intensity.InternalRange.NIGHT.LightRain         = 0.29, 0.40
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.LightRain     = 0.30, 0.50
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightRain   = 0.30, 0.50
+WeatherVibe.Intensity.InternalRange.EVENING.LightRain     = 0.30, 0.50
+WeatherVibe.Intensity.InternalRange.NIGHT.LightRain       = 0.30, 0.50
 
 # Medium Rain (4)
-WeatherVibe.Intensity.InternalRange.MORNING.MediumRain      = 0.29, 0.42
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumRain    = 0.29, 0.46
-WeatherVibe.Intensity.InternalRange.EVENING.MediumRain      = 0.29, 0.50
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumRain        = 0.29, 0.55
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.MediumRain    = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumRain  = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumRain    = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumRain      = 0.30, 0.70
 
-# Heavy Rain (5) — tops out where rain-heavy profiles cap (≤0.65)
-WeatherVibe.Intensity.InternalRange.MORNING.HeavyRain       = 0.29, 0.55
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavyRain     = 0.29, 0.60
-WeatherVibe.Intensity.InternalRange.EVENING.HeavyRain       = 0.29, 0.63
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavyRain         = 0.29, 0.65
+# Heavy Rain (5)
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.HeavyRain     = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavyRain   = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavyRain     = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavyRain       = 0.30, 0.90
 
 # Light Snow (6)
-WeatherVibe.Intensity.InternalRange.MORNING.LightSnow       = 0.29, 0.32
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSnow     = 0.29, 0.35
-WeatherVibe.Intensity.InternalRange.EVENING.LightSnow       = 0.29, 0.37
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSnow         = 0.29, 0.40
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.LightSnow     = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSnow   = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.EVENING.LightSnow     = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSnow       = 0.30, 0.40
 
 # Medium Snow (7)
-WeatherVibe.Intensity.InternalRange.MORNING.MediumSnow      = 0.29, 0.45
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSnow    = 0.29, 0.50
-WeatherVibe.Intensity.InternalRange.EVENING.MediumSnow      = 0.29, 0.55
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumSnow        = 0.29, 0.60
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.MediumSnow    = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSnow  = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumSnow    = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumSnow      = 0.30, 0.70
 
-# Heavy Snow (8) — allows VerySnowy profile to reach up to 0.80
-WeatherVibe.Intensity.InternalRange.MORNING.HeavySnow       = 0.29, 0.60
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySnow     = 0.29, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.HeavySnow       = 0.29, 0.75
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow         = 0.29, 0.80
+# Heavy Snow (8)
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.HeavySnow     = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySnow   = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavySnow     = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow       = 0.30, 0.90
 
 # Light Sandstorm (22)
-WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm  = 0.30, 0.32
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm= 0.30, 0.35
-WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm  = 0.30, 0.37
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm    = 0.30, 0.40
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.30, 0.40
 
 # Medium Sandstorm (41)
-WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm = 0.30, 0.45
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm=0.30, 0.48
-WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm = 0.30, 0.50
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm   = 0.30, 0.55
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.30, 0.70
 
-# Heavy Sandstorm (42) — capped to fit Desert/VolcanicAsh (≤0.60)
-WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm  = 0.30, 0.50
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm= 0.30, 0.55
-WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm  = 0.30, 0.58
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm    = 0.30, 0.60
+# Heavy Sandstorm (42)
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.30, 0.90
 
-# Thunders (86) — aligned to stormy profiles (≤0.65)
-WeatherVibe.Intensity.InternalRange.MORNING.Thunders        = 0.30, 0.45
-WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders      = 0.30, 0.60
-WeatherVibe.Intensity.InternalRange.EVENING.Thunders        = 0.30, 0.63
-WeatherVibe.Intensity.InternalRange.NIGHT.Thunders          = 0.30, 0.65
-
-
-#######################################################################################################
-# Auto-rotation engine
-#######################################################################################################
-
-# Toggle auto
-# 0 = off (you can still drive weather manually via .wvibe setRaw)
-# 1 = on  (profiles pick states/RAW targets automatically per zone)
-WeatherVibe.Auto.Enable       = 1
-
-# engine tick granularity (ms)
-WeatherVibe.Auto.TickMs       = 10000
-
-# min seconds a picked state should live before new pick
-WeatherVibe.Auto.MinWindowSec = 120
-
-# max seconds a picked state should live
-WeatherVibe.Auto.MaxWindowSec = 300
-
-# seconds to ramp toward target each change
-WeatherVibe.Auto.TweenSec     = 90
-
-# raw delta under which we skip sending
-WeatherVibe.Auto.TinyNudge    = 0.01
-
-
-#######################################################################################################
-# Profiles
-# States: 0=Fine, 1=Fog, 3=LightRain, 4=MediumRain, 5=HeavyRain, 6=LightSnow, 7=MediumSnow, 8=HeavySnow,
-#         22=LightSandstorm, 41=MediumSandstorm, 42=HeavySandstorm, 86=Thunders
-#######################################################################################################
-
-#######################################################################################################
-# Define profiles available to assign to zones
-#######################################################################################################
-
-# List of reusable profile names
-WeatherVibe.Profile.Names = Moderate, VerySnowy, LightSnow, HeavyRain, DryDusty, Desert, JungleHumid, Swampy, CalmClear, StormySea, VolcanicAsh, FelCorrupted, OutlandMixed, BorealMixed, NorthrendFrozen
-
-# Moderate — temperate mix, light rain with occasional heavier rain or thunder
-WeatherVibe.Profile.Moderate.Weights      = 0=60,1=6,3=20,4=5,5=2,6=0,7=0,8=0,22=0,41=0,42=0,86=10
-WeatherVibe.Profile.Moderate.Percent.Min  = 0
-WeatherVibe.Profile.Moderate.Percent.Max  = 55
-
-# VerySnowy — snow-heavy alpine/arctic climate
-WeatherVibe.Profile.VerySnowy.Weights     = 0=15,1=10,3=0,4=0,5=0,6=30,7=10,8=5,22=0,41=10,42=5,86=0
-WeatherVibe.Profile.VerySnowy.Percent.Min = 0
-WeatherVibe.Profile.VerySnowy.Percent.Max = 80
-
-# LightSnow — cool climates with frequent light/medium snow, little rain
-WeatherVibe.Profile.LightSnow.Weights     = 0=40,1=8,3=0,4=0,5=0,6=20,7=8,8=4,22=0,41=0,42=0,86=0
-WeatherVibe.Profile.LightSnow.Percent.Min = 0
-WeatherVibe.Profile.LightSnow.Percent.Max = 50
-
-# HeavyRain — wet temperate zones; frequent rain and some thunder
-WeatherVibe.Profile.HeavyRain.Weights     = 0=25,1=10,3=25,4=15,5=10,6=0,7=0,8=0,22=0,41=0,42=0,86=15
-WeatherVibe.Profile.HeavyRain.Percent.Min = 10
-WeatherVibe.Profile.HeavyRain.Percent.Max = 65
-
-# DryDusty — dry plains/badlands; occasional sand/dust events
-WeatherVibe.Profile.DryDusty.Weights      = 0=45,1=2,3=3,4=0,5=0,6=0,7=0,8=0,22=15,41=8,42=4,86=3
-WeatherVibe.Profile.DryDusty.Percent.Min  = 0
-WeatherVibe.Profile.DryDusty.Percent.Max  = 55
-
-# Desert — hot deserts; frequent sandstorms, minimal rain
-WeatherVibe.Profile.Desert.Weights        = 0=30,1=0,3=0,4=0,5=0,6=0,7=0,8=0,22=25,41=20,42=10,86=5
-WeatherVibe.Profile.Desert.Percent.Min    = 0
-WeatherVibe.Profile.Desert.Percent.Max    = 60
-
-# JungleHumid — tropical/lush; lots of rain and thunder
-WeatherVibe.Profile.JungleHumid.Weights   = 0=20,1=8,3=25,4=20,5=12,6=0,7=0,8=0,22=0,41=0,42=0,86=15
-WeatherVibe.Profile.JungleHumid.Percent.Min= 10
-WeatherVibe.Profile.JungleHumid.Percent.Max= 65
-
-# Swampy — marshlands; foggy with light/medium rain
-WeatherVibe.Profile.Swampy.Weights        = 0=25,1=20,3=25,4=10,5=5,6=0,7=0,8=0,22=0,41=0,42=0,86=10
-WeatherVibe.Profile.Swampy.Percent.Min    = 10
-WeatherVibe.Profile.Swampy.Percent.Max    = 60
-
-# CalmClear — mostly clear; occasional fog or drizzle
-WeatherVibe.Profile.CalmClear.Weights     = 0=80,1=10,3=5,4=3,5=0,6=0,7=0,8=0,22=0,41=0,42=0,86=2
-WeatherVibe.Profile.CalmClear.Percent.Min = 0
-WeatherVibe.Profile.CalmClear.Percent.Max = 40
-
-# StormySea — coasts/open sea; fog, rain, frequent storms
-WeatherVibe.Profile.StormySea.Weights     = 0=25,1=15,3=20,4=15,5=10,6=0,7=0,8=0,22=0,41=0,42=0,86=15
-WeatherVibe.Profile.StormySea.Percent.Min = 15
-WeatherVibe.Profile.StormySea.Percent.Max = 65
-
-# VolcanicAsh — fiery/volcanic; ash and dust dominate
-WeatherVibe.Profile.VolcanicAsh.Weights   = 0=30,1=5,3=0,4=0,5=0,6=0,7=0,8=0,22=20,41=20,42=10,86=15
-WeatherVibe.Profile.VolcanicAsh.Percent.Min= 5
-WeatherVibe.Profile.VolcanicAsh.Percent.Max= 60
-
-# FelCorrupted — shattered/fel-charged; erratic storms, some dust
-WeatherVibe.Profile.FelCorrupted.Weights  = 0=20,1=10,3=10,4=10,5=5,6=0,7=0,8=0,22=5,41=5,42=0,86=30
-WeatherVibe.Profile.FelCorrupted.Percent.Min= 10
-WeatherVibe.Profile.FelCorrupted.Percent.Max= 65
-
-# OutlandMixed — varied Outland weather, light dust/rain, rare thunder
-WeatherVibe.Profile.OutlandMixed.Weights  = 0=35,1=10,3=15,4=10,5=5,6=0,7=0,8=0,22=5,41=0,42=0,86=10
-WeatherVibe.Profile.OutlandMixed.Percent.Min= 0
-WeatherVibe.Profile.OutlandMixed.Percent.Max= 60
-
-# BorealMixed — cold forests; mix of rain and light/medium snow
-WeatherVibe.Profile.BorealMixed.Weights   = 0=30,1=10,3=10,4=10,5=0,6=15,7=10,8=5,22=0,41=0,42=0,86=5
-WeatherVibe.Profile.BorealMixed.Percent.Min= 0
-WeatherVibe.Profile.BorealMixed.Percent.Max= 60
-
-# NorthrendFrozen — harsh tundra/glacier; frequent medium/heavy snow
-WeatherVibe.Profile.NorthrendFrozen.Weights   = 0=15,1=10,3=0,4=0,5=0,6=25,7=20,8=10,22=0,41=0,42=0,86=0
-WeatherVibe.Profile.NorthrendFrozen.Percent.Min= 10
-WeatherVibe.Profile.NorthrendFrozen.Percent.Max= 65
-
-
-#######################################################################################################
-# Zone assignments (examples — replace IDs with your server’s zone ids)
-#######################################################################################################
-
-# Assign profiles to controller zones
-# e.g., 1=Dun Morogh, 12=Elwynn, 17=The Barrens, 10=Duskwood  (IDs are examples)
-WeatherVibe.ZoneProfile.Map = 1=VerySnowy,3=DryDusty,4=FelCorrupted,8=Swampy,10=HeavyRain,11=HeavyRain,12=Moderate,14=DryDusty,15=Swampy,16=StormySea,17=DryDusty,25=VolcanicAsh,28=Moderate,33=JungleHumid,36=LightSnow,38=Moderate,40=DryDusty,41=CalmClear,44=HeavyRain,45=Moderate,46=VolcanicAsh,47=Moderate,51=VolcanicAsh,65=VerySnowy,66=VerySnowy,67=NorthrendFrozen,85=HeavyRain,130=HeavyRain,139=CalmClear,141=CalmClear,148=StormySea,207=StormySea,210=VerySnowy,215=CalmClear,267=HeavyRain,331=HeavyRain,357=JungleHumid,361=FelCorrupted,394=BorealMixed,400=Desert,405=DryDusty,406=Moderate,440=Desert,457=StormySea,490=JungleHumid,493=CalmClear,495=BorealMixed,618=VerySnowy,796=CalmClear,1377=Desert,1397=CalmClear,1417=CalmClear,1497=HeavyRain,1519=Moderate,1537=VerySnowy,1637=DryDusty,1638=Moderate,1657=CalmClear,1941=CalmClear,1977=JungleHumid,2017=CalmClear,2257=CalmClear,2597=VerySnowy,2817=BorealMixed,3277=HeavyRain,3358=Moderate,3428=Desert,3429=Desert,3430=Moderate,3433=HeavyRain,3455=StormySea,3483=FelCorrupted,3487=Moderate,3518=CalmClear,3519=HeavyRain,3520=FelCorrupted,3521=Swampy,3522=DryDusty,3523=FelCorrupted,3524=Moderate,3525=HeavyRain,3535=FelCorrupted,3540=CalmClear,3557=Moderate,3605=LightSnow,3698=CalmClear,3702=DryDusty,3703=OutlandMixed,3711=JungleHumid,3817=BorealMixed,3820=StormySea,3917=OutlandMixed,3979=StormySea,4076=CalmClear,4080=StormySea,4197=NorthrendFrozen,4201=BorealMixed,4258=StormySea,4298=HeavyRain,4378=CalmClear,4384=StormySea,4395=BorealMixed,4406=CalmClear,4602=CalmClear,4603=NorthrendFrozen,4630=StormySea,4710=StormySea,4742=NorthrendFrozen,4763=BorealMixed,4764=BorealMixed,4832=CalmClear,4833=CalmClear,4895=CalmClear,4896=CalmClear,4897=CalmClear,14284=CalmClear,14285=CalmClear,14286=CalmClear,14288=CalmClear
-
-
-#######################################################################################################
+# Thunders (86)
+# ----------------------------------------------------------------------
+WeatherVibe.Intensity.InternalRange.MORNING.Thunders         = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders       = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.Thunders         = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.30, 0.90
