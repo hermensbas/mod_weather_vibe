@@ -124,7 +124,7 @@ WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.30, 0.90
 
 # Thunders (86)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.Thunders         = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders       = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.EVENING.Thunders         = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.MORNING.Thunders         = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders       = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.EVENING.Thunders         = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.10, 0.50
