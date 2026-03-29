@@ -1,8 +1,5 @@
 # WeatherVibe (AzerothCore module) (beta version)
 
-ATM broken due: https://github.com/azerothcore/azerothcore-wotlk/pull/22772
-when i got time i will impl last core changes.
-
 https://youtu.be/4CxG-eAT9D4
 
 Bring your world to life with **mod_weather_vibe**. This module gives each zone a
