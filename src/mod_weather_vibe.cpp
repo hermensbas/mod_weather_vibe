@@ -529,13 +529,23 @@ static bool HandleCommandPercent(ChatHandler* handler, uint32 zoneId, uint32 sta
     if (!IsValidWeatherState(stateVal))
     {
         handler->SendSysMessage("|cff00ff00WeatherVibe:|r Invalid state. Examples: 0=Fine, 1=Fog, 3=LightRain, 4=MediumRain, 5=HeavyRain, 6=LightSnow, 7=MediumSnow, 8=HeavySnow, 22=LightSandstorm, 41=MediumSandstorm, 42=HeavySandstorm, 86=Thunders.");
-        handler->SendSysMessage("Usage: .wvibe set <zoneId> <state:uint> <percentage:0..100>");
+        handler->SendSysMessage("Usage: .wvibe set [zoneId] [state:uint] [percentage:0..100]");
         return false;
     }
 
     float pct01 = std::clamp(percentage, 0.0f, 100.0f) / 100.0f;
     DayPart dp = GetCurrentDayPart();
-    float raw = MapPercentToRawGrade(dp, static_cast<WeatherState>(stateVal), pct01);
+    float raw;
+
+    if (stateVal == WEATHER_STATE_FINE)
+    {
+        // invert the value
+        raw = (1.0f - pct01) * 0.30f;
+    }
+    else
+    {
+        raw = MapPercentToRawGrade(dp, static_cast<WeatherState>(stateVal), pct01);
+    }
 
     return PushWeatherToClient(zoneId, static_cast<WeatherState>(stateVal), raw);
 }
@@ -550,7 +560,8 @@ static bool HandleCommandRaw(ChatHandler* handler, uint32 zoneId, uint32 stateVa
     }
     if (!IsValidWeatherState(stateVal))
     {
-        handler->SendSysMessage("Usage: .wvibe setRaw <zoneId> <state:uint> <raw:0..1>");
+        handler->SendSysMessage("|cff00ff00WeatherVibe:|r Invalid state. Examples: 0=Fine, 1=Fog, 3=LightRain, 4=MediumRain, 5=HeavyRain, 6=LightSnow, 7=MediumSnow, 8=HeavySnow, 22=LightSandstorm, 41=MediumSandstorm, 42=HeavySandstorm, 86=Thunders.");
+        handler->SendSysMessage("Usage: .wvibe setRaw [zoneId] [state:uint] [raw:0..1]");
         return false;
     }
 
@@ -575,6 +586,34 @@ public:
         LoadStateRanges();
 
         handler->SendSysMessage("|cff00ff00WeatherVibe:|r Reloaded (per-state ranges/dayparts).");
+        return true;
+    }
+
+    static bool HandleWvibeHelp(ChatHandler* handler)
+    {
+        handler->SendSysMessage("|cff00ff00WeatherVibe:|r commands:");
+        handler->SendSysMessage("  .wvibe set [zoneId] [state] [pct:0..100]");
+        handler->SendSysMessage("  .wvibe setRaw [zoneId] [state] [raw:0..1]");
+        handler->SendSysMessage("  .wvibe where");
+        handler->SendSysMessage("  .wvibe show");
+        handler->SendSysMessage("  .wvibe reload");
+        handler->SendSysMessage("States: 0 Fine | 1 Fog | 3 LRain | 4 MRain | 5 HRain | 6 LSnow | 7 MSnow | 8 HSnow | 22 LSand | 41 MSand | 42 HSand | 86 Thunder");
+        return true;
+    }
+
+    static bool HandleWvibeWhere(ChatHandler* handler)
+    {
+        Player* player = handler->GetPlayer();
+        if (!player)
+        {
+            handler->SendSysMessage("|cff00ff00WeatherVibe:|r No player found (use in-game only).");
+            return false;
+        }
+
+        std::ostringstream oss;
+        oss << "|cff00ff00WeatherVibe:|r where | zoneId=" << player->GetZoneId();
+
+        handler->SendSysMessage(oss.str().c_str());
         return true;
     }
 
@@ -627,10 +666,12 @@ public:
     {
         static ChatCommandTable wvibeSet =
         {
-            { "set",    HandleWvibeSet,    SEC_ADMINISTRATOR, Console::Yes },
-            { "setRaw", HandleWvibeSetRaw, SEC_ADMINISTRATOR, Console::Yes },
-            { "reload", HandleWvibeReload, SEC_ADMINISTRATOR, Console::Yes },
-            { "show",   HandleWvibeShow,   SEC_ADMINISTRATOR, Console::Yes },
+            { "set",    HandleWvibeSet,     SEC_ADMINISTRATOR, Console::Yes },
+            { "setRaw", HandleWvibeSetRaw,  SEC_ADMINISTRATOR, Console::Yes },
+            { "reload", HandleWvibeReload,  SEC_ADMINISTRATOR, Console::Yes },
+            { "where",  HandleWvibeWhere,   SEC_ADMINISTRATOR, Console::Yes },
+            { "show",   HandleWvibeShow,    SEC_ADMINISTRATOR, Console::Yes },
+            { "help",   HandleWvibeHelp,    SEC_ADMINISTRATOR, Console::Yes },
         };
         static ChatCommandTable root =
         {

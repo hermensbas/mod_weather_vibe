@@ -71,7 +71,7 @@ WeatherVibe.Intensity.InternalRange.NIGHT.LightRain       = 0.30, 0.50
 WeatherVibe.Intensity.InternalRange.MORNING.MediumRain    = 0.30, 0.70
 WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumRain  = 0.30, 0.70
 WeatherVibe.Intensity.InternalRange.EVENING.MediumRain    = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumRain      = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumRain      = 0.30, 0.80
 
 # Heavy Rain (5)
 # ----------------------------------------------------------------------
