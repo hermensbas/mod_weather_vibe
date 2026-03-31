@@ -92,10 +92,13 @@ public:
         handler->SendSysMessage("|cff00ff00WeatherVibe:|r commands:");
         handler->SendSysMessage("  .wvibe set [zoneId] [state] [pct:0..100]");
         handler->SendSysMessage("  .wvibe setRaw [zoneId] [state] [raw:0..1]");
-        handler->SendSysMessage("  .wvibe where");
-        handler->SendSysMessage("  .wvibe show");
-        handler->SendSysMessage("  .wvibe reload");
-        handler->SendSysMessage("States: 0 Fine | 1 Fog | 3 LRain | 4 MRain | 5 HRain | 6 LSnow | 7 MSnow | 8 HSnow | 22 LSand | 41 MSand | 42 HSand | 86 Thunder");
+        handler->SendSysMessage("  .wvibe where (shows current mapId)");
+        handler->SendSysMessage("  .wvibe show (weather per map overview)");
+        handler->SendSysMessage("  .wvibe reload (reload config)");
+        handler->SendSysMessage("|cff00ff00WeatherVibe:|r States:");
+        handler->SendSysMessage("0 Fine | 1 Fog | 3 LightRain | 4 MediumRain | 5 HeavyRain");
+        handler->SendSysMessage("6 LightSnow | 7 MediumSnow | 8 HeavySnow");
+        handler->SendSysMessage("22 LightSand | 41 MediumSand | 42 HeavySand | 86 Thunder");
         return true;
     }
 

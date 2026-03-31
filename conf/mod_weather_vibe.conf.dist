@@ -103,24 +103,24 @@ WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow       = 0.30, 0.90
 
 # Light Sandstorm (22)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.20, 0.40
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.20, 0.40
+WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.20, 0.40
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.20, 0.40
 
 # Medium Sandstorm (41)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.20, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.20, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.20, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.20, 0.70
 
 # Heavy Sandstorm (42)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.20, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.20, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.20, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.20, 0.90
 
 # Thunders (86)
 # ----------------------------------------------------------------------
