@@ -34,6 +34,12 @@ public:
             return false;
         }
 
+        if (!WeatherVibeCore::IsValidWeatherState(stateVal))
+        {
+            handler->SendSysMessage("|cff00ff00WeatherVibe:|r Invalid weather state. Use .wvibe help for valid states.");
+            return false;
+        }
+
         bool ok = sWeatherVibeCore.PushWeatherPercent(zoneId, static_cast<WeatherState>(stateVal), percentage);
         if (!ok)
         {
@@ -51,6 +57,12 @@ public:
         if (!sWeatherVibeCore.IsEnabled())
         {
             handler->SendSysMessage("|cff00ff00WeatherVibe:|r Module is disabled in config.");
+            return false;
+        }
+
+        if (!WeatherVibeCore::IsValidWeatherState(stateVal))
+        {
+            handler->SendSysMessage("|cff00ff00WeatherVibe:|r Invalid weather state. Use .wvibe help for valid states.");
             return false;
         }
 
@@ -103,23 +115,6 @@ public:
     }
 
     // ----------------------------------------------------------
-    // .wvibe reload
-    // ----------------------------------------------------------
-    static bool HandleWvibeReload(ChatHandler* handler)
-    {
-        if (!sWeatherVibeCore.IsEnabled())
-        {
-            handler->SendSysMessage("|cff00ff00WeatherVibe:|r Module is disabled in config.");
-            return false;
-        }
-
-        sWeatherVibeCore.ReloadConfig();
-
-        handler->SendSysMessage("|cff00ff00WeatherVibe:|r Reloaded (daypart config + intensity ranges).");
-        return true;
-    }
-
-    // ----------------------------------------------------------
     // .wvibe where
     // ----------------------------------------------------------
     static bool HandleWvibeWhere(ChatHandler* handler)
@@ -147,7 +142,6 @@ public:
         handler->SendSysMessage("  .wvibe setRaw [zoneId] [state] [raw:0..1]");
         handler->SendSysMessage("  .wvibe where (shows current zoneId)");
         handler->SendSysMessage("  .wvibe show (weather per zone overview)");
-        handler->SendSysMessage("  .wvibe reload (reload config)");
         handler->SendSysMessage("|cff00ff00WeatherVibe:|r States:");
         handler->SendSysMessage("0 Fine | 1 Fog | 3 LightRain | 4 MediumRain | 5 HeavyRain");
         handler->SendSysMessage("6 LightSnow | 7 MediumSnow | 8 HeavySnow");
@@ -165,7 +159,6 @@ public:
             { "set",    HandleWvibeSet,    SEC_ADMINISTRATOR, Console::Yes },
             { "setRaw", HandleWvibeSetRaw, SEC_ADMINISTRATOR, Console::Yes },
             { "show",   HandleWvibeShow,   SEC_ADMINISTRATOR, Console::Yes },
-            { "reload", HandleWvibeReload, SEC_ADMINISTRATOR, Console::Yes },
             { "where",  HandleWvibeWhere,  SEC_ADMINISTRATOR, Console::Yes },
             { "help",   HandleWvibeHelp,   SEC_ADMINISTRATOR, Console::Yes },
         };

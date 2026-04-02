@@ -60,80 +60,80 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Fine            = 0.00, 0.30
 
 # Fog (1)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.Fog           = 0.10, 0.30
-WeatherVibe.Intensity.InternalRange.AFTERNOON.Fog         = 0.10, 0.30
-WeatherVibe.Intensity.InternalRange.EVENING.Fog           = 0.10, 0.30
-WeatherVibe.Intensity.InternalRange.NIGHT.Fog             = 0.10, 0.30
+WeatherVibe.Intensity.InternalRange.MORNING.Fog           = 0.15, 0.30
+WeatherVibe.Intensity.InternalRange.AFTERNOON.Fog         = 0.15, 0.30
+WeatherVibe.Intensity.InternalRange.EVENING.Fog           = 0.15, 0.30
+WeatherVibe.Intensity.InternalRange.NIGHT.Fog             = 0.15, 0.30
 
 # Light Rain (3)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightRain     = 0.30, 0.50
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightRain   = 0.30, 0.50
-WeatherVibe.Intensity.InternalRange.EVENING.LightRain     = 0.30, 0.50
-WeatherVibe.Intensity.InternalRange.NIGHT.LightRain       = 0.30, 0.50
+WeatherVibe.Intensity.InternalRange.MORNING.LightRain     = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightRain   = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.EVENING.LightRain     = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.NIGHT.LightRain       = 0.25, 0.50
 
 # Medium Rain (4)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.MediumRain    = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumRain  = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.MediumRain    = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumRain      = 0.30, 0.80
+WeatherVibe.Intensity.InternalRange.MORNING.MediumRain    = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumRain  = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumRain    = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumRain      = 0.25, 0.80
 
 # Heavy Rain (5)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.HeavyRain     = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavyRain   = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.EVENING.HeavyRain     = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavyRain       = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.MORNING.HeavyRain     = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavyRain   = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavyRain     = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavyRain       = 0.25, 0.90
 
 # Light Snow (6)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightSnow     = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSnow   = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.EVENING.LightSnow     = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSnow       = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.MORNING.LightSnow     = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSnow   = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.EVENING.LightSnow     = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSnow       = 0.25, 0.50
 
 # Medium Snow (7)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.MediumSnow    = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSnow  = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.MediumSnow    = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumSnow      = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.MORNING.MediumSnow    = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSnow  = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumSnow    = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumSnow      = 0.25, 0.70
 
 # Heavy Snow (8)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.HeavySnow     = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySnow   = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.EVENING.HeavySnow     = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow       = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.MORNING.HeavySnow     = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySnow   = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavySnow     = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow       = 0.25, 0.90
 
 # Light Sandstorm (22)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.30, 0.40
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.25, 0.50
 
 # Medium Sandstorm (41)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.30, 0.70
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.25, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.25, 0.70
 
 # Heavy Sandstorm (42)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.30, 0.90
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.25, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.25, 0.90
 
 # Thunders (86)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.Thunders         = 0.10, 0.30
-WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders       = 0.10, 0.30
-WeatherVibe.Intensity.InternalRange.EVENING.Thunders         = 0.10, 0.30
-WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.10, 0.50
+WeatherVibe.Intensity.InternalRange.MORNING.Thunders         = 0.15, 0.40
+WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders       = 0.15, 0.40
+WeatherVibe.Intensity.InternalRange.EVENING.Thunders         = 0.15, 0.40
+WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.15, 0.50
 
 
 #######################################################################################################
@@ -157,7 +157,7 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.10, 0.50
 # rare sleet (light rain), and summer thunderstorms add variety.
 # ----------------------------------------------------------------------
 
-# Spring — snow easing, clear days emerging, valley fog, rare sleet
+# Spring: snow easing, clear days emerging, valley fog, rare sleet
 WeatherVibe.Profile.DunMorogh.Spring.1=10,0,40,70
 WeatherVibe.Profile.DunMorogh.Spring.2=15,1,30,60
 WeatherVibe.Profile.DunMorogh.Spring.3=5,3,30,50
@@ -165,8 +165,7 @@ WeatherVibe.Profile.DunMorogh.Spring.4=40,6,30,50
 WeatherVibe.Profile.DunMorogh.Spring.5=15,7,30,70
 WeatherVibe.Profile.DunMorogh.Spring.6=10,8,30,80
 
-# Summer — mildest season, most clear days, light snow persists at altitude,
-#          morning fog, rare drizzle and occasional mountain thunderstorms
+# Summer: mildest season, most clear days, light snow persists at altitude, morning fog, rare drizzle and occasional mountain thunderstorms
 WeatherVibe.Profile.DunMorogh.Summer.1=30,0,50,80
 WeatherVibe.Profile.DunMorogh.Summer.2=15,1,30,60
 WeatherVibe.Profile.DunMorogh.Summer.3=8,3,30,50
@@ -175,31 +174,90 @@ WeatherVibe.Profile.DunMorogh.Summer.5=12,7,30,60
 WeatherVibe.Profile.DunMorogh.Summer.6=5,8,30,60
 WeatherVibe.Profile.DunMorogh.Summer.7=5,86,30,50
 
-# Autumn — colder, snow increasing, thick fog, fewer clear days
+# Autumn: colder, snow increasing, thick fog, fewer clear days
 WeatherVibe.Profile.DunMorogh.Autumn.1=10,0,30,60
 WeatherVibe.Profile.DunMorogh.Autumn.2=20,1,30,70
 WeatherVibe.Profile.DunMorogh.Autumn.3=35,6,30,50
 WeatherVibe.Profile.DunMorogh.Autumn.4=15,7,30,70
 WeatherVibe.Profile.DunMorogh.Autumn.5=15,8,30,80
 
-# Winter — harshest, heavy snow and blizzards dominant,
-#          rare clear cold days, dense mountain fog
+# Winter: harshest, heavy snow and blizzards dominant, rare clear cold days, dense mountain fog
 WeatherVibe.Profile.DunMorogh.Winter.1=5,0,30,50
 WeatherVibe.Profile.DunMorogh.Winter.2=10,1,40,70
 WeatherVibe.Profile.DunMorogh.Winter.3=20,6,30,50
 WeatherVibe.Profile.DunMorogh.Winter.4=30,7,30,80
 WeatherVibe.Profile.DunMorogh.Winter.5=30,8,40,90
 
-# Dun Morogh Specific Transition Settings
+# Transition Settings
 WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Min=15
-WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.DunMorogh.Transition.StepSize.Perc=20
 WeatherVibe.Profile.DunMorogh.Transition.Max.Changes.Per.Hour=12
-WeatherVibe.Profile.DunMorogh.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.DunMorogh.Transition.Max.Consecutive.Same=2
+
+# Elwynn Forest Profile
+# Low-altitude temperate forest region. Mild, lush, and wet most of the year.
+# Rain is the dominant weather, but clear days, morning fog, occasional light thunderstorms,
+# fine weather, and rare frost/snow in winter add variety.
+# ----------------------------------------------------------------------
+
+# Spring: very dynamic season, sun, showers, fog and thunder
+WeatherVibe.Profile.ElwynnForest.Spring.1=25,0,10,40
+WeatherVibe.Profile.ElwynnForest.Spring.2=15,1,20,50
+WeatherVibe.Profile.ElwynnForest.Spring.3=20,3,20,50
+WeatherVibe.Profile.ElwynnForest.Spring.4=10,4,30,60
+WeatherVibe.Profile.ElwynnForest.Spring.5=10,5,30,65
+WeatherVibe.Profile.ElwynnForest.Spring.6=10,86,30,70
+WeatherVibe.Profile.ElwynnForest.Spring.7=10,3,30,60
+
+# Summer: stable warm season with clear days and occasional storms
+WeatherVibe.Profile.ElwynnForest.Summer.1=40,0,10,40
+WeatherVibe.Profile.ElwynnForest.Summer.2=15,1,20,50
+WeatherVibe.Profile.ElwynnForest.Summer.3=20,3,20,50
+WeatherVibe.Profile.ElwynnForest.Summer.4=15,4,30,60
+WeatherVibe.Profile.ElwynnForest.Summer.5=10,86,30,70
+
+# Autumn: wet, foggy and windy with frequent rain
+WeatherVibe.Profile.ElwynnForest.Autumn.1=20,0,10,40
+WeatherVibe.Profile.ElwynnForest.Autumn.2=20,1,30,60
+WeatherVibe.Profile.ElwynnForest.Autumn.3=20,3,30,60
+WeatherVibe.Profile.ElwynnForest.Autumn.4=15,4,30,70
+WeatherVibe.Profile.ElwynnForest.Autumn.5=10,5,30,70
+WeatherVibe.Profile.ElwynnForest.Autumn.6=10,86,30,60
+WeatherVibe.Profile.ElwynnForest.Autumn.7=5,3,30,60
+
+# Winter: colder, foggy, rain common, occasional light snow
+WeatherVibe.Profile.ElwynnForest.Winter.1=30,0,10,40
+WeatherVibe.Profile.ElwynnForest.Winter.2=20,1,30,60
+WeatherVibe.Profile.ElwynnForest.Winter.3=20,3,30,60
+WeatherVibe.Profile.ElwynnForest.Winter.4=15,4,30,70
+WeatherVibe.Profile.ElwynnForest.Winter.5=15,6,30,60
+
+# Transition settings
+WeatherVibe.Profile.ElwynnForest.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.ElwynnForest.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.ElwynnForest.Transition.StepSize.Perc=20
+WeatherVibe.Profile.ElwynnForest.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.ElwynnForest.Transition.Max.Consecutive.Same=2
 
 #######################################################################################################
 # Zone-to-profile mappings
-# Format: zoneId,ProfileName — add as many as needed with .1, .2, .3, … suffix
+# Format: zoneId,ProfileName � add as many as needed with .1, .2, .3, � suffix
+# Zones sharing the same profile name are automatically synced � same weather,
+# same transitions, same timing. Use this to keep outdoor cities in sync with
+# their surrounding zone (e.g. Stormwind + Elwynn Forest).
+#
+# Example:
+#   WeatherVibe.ZoneProfile.1=12,ElwynnForest
+#   WeatherVibe.ZoneProfile.2=1519,ElwynnForest    <- Stormwind synced to Elwynn
+#
 #######################################################################################################
-#######################################################################################################
+
+# DunMorogh mapping
+# ----------------------------------------------------------------------
 WeatherVibe.ZoneProfile.1=1,DunMorogh
+
+# ----------------------------------------------------------------------
+# ElwynnForest mapping
+WeatherVibe.ZoneProfile.2=12,ElwynnForest
+WeatherVibe.ZoneProfile.3=1519,ElwynnForest

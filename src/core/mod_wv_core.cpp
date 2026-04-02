@@ -72,6 +72,9 @@ void WeatherVibeCore::OnStartup()
         m_profileEnabled ? "enabled" : "disabled");
 }
 
+// ============================================================
+// Config loading (private)
+// ============================================================
 void WeatherVibeCore::ReloadConfig()
 {
     m_profileEnabled = sConfigMgr->GetOption<bool>("WeatherVibe.Profile.Enable", true);
@@ -79,9 +82,6 @@ void WeatherVibeCore::ReloadConfig()
     LoadIntensityRangesConfig();
 }
 
-// ============================================================
-// Config loading (private)
-// ============================================================
 void WeatherVibeCore::LoadDayPartConfig()
 {
     // Resolve daypart mode once — avoid per-tick string comparison
@@ -289,6 +289,9 @@ bool WeatherVibeCore::BroadcastZonePacket(uint32 zoneId, WorldPacket const* pack
     return map->SendZoneMessage(zoneId, packet);
 }
 
+// ============================================================
+// Broadcast helpers (public)
+// ============================================================
 void WeatherVibeCore::BroadcastZoneText(uint32 zoneId, char const* text)
 {
     Map* map = GetMap(zoneId);
@@ -299,7 +302,7 @@ void WeatherVibeCore::BroadcastZoneText(uint32 zoneId, char const* text)
 // ============================================================
 // Weather dispatch (private)
 // ============================================================
-bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade, float percentage)
+bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade)
 {
     float normalizedGrade = ClampToCoreBounds(rawGrade);
 
@@ -328,12 +331,11 @@ bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, flo
     if (m_debug)
     {
         std::ostringstream zmsg;
-        zmsg << "|cff00ff00WeatherVibe:|r [DEBUG] seas=" << SeasonName(GetCurrentSeason())
+        zmsg << "|cff00ff00WeatherVibe:|r [DEBUG] season=" << SeasonName(GetCurrentSeason())
              << " | day="    << DayPartName(GetCurrentDayPart())
              << " | state="  << WeatherStateName(state)
-             << " | raw=" << std::fixed << std::setprecision(2) << normalizedGrade
-             << " | perc=" << static_cast<int>(percentage)
-             << " | s=" << (isApplied ? "true" : "false");
+             << " | grade="  << std::fixed << std::setprecision(2) << normalizedGrade
+             << " | pushed=" << (isApplied ? "true" : "false");
 
         BroadcastZoneText(zoneId, zmsg.str().c_str());
     }
@@ -348,7 +350,7 @@ bool WeatherVibeCore::PushWeatherPercent(uint32 zoneId, WeatherState state, floa
 {
     float normalizedPercentage = std::clamp(percentage, 0.0f, 100.0f) / 100.0f;
     float raw = MapPercentToRawGrade(GetCurrentDayPart(), state, normalizedPercentage);
-    return PushWeatherToClient(zoneId, state, raw, percentage);
+    return PushWeatherToClient(zoneId, state, raw);
 }
 
 // ============================================================

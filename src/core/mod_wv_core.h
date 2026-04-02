@@ -62,9 +62,6 @@ public:
     // Lifecycle
     void OnStartup();
 
-    // Config reload — reloads daypart + intensity ranges
-    void ReloadConfig();
-
     // Time/season queries
     DayPart GetCurrentDayPart() const;
     Season  GetCurrentSeason()  const;
@@ -85,6 +82,9 @@ public:
     bool IsProfileEnabled() const { return m_profileEnabled; }
     bool IsDebug()          const { return m_debug;   }
 
+    // Broadcast helpers
+    void BroadcastZoneText(uint32 zoneId, char const* text);
+
     // Name helpers (static — no state dependency)
     static char const* WeatherStateName(WeatherState s);
     static char const* DayPartName(DayPart d);
@@ -99,20 +99,20 @@ private:
     WeatherVibeCore(WeatherVibeCore const&)            = delete;
     WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
 
-    // Config loading — called from OnStartup and ReloadConfig
+    // Config reload — reloads daypart + intensity ranges
+    void ReloadConfig();
     void LoadDayPartConfig();
     void LoadIntensityRangesConfig();
 
     // Core dispatch — all callers go through PushWeatherPercent
     float MapPercentToRawGrade(DayPart dp, WeatherState state, float percent01) const;
-    bool  PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade, float percentage = 0.f);
+    bool  PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade);
 
     // Map resolution — cached zone → base continent map lookup
     Map* GetMap(uint32 zoneId);
 
     // Broadcast helpers
     bool BroadcastZonePacket(uint32 zoneId, WorldPacket const* packet);
-    void BroadcastZoneText(uint32 zoneId, char const* text);
 
     // Internal helpers
     static tm    GetLocalTimeSafe();
