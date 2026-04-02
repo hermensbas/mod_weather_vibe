@@ -1,3 +1,6 @@
+This mod will replace soon with a newer more refined version!
+
+
 # WeatherVibe (AzerothCore module) (beta version)
 
 https://youtu.be/4CxG-eAT9D4
