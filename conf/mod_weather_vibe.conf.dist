@@ -18,9 +18,15 @@ WeatherVibe.Enable = 1
 # ----------------------------------------------------------------------
 WeatherVibe.Debug = 1
 
+# Toggle weather profiles (automatic weather engine).
+# When disabled, manual commands (.wvibe set / setRaw) still work
+# but profiles will not drive weather automatically.
+# ----------------------------------------------------------------------
+WeatherVibe.Profile.Enable = 1
+
 #######################################################################################################
 #######################################################################################################
-# Dayparts & Season
+# Dayparts & Season (core)
 #######################################################################################################
 
 # Season: auto|spring|summer|autumn|winter.
@@ -41,7 +47,7 @@ WeatherVibe.DayPart.NIGHT.Start     = 22:00
 
 #######################################################################################################
 #######################################################################################################
-# Internal intensity ranges - raw grade clamps per daypart/state
+# Internal intensity ranges - raw grade clamps per daypart/state (core)
 # Defaults: 0.30 – 0.90 for every WeatherState and every daypart.
 #######################################################################################################
 
@@ -103,24 +109,24 @@ WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow       = 0.30, 0.90
 
 # Light Sandstorm (22)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.20, 0.40
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.20, 0.40
-WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.20, 0.40
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.20, 0.40
+WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.30, 0.40
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.30, 0.40
 
 # Medium Sandstorm (41)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.20, 0.70
-WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.20, 0.70
-WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.20, 0.70
-WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.20, 0.70
+WeatherVibe.Intensity.InternalRange.MORNING.MediumSandstorm  = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.AFTERNOON.MediumSandstorm= 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.EVENING.MediumSandstorm  = 0.30, 0.70
+WeatherVibe.Intensity.InternalRange.NIGHT.MediumSandstorm    = 0.30, 0.70
 
 # Heavy Sandstorm (42)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.20, 0.90
-WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.20, 0.90
-WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.20, 0.90
-WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.20, 0.90
+WeatherVibe.Intensity.InternalRange.MORNING.HeavySandstorm   = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.AFTERNOON.HeavySandstorm = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.EVENING.HeavySandstorm   = 0.30, 0.90
+WeatherVibe.Intensity.InternalRange.NIGHT.HeavySandstorm     = 0.30, 0.90
 
 # Thunders (86)
 # ----------------------------------------------------------------------
@@ -128,3 +134,72 @@ WeatherVibe.Intensity.InternalRange.MORNING.Thunders         = 0.10, 0.30
 WeatherVibe.Intensity.InternalRange.AFTERNOON.Thunders       = 0.10, 0.30
 WeatherVibe.Intensity.InternalRange.EVENING.Thunders         = 0.10, 0.30
 WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.10, 0.50
+
+
+#######################################################################################################
+#######################################################################################################
+# Zone weather profiles
+# Format: weight, weatherType, intensityMinPct, intensityMaxPct
+# Intensity values are percentages (0..100) that get normalised through the InternalRange above.
+# Weather Types:
+#           0=Fine, 1=Fog,
+#           3=LightRain, 4=MediumRain, 5=HeavyRain, 
+#           6=LightSnow, 7=MediumSnow, 8=HeavySnow,
+#           22=LightSandstorm, 41=MediumSandstorm, 42=HeavySandstorm,
+#           86=Thunders
+# When same weather effect is selected again, we randomly buildup and builddown to random intensity percentage
+# Use .1, .2, .3, … suffix for multiple entries per season. Dynamic count — add as many as needed.
+#######################################################################################################
+
+# DunMorogh Profile
+# High-altitude snowy mountain region. Cold, windy and wet year-round.
+# Snow is the dominant weather, but clear crisp days, mountain fog,
+# rare sleet (light rain), and summer thunderstorms add variety.
+# ----------------------------------------------------------------------
+
+# Spring — snow easing, clear days emerging, valley fog, rare sleet
+WeatherVibe.Profile.DunMorogh.Spring.1=10,0,40,70
+WeatherVibe.Profile.DunMorogh.Spring.2=15,1,30,60
+WeatherVibe.Profile.DunMorogh.Spring.3=5,3,30,50
+WeatherVibe.Profile.DunMorogh.Spring.4=40,6,30,50
+WeatherVibe.Profile.DunMorogh.Spring.5=15,7,30,70
+WeatherVibe.Profile.DunMorogh.Spring.6=10,8,30,80
+
+# Summer — mildest season, most clear days, light snow persists at altitude,
+#          morning fog, rare drizzle and occasional mountain thunderstorms
+WeatherVibe.Profile.DunMorogh.Summer.1=30,0,50,80
+WeatherVibe.Profile.DunMorogh.Summer.2=15,1,30,60
+WeatherVibe.Profile.DunMorogh.Summer.3=8,3,30,50
+WeatherVibe.Profile.DunMorogh.Summer.4=25,6,30,40
+WeatherVibe.Profile.DunMorogh.Summer.5=12,7,30,60
+WeatherVibe.Profile.DunMorogh.Summer.6=5,8,30,60
+WeatherVibe.Profile.DunMorogh.Summer.7=5,86,30,50
+
+# Autumn — colder, snow increasing, thick fog, fewer clear days
+WeatherVibe.Profile.DunMorogh.Autumn.1=10,0,30,60
+WeatherVibe.Profile.DunMorogh.Autumn.2=20,1,30,70
+WeatherVibe.Profile.DunMorogh.Autumn.3=35,6,30,50
+WeatherVibe.Profile.DunMorogh.Autumn.4=15,7,30,70
+WeatherVibe.Profile.DunMorogh.Autumn.5=15,8,30,80
+
+# Winter — harshest, heavy snow and blizzards dominant,
+#          rare clear cold days, dense mountain fog
+WeatherVibe.Profile.DunMorogh.Winter.1=5,0,30,50
+WeatherVibe.Profile.DunMorogh.Winter.2=10,1,40,70
+WeatherVibe.Profile.DunMorogh.Winter.3=20,6,30,50
+WeatherVibe.Profile.DunMorogh.Winter.4=30,7,30,80
+WeatherVibe.Profile.DunMorogh.Winter.5=30,8,40,90
+
+# Dun Morogh Specific Transition Settings
+WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.DunMorogh.Transition.StepSize.Perc=20
+WeatherVibe.Profile.DunMorogh.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.DunMorogh.Transition.Max.Consecutive.Same=3
+
+#######################################################################################################
+# Zone-to-profile mappings
+# Format: zoneId,ProfileName — add as many as needed with .1, .2, .3, … suffix
+#######################################################################################################
+#######################################################################################################
+WeatherVibe.ZoneProfile.1=1,DunMorogh

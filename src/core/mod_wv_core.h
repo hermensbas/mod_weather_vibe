@@ -1,6 +1,7 @@
 #ifndef MOD_WV_CORE_H
 #define MOD_WV_CORE_H
 
+#include "Chat.h"             // ChatHandler
 #include "Player.h"
 #include "Weather.h"          // WeatherState enum
 
@@ -46,7 +47,7 @@ struct LastApplied
 {
     WeatherState state    = WEATHER_STATE_FINE;
     float        grade    = 0.f;
-    bool         hasValue = false; // anti-spam guard
+    bool         hasValue = false;
 };
 
 // ============================================================
@@ -58,34 +59,39 @@ public:
     // Singleton accessor
     static WeatherVibeCore& Instance();
 
-    // Lifecycle (called from WorldScript hooks in mod_weather_vibe.cpp)
+    // Lifecycle
     void OnStartup();
 
-    // Config reload (also callable from .wvibe reload command)
-    void LoadDayPartConfig();
-    void LoadStateRanges();
+    // Config reload — reloads daypart + intensity ranges
+    void ReloadConfig();
 
     // Time/season queries
     DayPart GetCurrentDayPart() const;
     Season  GetCurrentSeason()  const;
 
-    // Intensity mapping
-    float MapPercentToRawGrade(DayPart dp, WeatherState state, float percent01) const;
+    // Percent: 0..100 — mapped through daypart intensity ranges
+    bool PushWeatherPercent(uint32 zoneId, WeatherState state, float percentage);
+    // Raw: 0..1 — sent directly, bypasses daypart range mapping
+    bool PushWeatherDebug(uint32 zoneId, WeatherState state, float rawGrade);
 
-    // Weather dispatch
-    bool PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade);
+    // Push last applied weather to players client.
     void PushLastAppliedWeatherToClient(uint32 zoneId, Player* player);
 
-    // State accessors (read-only for commands/engine)
-    bool IsEnabled() const { return m_enabled; }
-    bool IsDebug()   const { return m_debug;   }
-
+    // Last-applied read access — used by commands (.wvibe show)
     std::unordered_map<uint32, LastApplied> const& GetLastApplied() const { return m_lastApplied; }
+
+    // State accessors
+    bool IsEnabled()        const { return m_enabled; }
+    bool IsProfileEnabled() const { return m_profileEnabled; }
+    bool IsDebug()          const { return m_debug;   }
 
     // Name helpers (static — no state dependency)
     static char const* WeatherStateName(WeatherState s);
     static char const* DayPartName(DayPart d);
     static char const* SeasonName(Season s);
+
+    // Validation
+    static bool IsValidWeatherState(uint32 value);
 
 private:
     WeatherVibeCore()  = default;
@@ -93,12 +99,18 @@ private:
     WeatherVibeCore(WeatherVibeCore const&)            = delete;
     WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
 
-    // Map resolution — cached zone → base continent map lookup.
-    // Populates m_zoneToMapId on first call per zone via AreaTableEntry.
-    // Returns nullptr if the zone is unknown or the map is not loaded.
+    // Config loading — called from OnStartup and ReloadConfig
+    void LoadDayPartConfig();
+    void LoadIntensityRangesConfig();
+
+    // Core dispatch — all callers go through PushWeatherPercent
+    float MapPercentToRawGrade(DayPart dp, WeatherState state, float percent01) const;
+    bool  PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade, float percentage = 0.f);
+
+    // Map resolution — cached zone → base continent map lookup
     Map* GetMap(uint32 zoneId);
 
-    // Broadcast helpers — both use GetMap, no DoForAllMaps scan.
+    // Broadcast helpers
     bool BroadcastZonePacket(uint32 zoneId, WorldPacket const* packet);
     void BroadcastZoneText(uint32 zoneId, char const* text);
 
@@ -109,17 +121,21 @@ private:
     static float ClampToCoreBounds(float g);
     static char const* DayPartTokenUpper(DayPart d);
     static char const* ConfigStateToken(WeatherState s);
-    static bool  IsValidWeatherState(uint32 value);
     static Range ParseRangePair(std::string const& key, Range def);
 
     void ValidateDayPartStarts();
 
     // Module state
-    bool          m_enabled     = true;
-    bool          m_debug       = false;
+    bool          m_enabled        = true;
+    bool          m_profileEnabled = true;
+    bool          m_debug          = false;
     DayPartStarts m_starts;
-    std::string   m_dayPartMode = "auto";
-    std::string   m_seasonMode  = "auto";
+
+    // Cached daypart/season mode — resolved once on config load
+    bool    m_dayPartAuto    = true;
+    DayPart m_dayPartFixed   = DayPart::MORNING;
+    bool    m_seasonAuto     = true;
+    Season  m_seasonFixed    = Season::SPRING;
 
     // Per-daypart per-WeatherState intensity ranges
     std::unordered_map<uint32, Range> m_stateRanges[(size_t)DayPart::COUNT];
@@ -127,8 +143,7 @@ private:
     // Per-zone last-applied weather cache
     std::unordered_map<uint32, LastApplied> m_lastApplied;
 
-    // Zone → mapId cache (populated lazily on first push per zone).
-    // Avoids repeated AreaTable lookups and eliminates DoForAllMaps scans.
+    // Zone → mapId cache (populated lazily on first push per zone)
     std::unordered_map<uint32, uint32> m_zoneToMapId;
 
     static std::array<WeatherState, 12> const kAcceptedStates;

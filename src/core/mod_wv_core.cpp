@@ -1,7 +1,8 @@
 #include "mod_wv_core.h"
 
+#include "Chat.h"
 #include "Config.h"
-#include "DBCStores.h"        // sAreaTableStore — zone → mapId resolution
+#include "DBCStores.h"
 #include "GameTime.h"
 #include "Log.h"
 #include "MapMgr.h"
@@ -14,6 +15,7 @@
 #include <cmath>
 #include <cstdio>
 #include <ctime>
+#include <iomanip>
 #include <sstream>
 #include <string>
 
@@ -58,23 +60,53 @@ void WeatherVibeCore::OnStartup()
         return;
     }
 
-    m_debug = sConfigMgr->GetOption<uint32>("WeatherVibe.Debug", 0) != 0;
+    m_debug          = sConfigMgr->GetOption<uint32>("WeatherVibe.Debug", 0) != 0;
+    m_profileEnabled = sConfigMgr->GetOption<bool>("WeatherVibe.Profile.Enable", true);
 
     LoadDayPartConfig();
-    LoadStateRanges();
+    LoadIntensityRangesConfig();
     m_lastApplied.clear();
     m_zoneToMapId.clear();
 
-    LOG_INFO("server.loading", "[WeatherVibe] started (packet mode, per-state ranges)");
+    LOG_INFO("server.loading", "[WeatherVibe] started (packet mode, per-state ranges, profiles {})",
+        m_profileEnabled ? "enabled" : "disabled");
+}
+
+void WeatherVibeCore::ReloadConfig()
+{
+    m_profileEnabled = sConfigMgr->GetOption<bool>("WeatherVibe.Profile.Enable", true);
+    LoadDayPartConfig();
+    LoadIntensityRangesConfig();
 }
 
 // ============================================================
-// Config loading
+// Config loading (private)
 // ============================================================
 void WeatherVibeCore::LoadDayPartConfig()
 {
-    m_dayPartMode = sConfigMgr->GetOption<std::string>("WeatherVibe.DayPart.Mode", "auto");
-    m_seasonMode  = sConfigMgr->GetOption<std::string>("WeatherVibe.Season",       "auto");
+    // Resolve daypart mode once — avoid per-tick string comparison
+    {
+        std::string mode = sConfigMgr->GetOption<std::string>("WeatherVibe.DayPart.Mode", "auto");
+        std::transform(mode.begin(), mode.end(), mode.begin(), [](unsigned char c) { return char(std::tolower(c)); });
+
+        m_dayPartAuto = true;
+        if      (mode == "morning")   { m_dayPartAuto = false; m_dayPartFixed = DayPart::MORNING;   }
+        else if (mode == "afternoon") { m_dayPartAuto = false; m_dayPartFixed = DayPart::AFTERNOON; }
+        else if (mode == "evening")   { m_dayPartAuto = false; m_dayPartFixed = DayPart::EVENING;   }
+        else if (mode == "night")     { m_dayPartAuto = false; m_dayPartFixed = DayPart::NIGHT;     }
+    }
+
+    // Resolve season mode once
+    {
+        std::string mode = sConfigMgr->GetOption<std::string>("WeatherVibe.Season", "auto");
+        std::transform(mode.begin(), mode.end(), mode.begin(), [](unsigned char c) { return char(std::tolower(c)); });
+
+        m_seasonAuto = true;
+        if      (mode == "spring") { m_seasonAuto = false; m_seasonFixed = Season::SPRING; }
+        else if (mode == "summer") { m_seasonAuto = false; m_seasonFixed = Season::SUMMER; }
+        else if (mode == "autumn") { m_seasonAuto = false; m_seasonFixed = Season::AUTUMN; }
+        else if (mode == "winter") { m_seasonAuto = false; m_seasonFixed = Season::WINTER; }
+    }
 
     m_starts.morning   = ParseHHMM(sConfigMgr->GetOption<std::string>("WeatherVibe.DayPart.MORNING.Start",   "06:00"), 6  * 60);
     m_starts.afternoon = ParseHHMM(sConfigMgr->GetOption<std::string>("WeatherVibe.DayPart.AFTERNOON.Start", "12:00"), 12 * 60);
@@ -84,7 +116,7 @@ void WeatherVibeCore::LoadDayPartConfig()
     ValidateDayPartStarts();
 }
 
-void WeatherVibeCore::LoadStateRanges()
+void WeatherVibeCore::LoadIntensityRangesConfig()
 {
     for (size_t i = 0; i < (size_t)DayPart::COUNT; ++i)
     {
@@ -133,14 +165,10 @@ int WeatherVibeCore::ParseHHMM(std::string const& s, int defMinutes)
     t.erase(std::remove_if(t.begin(), t.end(), [](unsigned char c) { return std::isspace(c); }), t.end());
 
     if (std::sscanf(t.c_str(), "%d%c%d", &h, &colon, &m) == 3 && colon == ':' && h >= 0 && h < 24 && m >= 0 && m < 60)
-    {
         return h * 60 + m;
-    }
 
     if (std::sscanf(t.c_str(), "%d", &h) == 1 && h >= 0 && h < 24)
-    {
         return h * 60;
-    }
 
     return defMinutes;
 }
@@ -155,7 +183,7 @@ void WeatherVibeCore::ValidateDayPartStarts()
     m_starts.morning   = ClampMinutes(m_starts.morning);
     m_starts.afternoon = std::max(ClampMinutes(m_starts.afternoon), m_starts.morning   + 1);
     m_starts.evening   = std::max(ClampMinutes(m_starts.evening),   m_starts.afternoon + 1);
-    m_starts.night     = ClampMinutes(m_starts.night); // wrap handled in GetCurrentDayPart()
+    m_starts.night     = std::max(ClampMinutes(m_starts.night), m_starts.evening + 1);
 }
 
 // ============================================================
@@ -163,15 +191,9 @@ void WeatherVibeCore::ValidateDayPartStarts()
 // ============================================================
 DayPart WeatherVibeCore::GetCurrentDayPart() const
 {
-    std::string mode = m_dayPartMode;
-    std::transform(mode.begin(), mode.end(), mode.begin(), [](unsigned char c) { return char(std::tolower(c)); });
+    if (!m_dayPartAuto) { return m_dayPartFixed; }
 
-    if (mode == "morning")   { return DayPart::MORNING;   }
-    if (mode == "afternoon") { return DayPart::AFTERNOON; }
-    if (mode == "evening")   { return DayPart::EVENING;   }
-    if (mode == "night")     { return DayPart::NIGHT;     }
-
-    tm lt      = GetLocalTimeSafe();
+    tm  lt      = GetLocalTimeSafe();
     int minutes = lt.tm_hour * 60 + lt.tm_min;
 
     if (minutes >= m_starts.night || minutes < m_starts.morning) { return DayPart::NIGHT;     }
@@ -183,20 +205,15 @@ DayPart WeatherVibeCore::GetCurrentDayPart() const
 
 Season WeatherVibeCore::GetCurrentSeason() const
 {
-    std::string m = m_seasonMode;
-    std::transform(m.begin(), m.end(), m.begin(), [](unsigned char c) { return char(std::tolower(c)); });
+    if (!m_seasonAuto) { return m_seasonFixed; }
 
-    if (m == "spring") { return Season::SPRING; }
-    if (m == "summer") { return Season::SUMMER; }
-    if (m == "autumn") { return Season::AUTUMN; }
-    if (m == "winter") { return Season::WINTER; }
+    tm  lt         = GetLocalTimeSafe();
+    int yday       = lt.tm_yday;
+    // Pivot: yday 78 ≈ March 20 (vernal equinox). Each season spans ~91 days.
+    // +365 prevents negative dividend before integer division.
+    uint32 sidx    = ((yday - 78 + 365) / 91) % 4;
 
-    // Auto: derive from day-of-year; anchor Spring around Mar 20 (~day 79)
-    tm lt = GetLocalTimeSafe();
-    int yday = lt.tm_yday;
-    uint32 seasonIndex = ((yday - 78 + 365) / 91) % 4;
-
-    switch (seasonIndex)
+    switch (sidx)
     {
         default:
         case 0: return Season::SPRING;
@@ -207,18 +224,21 @@ Season WeatherVibeCore::GetCurrentSeason() const
 }
 
 // ============================================================
-// Intensity mapping
+// Intensity mapping (private)
 // ============================================================
 float WeatherVibeCore::ClampToCoreBounds(float g)
 {
-    if (g < 0.0f)  { return kMinGrade; }
-    if (g >= 1.0f) { return kMaxGrade; }
-    return g;
+    return std::clamp(g, 0.0f, 1.0f);
 }
 
 float WeatherVibeCore::MapPercentToRawGrade(DayPart dp, WeatherState state, float percent01) const
 {
     percent01 = std::clamp(percent01, 0.0f, 1.0f);
+
+    if (state == WEATHER_STATE_FINE)
+    {
+        return 1.0f - percent01;  // 100% fine = 0.0 (clear), 0% fine = 1.0 (overcast)
+    }
 
     auto const& table = m_stateRanges[(size_t)dp];
     auto it = table.find((uint32)state);
@@ -244,11 +264,10 @@ Range WeatherVibeCore::ParseRangePair(std::string const& key, Range def)
 }
 
 // ============================================================
-// Map resolution
+// Map resolution (private)
 // ============================================================
 Map* WeatherVibeCore::GetMap(uint32 zoneId)
 {
-    // try_emplace: single lookup — inserts with 0 only on first call for this zoneId.
     auto [it, inserted] = m_zoneToMapId.try_emplace(zoneId, 0u);
 
     if (inserted)
@@ -261,37 +280,39 @@ Map* WeatherVibeCore::GetMap(uint32 zoneId)
 }
 
 // ============================================================
-// Broadcast helpers
+// Broadcast helpers (private)
 // ============================================================
 bool WeatherVibeCore::BroadcastZonePacket(uint32 zoneId, WorldPacket const* packet)
 {
     Map* map = GetMap(zoneId);
-    if (!map)
-    {
-        return false;
-    }
-
+    if (!map) { return false; }
     return map->SendZoneMessage(zoneId, packet);
 }
 
 void WeatherVibeCore::BroadcastZoneText(uint32 zoneId, char const* text)
 {
     Map* map = GetMap(zoneId);
-    if (!map)
-    {
-        return;
-    }
-
+    if (!map) { return; }
     map->SendZoneText(zoneId, text);
 }
 
 // ============================================================
-// Weather dispatch
+// Weather dispatch (private)
 // ============================================================
-bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade)
+bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade, float percentage)
 {
     float normalizedGrade = ClampToCoreBounds(rawGrade);
-    LastApplied& entry    = m_lastApplied[zoneId];
+
+    // For non-fine states the client needs grade within (0..1) exclusive
+    // to actually render the effect; 0.0 shows nothing, 1.0 can glitch.
+    // Fine weather uses the full 0.0–1.0 range (0.0 = clear sky).
+    if (state != WEATHER_STATE_FINE)
+    {
+        if (normalizedGrade <= 0.0f) { normalizedGrade = kMinGrade; }
+        if (normalizedGrade >= 1.0f) { normalizedGrade = kMaxGrade; }
+    }
+
+    LastApplied& entry = m_lastApplied[zoneId];
 
     WorldPackets::Misc::Weather weatherPackage(state, normalizedGrade);
     WorldPacket const* weatherPacket = weatherPackage.Write();
@@ -306,37 +327,49 @@ bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, flo
 
     if (m_debug)
     {
-        DayPart dp = GetCurrentDayPart();
-        Season  s  = GetCurrentSeason();
         std::ostringstream zmsg;
-        zmsg << "|cff00ff00WeatherVibe:|r [DEBUG] season=" << SeasonName(s)
-             << " | day="    << DayPartName(dp)
+        zmsg << "|cff00ff00WeatherVibe:|r [DEBUG] seas=" << SeasonName(GetCurrentSeason())
+             << " | day="    << DayPartName(GetCurrentDayPart())
              << " | state="  << WeatherStateName(state)
-             << " | grade="  << std::fixed << std::setprecision(2) << normalizedGrade
-             << " | pushed=" << (isApplied ? "true" : "false");
+             << " | raw=" << std::fixed << std::setprecision(2) << normalizedGrade
+             << " | perc=" << static_cast<int>(percentage)
+             << " | s=" << (isApplied ? "true" : "false");
 
         BroadcastZoneText(zoneId, zmsg.str().c_str());
     }
 
-    return true; // treat as success even if no players online
+    return isApplied;
+}
+
+// ============================================================
+// Weather dispatch percentage (public)
+// ============================================================
+bool WeatherVibeCore::PushWeatherPercent(uint32 zoneId, WeatherState state, float percentage)
+{
+    float normalizedPercentage = std::clamp(percentage, 0.0f, 100.0f) / 100.0f;
+    float raw = MapPercentToRawGrade(GetCurrentDayPart(), state, normalizedPercentage);
+    return PushWeatherToClient(zoneId, state, raw, percentage);
+}
+
+// ============================================================
+// Weather dispatch debug with rawGrade (public)
+// ============================================================
+bool WeatherVibeCore::PushWeatherDebug(uint32 zoneId, WeatherState state, float rawGrade)
+{
+    return PushWeatherToClient(zoneId, state, std::clamp(rawGrade, 0.0f, 1.0f));
 }
 
 void WeatherVibeCore::PushLastAppliedWeatherToClient(uint32 zoneId, Player* player)
 {
     auto it = m_lastApplied.find(zoneId);
 
-    WeatherState state;
-    float        grade;
+    WeatherState state = WEATHER_STATE_FINE;
+    float        grade = 0.0f;
 
     if (it != m_lastApplied.end() && it->second.hasValue)
     {
         state = it->second.state;
         grade = it->second.grade;
-    }
-    else
-    {
-        state = WEATHER_STATE_FINE;
-        grade = 0.0f;
     }
 
     WorldPackets::Misc::Weather weatherPackage(state, grade);
@@ -350,20 +383,20 @@ char const* WeatherVibeCore::WeatherStateName(WeatherState s)
 {
     switch (s)
     {
-        case WEATHER_STATE_FINE:             return "fine";
-        case WEATHER_STATE_FOG:              return "fog";
-        case WEATHER_STATE_LIGHT_RAIN:       return "light_rain";
-        case WEATHER_STATE_MEDIUM_RAIN:      return "medium_rain";
-        case WEATHER_STATE_HEAVY_RAIN:       return "heavy_rain";
-        case WEATHER_STATE_LIGHT_SNOW:       return "light_snow";
-        case WEATHER_STATE_MEDIUM_SNOW:      return "medium_snow";
-        case WEATHER_STATE_HEAVY_SNOW:       return "heavy_snow";
-        case WEATHER_STATE_LIGHT_SANDSTORM:  return "light_sandstorm";
-        case WEATHER_STATE_MEDIUM_SANDSTORM: return "medium_sandstorm";
-        case WEATHER_STATE_HEAVY_SANDSTORM:  return "heavy_sandstorm";
-        case WEATHER_STATE_THUNDERS:         return "thunders";
-        case WEATHER_STATE_BLACKRAIN:        return "blackrain";
-        case WEATHER_STATE_BLACKSNOW:        return "blacksnow";
+        case WEATHER_STATE_FINE:             return "fine(0)";
+        case WEATHER_STATE_FOG:              return "fog(1)";
+        case WEATHER_STATE_LIGHT_RAIN:       return "light_rain(3)";
+        case WEATHER_STATE_MEDIUM_RAIN:      return "medium_rain(4)";
+        case WEATHER_STATE_HEAVY_RAIN:       return "heavy_rain(5)";
+        case WEATHER_STATE_LIGHT_SNOW:       return "light_snow(6)";
+        case WEATHER_STATE_MEDIUM_SNOW:      return "medium_snow(7)";
+        case WEATHER_STATE_HEAVY_SNOW:       return "heavy_snow(8)";
+        case WEATHER_STATE_LIGHT_SANDSTORM:  return "light_sandstorm(22)";
+        case WEATHER_STATE_MEDIUM_SANDSTORM: return "medium_sandstorm(41)";
+        case WEATHER_STATE_HEAVY_SANDSTORM:  return "heavy_sandstorm(42)";
+        case WEATHER_STATE_THUNDERS:         return "thunders(86)";
+        case WEATHER_STATE_BLACKRAIN:        return "blackrain(90)";
+        case WEATHER_STATE_BLACKSNOW:        return "blacksnow(106)";
         default:                             return "unknown";
     }
 }
@@ -393,7 +426,7 @@ char const* WeatherVibeCore::SeasonName(Season s)
 }
 
 // ============================================================
-// Internal token helpers (used by LoadStateRanges)
+// Internal token helpers
 // ============================================================
 char const* WeatherVibeCore::DayPartTokenUpper(DayPart d)
 {
