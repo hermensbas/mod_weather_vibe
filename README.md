@@ -1,4 +1,5 @@
-This mod will replace soon with a newer more refined version!
+# This mod will replaced soon with a newer more refined version!
+# since the mod is more liked then i initial though.
 
 
 # WeatherVibe (AzerothCore module) (beta version)
