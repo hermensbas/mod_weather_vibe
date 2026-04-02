@@ -1,8 +1,9 @@
 # This mod will replaced soon with a newer more refined version!
-# since the mod is more liked then i initial though.
+since the mod is more liked then i initial though.
 
+Still working on few features, weather profiles per zone and smoothness for the weather engine.
 
-# WeatherVibe (AzerothCore module) (beta version)
+## WeatherVibe (AzerothCore module) (beta version)
 
 https://youtu.be/4CxG-eAT9D4
 
