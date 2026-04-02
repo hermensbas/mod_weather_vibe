@@ -105,8 +105,8 @@ private:
     void LoadIntensityRangesConfig();
 
     // Core dispatch — all callers go through PushWeatherPercent
-    float MapPercentToRawGrade(DayPart dp, WeatherState state, float percent01) const;
-    bool  PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade);
+    float MapPercentToRawGrade(DayPart dp, WeatherState state, float percentage) const;
+    bool  PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade, float percentage = 0.f);
 
     // Map resolution — cached zone → base continent map lookup
     Map* GetMap(uint32 zoneId);

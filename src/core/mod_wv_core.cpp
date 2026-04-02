@@ -231,20 +231,19 @@ float WeatherVibeCore::ClampToCoreBounds(float g)
     return std::clamp(g, 0.0f, 1.0f);
 }
 
-float WeatherVibeCore::MapPercentToRawGrade(DayPart dp, WeatherState state, float percent01) const
+float WeatherVibeCore::MapPercentToRawGrade(DayPart dp, WeatherState state, float percentage) const
 {
-    percent01 = std::clamp(percent01, 0.0f, 1.0f);
-
+    percentage = std::clamp(percentage, 0.0f, 1.0f);
     if (state == WEATHER_STATE_FINE)
     {
-        return 1.0f - percent01;  // 100% fine = 0.0 (clear), 0% fine = 1.0 (overcast)
+        return 1.0f - percentage;  // 100% fine = 0.0 (clear), 0% fine = 1.0 (overcast)
     }
 
     auto const& table = m_stateRanges[(size_t)dp];
     auto it = table.find((uint32)state);
     Range r = (it != table.end()) ? it->second : Range{ 0.30f, 1.00f };
 
-    return r.min + percent01 * (r.max - r.min);
+    return r.min + percentage * (r.max - r.min);
 }
 
 Range WeatherVibeCore::ParseRangePair(std::string const& key, Range def)
@@ -302,7 +301,7 @@ void WeatherVibeCore::BroadcastZoneText(uint32 zoneId, char const* text)
 // ============================================================
 // Weather dispatch (private)
 // ============================================================
-bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade)
+bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, float rawGrade, float percentage)
 {
     float normalizedGrade = ClampToCoreBounds(rawGrade);
 
@@ -331,11 +330,12 @@ bool WeatherVibeCore::PushWeatherToClient(uint32 zoneId, WeatherState state, flo
     if (m_debug)
     {
         std::ostringstream zmsg;
-        zmsg << "|cff00ff00WeatherVibe:|r [DEBUG] season=" << SeasonName(GetCurrentSeason())
+        zmsg << "|cff00ff00WeatherVibe:|r [DEBUG] s=" << SeasonName(GetCurrentSeason())
              << " | day="    << DayPartName(GetCurrentDayPart())
              << " | state="  << WeatherStateName(state)
              << " | grade="  << std::fixed << std::setprecision(2) << normalizedGrade
-             << " | pushed=" << (isApplied ? "true" : "false");
+             << " | perc=" << std::fixed << std::setprecision(0) << percentage << "%"
+             << " | p=" << (isApplied ? "true" : "false");
 
         BroadcastZoneText(zoneId, zmsg.str().c_str());
     }
@@ -350,7 +350,7 @@ bool WeatherVibeCore::PushWeatherPercent(uint32 zoneId, WeatherState state, floa
 {
     float normalizedPercentage = std::clamp(percentage, 0.0f, 100.0f) / 100.0f;
     float raw = MapPercentToRawGrade(GetCurrentDayPart(), state, normalizedPercentage);
-    return PushWeatherToClient(zoneId, state, raw);
+    return PushWeatherToClient(zoneId, state, raw, percentage);
 }
 
 // ============================================================
