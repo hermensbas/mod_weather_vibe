@@ -48,7 +48,7 @@ WeatherVibe.DayPart.NIGHT.Start     = 22:00
 #######################################################################################################
 #######################################################################################################
 # Internal intensity ranges - raw grade clamps per daypart/state (core)
-# Defaults: 0.30 – 0.90 for every WeatherState and every daypart.
+# Defaults: 0.30 â€“ 0.90 for every WeatherState and every daypart.
 #######################################################################################################
 
 # Fine (0)
@@ -138,24 +138,23 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.15, 0.50
 
 #######################################################################################################
 #######################################################################################################
-# Zone weather profiles
+# WeatherVibe — Complete Zone Weather Profiles
 # Format: weight, weatherType, intensityMinPct, intensityMaxPct
-# Intensity values are percentages (0..100) that get normalised through the InternalRange above.
 # Weather Types:
 #           0=Fine, 1=Fog,
-#           3=LightRain, 4=MediumRain, 5=HeavyRain, 
+#           3=LightRain, 4=MediumRain, 5=HeavyRain,
 #           6=LightSnow, 7=MediumSnow, 8=HeavySnow,
 #           22=LightSandstorm, 41=MediumSandstorm, 42=HeavySandstorm,
 #           86=Thunders
-# When same weather effect is selected again, we randomly buildup and builddown to random intensity percentage
-# Use .1, .2, .3, … suffix for multiple entries per season. Dynamic count — add as many as needed.
+#######################################################################################################
 #######################################################################################################
 
-# DunMorogh Profile
-# High-altitude snowy mountain region. Cold, windy and wet year-round.
-# Snow is the dominant weather, but clear crisp days, mountain fog,
-# rare sleet (light rain), and summer thunderstorms add variety.
-# ----------------------------------------------------------------------
+
+#======================================================================
+# DunMorogh — High-altitude snowy mountain region
+# Theme: Permanent snow, dwarven highlands. Snow dominant year-round.
+# Clear crisp days, mountain fog, rare sleet, summer thunderstorms.
+#======================================================================
 
 # Spring: snow easing, clear days emerging, valley fog, rare sleet
 WeatherVibe.Profile.DunMorogh.Spring.1=10,0,40,70
@@ -165,7 +164,7 @@ WeatherVibe.Profile.DunMorogh.Spring.4=40,6,30,50
 WeatherVibe.Profile.DunMorogh.Spring.5=15,7,30,70
 WeatherVibe.Profile.DunMorogh.Spring.6=10,8,30,80
 
-# Summer: mildest season, most clear days, light snow persists at altitude, morning fog, rare drizzle and occasional mountain thunderstorms
+# Summer: mildest season, most clear days, light snow persists, morning fog, rare drizzle, occasional thunderstorms
 WeatherVibe.Profile.DunMorogh.Summer.1=30,0,50,80
 WeatherVibe.Profile.DunMorogh.Summer.2=15,1,30,60
 WeatherVibe.Profile.DunMorogh.Summer.3=8,3,30,50
@@ -188,20 +187,244 @@ WeatherVibe.Profile.DunMorogh.Winter.3=20,6,30,50
 WeatherVibe.Profile.DunMorogh.Winter.4=30,7,30,80
 WeatherVibe.Profile.DunMorogh.Winter.5=30,8,40,90
 
-# Transition Settings
 WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Min=15
 WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.DunMorogh.Transition.StepSize.Perc=20
 WeatherVibe.Profile.DunMorogh.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.DunMorogh.Transition.Max.Consecutive.Same=2
 
-# Elwynn Forest Profile
-# Low-altitude temperate forest region. Mild, lush, and wet most of the year.
-# Rain is the dominant weather, but clear days, morning fog, occasional light thunderstorms,
-# fine weather, and rare frost/snow in winter add variety.
-# ----------------------------------------------------------------------
 
-# Spring: very dynamic season, sun, showers, fog and thunder
+#======================================================================
+# Badlands — Arid rocky desert wasteland
+# Theme: Scorched red earth, barren crags, no vegetation. Dry year-round.
+# Sandstorms and clear baking heat dominate. Rain is extremely rare.
+# No snow — too low and hot.
+#======================================================================
+
+# Spring: warm and dry, occasional dust
+WeatherVibe.Profile.Badlands.Spring.1=45,0,50,80
+WeatherVibe.Profile.Badlands.Spring.2=10,1,20,40
+WeatherVibe.Profile.Badlands.Spring.3=5,3,20,40
+WeatherVibe.Profile.Badlands.Spring.4=25,22,30,60
+WeatherVibe.Profile.Badlands.Spring.5=15,41,30,60
+
+# Summer: blistering heat, sandstorms at peak
+WeatherVibe.Profile.Badlands.Summer.1=35,0,60,90
+WeatherVibe.Profile.Badlands.Summer.2=5,1,20,40
+WeatherVibe.Profile.Badlands.Summer.3=25,22,40,70
+WeatherVibe.Profile.Badlands.Summer.4=20,41,40,70
+WeatherVibe.Profile.Badlands.Summer.5=10,42,40,80
+WeatherVibe.Profile.Badlands.Summer.6=5,86,30,50
+
+# Autumn: cooling slightly, dust settles a bit, rare drizzle
+WeatherVibe.Profile.Badlands.Autumn.1=45,0,40,70
+WeatherVibe.Profile.Badlands.Autumn.2=10,1,20,50
+WeatherVibe.Profile.Badlands.Autumn.3=5,3,20,40
+WeatherVibe.Profile.Badlands.Autumn.4=25,22,30,60
+WeatherVibe.Profile.Badlands.Autumn.5=15,41,30,60
+
+# Winter: cooler but still dry, occasional fog in valleys, dust calmer
+WeatherVibe.Profile.Badlands.Winter.1=45,0,30,60
+WeatherVibe.Profile.Badlands.Winter.2=15,1,30,60
+WeatherVibe.Profile.Badlands.Winter.3=5,3,20,40
+WeatherVibe.Profile.Badlands.Winter.4=20,22,20,50
+WeatherVibe.Profile.Badlands.Winter.5=15,41,20,50
+
+WeatherVibe.Profile.Badlands.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Badlands.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.Badlands.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Badlands.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.Badlands.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# BlastedLands — Dark corrupted wasteland
+# Theme: Red-scorched earth, demonic corruption, oppressive skies.
+# Thunder and fog dominate. Sandstorms represent dust/ash.
+# Rare rain, no snow. Feels permanently ominous.
+#======================================================================
+
+# Spring: gloomy, thunder, fog, occasional dust
+WeatherVibe.Profile.BlastedLands.Spring.1=20,0,20,40
+WeatherVibe.Profile.BlastedLands.Spring.2=25,1,30,60
+WeatherVibe.Profile.BlastedLands.Spring.3=10,3,20,40
+WeatherVibe.Profile.BlastedLands.Spring.4=20,86,30,60
+WeatherVibe.Profile.BlastedLands.Spring.5=15,22,30,50
+WeatherVibe.Profile.BlastedLands.Spring.6=10,41,30,50
+
+# Summer: oppressive heat, thunder builds, dust heavy
+WeatherVibe.Profile.BlastedLands.Summer.1=20,0,30,50
+WeatherVibe.Profile.BlastedLands.Summer.2=20,1,20,50
+WeatherVibe.Profile.BlastedLands.Summer.3=25,86,40,70
+WeatherVibe.Profile.BlastedLands.Summer.4=15,22,30,60
+WeatherVibe.Profile.BlastedLands.Summer.5=10,41,40,60
+WeatherVibe.Profile.BlastedLands.Summer.6=10,42,30,60
+
+# Autumn: fog thickens, thunder continues, bleak
+WeatherVibe.Profile.BlastedLands.Autumn.1=15,0,20,40
+WeatherVibe.Profile.BlastedLands.Autumn.2=30,1,40,70
+WeatherVibe.Profile.BlastedLands.Autumn.3=10,3,20,40
+WeatherVibe.Profile.BlastedLands.Autumn.4=20,86,30,60
+WeatherVibe.Profile.BlastedLands.Autumn.5=15,22,30,50
+WeatherVibe.Profile.BlastedLands.Autumn.6=10,41,30,60
+
+# Winter: darkest, dense fog, thunder rumbles, cold dust
+WeatherVibe.Profile.BlastedLands.Winter.1=10,0,20,40
+WeatherVibe.Profile.BlastedLands.Winter.2=30,1,40,70
+WeatherVibe.Profile.BlastedLands.Winter.3=10,3,20,50
+WeatherVibe.Profile.BlastedLands.Winter.4=25,86,40,70
+WeatherVibe.Profile.BlastedLands.Winter.5=15,22,30,50
+WeatherVibe.Profile.BlastedLands.Winter.6=10,41,30,50
+
+WeatherVibe.Profile.BlastedLands.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.BlastedLands.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.BlastedLands.Transition.StepSize.Perc=15
+WeatherVibe.Profile.BlastedLands.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.BlastedLands.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# SwampOfSorrows — Murky, humid swampland
+# Theme: Perpetually damp and gloomy. Fog rolls over dark water.
+# Rain is constant. Fine days are rare and short-lived.
+# No snow — too low and warm. Thunderstorms in summer.
+#======================================================================
+
+# Spring: warm and soggy, rain picks up, fog heavy
+WeatherVibe.Profile.SwampOfSorrows.Spring.1=10,0,20,40
+WeatherVibe.Profile.SwampOfSorrows.Spring.2=25,1,40,70
+WeatherVibe.Profile.SwampOfSorrows.Spring.3=20,3,30,60
+WeatherVibe.Profile.SwampOfSorrows.Spring.4=20,4,30,60
+WeatherVibe.Profile.SwampOfSorrows.Spring.5=15,5,30,60
+WeatherVibe.Profile.SwampOfSorrows.Spring.6=10,86,30,50
+
+# Summer: steamiest, thunderstorms, heaviest rain, fog persists
+WeatherVibe.Profile.SwampOfSorrows.Summer.1=10,0,20,40
+WeatherVibe.Profile.SwampOfSorrows.Summer.2=20,1,30,60
+WeatherVibe.Profile.SwampOfSorrows.Summer.3=15,3,30,50
+WeatherVibe.Profile.SwampOfSorrows.Summer.4=20,4,40,70
+WeatherVibe.Profile.SwampOfSorrows.Summer.5=15,5,40,70
+WeatherVibe.Profile.SwampOfSorrows.Summer.6=20,86,40,70
+
+# Autumn: rain relentless, fog thick, gloomy
+WeatherVibe.Profile.SwampOfSorrows.Autumn.1=5,0,20,30
+WeatherVibe.Profile.SwampOfSorrows.Autumn.2=30,1,40,70
+WeatherVibe.Profile.SwampOfSorrows.Autumn.3=20,3,30,60
+WeatherVibe.Profile.SwampOfSorrows.Autumn.4=25,4,40,70
+WeatherVibe.Profile.SwampOfSorrows.Autumn.5=15,5,40,70
+WeatherVibe.Profile.SwampOfSorrows.Autumn.6=5,86,30,50
+
+# Winter: cold damp, fog lingers, steady rain, no snow
+WeatherVibe.Profile.SwampOfSorrows.Winter.1=10,0,20,30
+WeatherVibe.Profile.SwampOfSorrows.Winter.2=30,1,40,70
+WeatherVibe.Profile.SwampOfSorrows.Winter.3=20,3,30,60
+WeatherVibe.Profile.SwampOfSorrows.Winter.4=25,4,40,70
+WeatherVibe.Profile.SwampOfSorrows.Winter.5=15,5,30,60
+
+WeatherVibe.Profile.SwampOfSorrows.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.SwampOfSorrows.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.SwampOfSorrows.Transition.StepSize.Perc=15
+WeatherVibe.Profile.SwampOfSorrows.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.SwampOfSorrows.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Duskwood — Cursed, perpetually dark forest
+# Theme: Eternal twilight, thick fog, haunted atmosphere.
+# Fog is THE dominant weather. Light rain drips through canopy.
+# Never truly "fine" — even clear moments feel dark.
+# No snow, no thunderstorms — just quiet, creeping dread.
+#======================================================================
+
+# Spring: fog dominates, occasional drizzle, rare thin clearings
+WeatherVibe.Profile.Duskwood.Spring.1=10,0,10,25
+WeatherVibe.Profile.Duskwood.Spring.2=45,1,40,80
+WeatherVibe.Profile.Duskwood.Spring.3=25,3,20,50
+WeatherVibe.Profile.Duskwood.Spring.4=15,4,20,50
+WeatherVibe.Profile.Duskwood.Spring.5=5,86,20,40
+
+# Summer: slightly less fog, drizzle continues, rare brief clearings
+WeatherVibe.Profile.Duskwood.Summer.1=15,0,10,30
+WeatherVibe.Profile.Duskwood.Summer.2=40,1,30,70
+WeatherVibe.Profile.Duskwood.Summer.3=25,3,20,50
+WeatherVibe.Profile.Duskwood.Summer.4=15,4,20,50
+WeatherVibe.Profile.Duskwood.Summer.5=5,86,20,40
+
+# Autumn: peak gloom, fog at maximum, steady drizzle
+WeatherVibe.Profile.Duskwood.Autumn.1=5,0,10,20
+WeatherVibe.Profile.Duskwood.Autumn.2=50,1,50,85
+WeatherVibe.Profile.Duskwood.Autumn.3=25,3,30,60
+WeatherVibe.Profile.Duskwood.Autumn.4=15,4,30,60
+WeatherVibe.Profile.Duskwood.Autumn.5=5,86,20,40
+
+# Winter: darkest, densest fog, cold drizzle, eerie silence
+WeatherVibe.Profile.Duskwood.Winter.1=5,0,10,20
+WeatherVibe.Profile.Duskwood.Winter.2=50,1,50,90
+WeatherVibe.Profile.Duskwood.Winter.3=25,3,30,60
+WeatherVibe.Profile.Duskwood.Winter.4=15,4,30,60
+WeatherVibe.Profile.Duskwood.Winter.5=5,86,20,40
+
+WeatherVibe.Profile.Duskwood.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Duskwood.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.Duskwood.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Duskwood.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.Duskwood.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Wetlands — Marshy, rain-soaked lowlands
+# Theme: Perpetually grey and rainy. Soggy bogs and muddy roads.
+# Rain is the defining feature. Fog rolls in off the coast.
+# Winter brings rare sleet/light snow but map has no snow.
+#======================================================================
+
+# Spring: rain easing slightly, fog, some clear spells
+WeatherVibe.Profile.Wetlands.Spring.1=15,0,20,40
+WeatherVibe.Profile.Wetlands.Spring.2=20,1,30,60
+WeatherVibe.Profile.Wetlands.Spring.3=25,3,30,60
+WeatherVibe.Profile.Wetlands.Spring.4=20,4,30,60
+WeatherVibe.Profile.Wetlands.Spring.5=10,5,30,60
+WeatherVibe.Profile.Wetlands.Spring.6=10,86,30,50
+
+# Summer: warmest, rain lighter but still common, some clear days
+WeatherVibe.Profile.Wetlands.Summer.1=25,0,30,50
+WeatherVibe.Profile.Wetlands.Summer.2=15,1,20,50
+WeatherVibe.Profile.Wetlands.Summer.3=25,3,30,50
+WeatherVibe.Profile.Wetlands.Summer.4=15,4,30,60
+WeatherVibe.Profile.Wetlands.Summer.5=10,5,30,60
+WeatherVibe.Profile.Wetlands.Summer.6=10,86,30,60
+
+# Autumn: wettest season, rain relentless, fog thick
+WeatherVibe.Profile.Wetlands.Autumn.1=10,0,20,30
+WeatherVibe.Profile.Wetlands.Autumn.2=20,1,40,70
+WeatherVibe.Profile.Wetlands.Autumn.3=20,3,30,60
+WeatherVibe.Profile.Wetlands.Autumn.4=25,4,40,70
+WeatherVibe.Profile.Wetlands.Autumn.5=15,5,40,70
+WeatherVibe.Profile.Wetlands.Autumn.6=10,86,30,50
+
+# Winter: cold, steady rain, dense fog, rare sleet
+WeatherVibe.Profile.Wetlands.Winter.1=10,0,20,30
+WeatherVibe.Profile.Wetlands.Winter.2=25,1,40,70
+WeatherVibe.Profile.Wetlands.Winter.3=20,3,30,60
+WeatherVibe.Profile.Wetlands.Winter.4=25,4,40,70
+WeatherVibe.Profile.Wetlands.Winter.5=10,5,30,60
+WeatherVibe.Profile.Wetlands.Winter.6=10,6,20,40
+
+WeatherVibe.Profile.Wetlands.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.Wetlands.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.Wetlands.Transition.StepSize.Perc=20
+WeatherVibe.Profile.Wetlands.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.Wetlands.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# ElwynnForest — Temperate, idyllic forest
+# Theme: Mild, lush, green. Classic fantasy countryside.
+# Rain is common but fine days are frequent. Morning fog.
+# Winter brings occasional light frost/snow.
+#======================================================================
+
+# Spring: very dynamic, sun, showers, fog and thunder
 WeatherVibe.Profile.ElwynnForest.Spring.1=25,0,10,40
 WeatherVibe.Profile.ElwynnForest.Spring.2=15,1,20,50
 WeatherVibe.Profile.ElwynnForest.Spring.3=20,3,20,50
@@ -210,14 +433,14 @@ WeatherVibe.Profile.ElwynnForest.Spring.5=10,5,30,65
 WeatherVibe.Profile.ElwynnForest.Spring.6=10,86,30,70
 WeatherVibe.Profile.ElwynnForest.Spring.7=10,3,30,60
 
-# Summer: stable warm season with clear days and occasional storms
+# Summer: stable warm, clear days, occasional storms
 WeatherVibe.Profile.ElwynnForest.Summer.1=40,0,10,40
 WeatherVibe.Profile.ElwynnForest.Summer.2=15,1,20,50
 WeatherVibe.Profile.ElwynnForest.Summer.3=20,3,20,50
 WeatherVibe.Profile.ElwynnForest.Summer.4=15,4,30,60
 WeatherVibe.Profile.ElwynnForest.Summer.5=10,86,30,70
 
-# Autumn: wet, foggy and windy with frequent rain
+# Autumn: wet, foggy, frequent rain
 WeatherVibe.Profile.ElwynnForest.Autumn.1=20,0,10,40
 WeatherVibe.Profile.ElwynnForest.Autumn.2=20,1,30,60
 WeatherVibe.Profile.ElwynnForest.Autumn.3=20,3,30,60
@@ -233,31 +456,2716 @@ WeatherVibe.Profile.ElwynnForest.Winter.3=20,3,30,60
 WeatherVibe.Profile.ElwynnForest.Winter.4=15,4,30,70
 WeatherVibe.Profile.ElwynnForest.Winter.5=15,6,30,60
 
-# Transition settings
 WeatherVibe.Profile.ElwynnForest.Transition.Step.TimeSeconds.Min=15
 WeatherVibe.Profile.ElwynnForest.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.ElwynnForest.Transition.StepSize.Perc=20
 WeatherVibe.Profile.ElwynnForest.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.ElwynnForest.Transition.Max.Consecutive.Same=2
 
+
+#======================================================================
+# Durotar — Hot, dry, red rocky savanna
+# Theme: Harsh red earth, sparse scrub, orcish homeland.
+# Fine/clear dominates with sandstorms (dust winds). Rain is rare.
+# No snow ever. Thunderstorms on hot summer evenings.
+#======================================================================
+
+# Spring: warming up, dust picks up, rare drizzle
+WeatherVibe.Profile.Durotar.Spring.1=40,0,50,80
+WeatherVibe.Profile.Durotar.Spring.2=10,1,20,40
+WeatherVibe.Profile.Durotar.Spring.3=5,3,20,40
+WeatherVibe.Profile.Durotar.Spring.4=25,22,30,60
+WeatherVibe.Profile.Durotar.Spring.5=15,41,30,60
+WeatherVibe.Profile.Durotar.Spring.6=5,86,30,50
+
+# Summer: scorching, peak sandstorms, thunderheads build
+WeatherVibe.Profile.Durotar.Summer.1=30,0,60,90
+WeatherVibe.Profile.Durotar.Summer.2=5,1,20,30
+WeatherVibe.Profile.Durotar.Summer.3=20,22,40,70
+WeatherVibe.Profile.Durotar.Summer.4=20,41,40,70
+WeatherVibe.Profile.Durotar.Summer.5=10,42,40,70
+WeatherVibe.Profile.Durotar.Summer.6=15,86,40,70
+
+# Autumn: heat fading, dust calmer, rare light rain
+WeatherVibe.Profile.Durotar.Autumn.1=40,0,40,70
+WeatherVibe.Profile.Durotar.Autumn.2=10,1,20,40
+WeatherVibe.Profile.Durotar.Autumn.3=10,3,20,40
+WeatherVibe.Profile.Durotar.Autumn.4=20,22,30,50
+WeatherVibe.Profile.Durotar.Autumn.5=15,41,30,50
+WeatherVibe.Profile.Durotar.Autumn.6=5,86,30,50
+
+# Winter: coolest, still dry, fog in mornings, dust light
+WeatherVibe.Profile.Durotar.Winter.1=40,0,30,60
+WeatherVibe.Profile.Durotar.Winter.2=15,1,30,50
+WeatherVibe.Profile.Durotar.Winter.3=10,3,20,40
+WeatherVibe.Profile.Durotar.Winter.4=20,22,20,50
+WeatherVibe.Profile.Durotar.Winter.5=15,41,20,50
+
+WeatherVibe.Profile.Durotar.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.Durotar.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.Durotar.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Durotar.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.Durotar.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# DustwallowMarsh — Thick, foggy swampland
+# Theme: Dense fog over murky swamp. Darker and foggier than Swamp of Sorrows.
+# Fog is THE defining feature. Rain is constant underneath.
+# No snow. Occasional distant thunder rumbling over the bay.
+#======================================================================
+
+# Spring: fog and rain, warming slightly
+WeatherVibe.Profile.DustwallowMarsh.Spring.1=10,0,20,30
+WeatherVibe.Profile.DustwallowMarsh.Spring.2=35,1,40,80
+WeatherVibe.Profile.DustwallowMarsh.Spring.3=20,3,30,60
+WeatherVibe.Profile.DustwallowMarsh.Spring.4=15,4,30,60
+WeatherVibe.Profile.DustwallowMarsh.Spring.5=10,5,30,60
+WeatherVibe.Profile.DustwallowMarsh.Spring.6=10,86,30,50
+
+# Summer: steamy, fog lifts slightly, thunderstorms common
+WeatherVibe.Profile.DustwallowMarsh.Summer.1=10,0,20,40
+WeatherVibe.Profile.DustwallowMarsh.Summer.2=25,1,30,70
+WeatherVibe.Profile.DustwallowMarsh.Summer.3=15,3,30,50
+WeatherVibe.Profile.DustwallowMarsh.Summer.4=15,4,40,70
+WeatherVibe.Profile.DustwallowMarsh.Summer.5=15,5,40,70
+WeatherVibe.Profile.DustwallowMarsh.Summer.6=20,86,40,70
+
+# Autumn: peak fog, rain steady, visibility lowest
+WeatherVibe.Profile.DustwallowMarsh.Autumn.1=5,0,10,25
+WeatherVibe.Profile.DustwallowMarsh.Autumn.2=40,1,50,90
+WeatherVibe.Profile.DustwallowMarsh.Autumn.3=20,3,30,60
+WeatherVibe.Profile.DustwallowMarsh.Autumn.4=20,4,40,70
+WeatherVibe.Profile.DustwallowMarsh.Autumn.5=10,5,40,70
+WeatherVibe.Profile.DustwallowMarsh.Autumn.6=5,86,30,50
+
+# Winter: cold fog, steady drizzle, bleak
+WeatherVibe.Profile.DustwallowMarsh.Winter.1=5,0,10,25
+WeatherVibe.Profile.DustwallowMarsh.Winter.2=40,1,50,85
+WeatherVibe.Profile.DustwallowMarsh.Winter.3=20,3,30,60
+WeatherVibe.Profile.DustwallowMarsh.Winter.4=20,4,40,70
+WeatherVibe.Profile.DustwallowMarsh.Winter.5=15,5,30,60
+
+WeatherVibe.Profile.DustwallowMarsh.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.DustwallowMarsh.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.DustwallowMarsh.Transition.StepSize.Perc=10
+WeatherVibe.Profile.DustwallowMarsh.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.DustwallowMarsh.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Azshara — Coastal autumnal cliffs
+# Theme: Perpetual autumn, orange/red foliage, ruined elven coast.
+# Moderate weather. Fog off the sea, occasional rain.
+# Fine weather common. No snow. Feels melancholy, not harsh.
+#======================================================================
+
+# Spring: mild, coastal fog, some rain, mostly fine
+WeatherVibe.Profile.Azshara.Spring.1=35,0,30,60
+WeatherVibe.Profile.Azshara.Spring.2=20,1,20,50
+WeatherVibe.Profile.Azshara.Spring.3=20,3,20,50
+WeatherVibe.Profile.Azshara.Spring.4=15,4,30,50
+WeatherVibe.Profile.Azshara.Spring.5=10,86,20,40
+
+# Summer: warmest, clearest, light sea fog
+WeatherVibe.Profile.Azshara.Summer.1=45,0,40,70
+WeatherVibe.Profile.Azshara.Summer.2=15,1,20,40
+WeatherVibe.Profile.Azshara.Summer.3=20,3,20,40
+WeatherVibe.Profile.Azshara.Summer.4=10,4,30,50
+WeatherVibe.Profile.Azshara.Summer.5=10,86,30,50
+
+# Autumn: peak melancholy, fog and drizzle, overcast fine
+WeatherVibe.Profile.Azshara.Autumn.1=25,0,20,50
+WeatherVibe.Profile.Azshara.Autumn.2=25,1,30,60
+WeatherVibe.Profile.Azshara.Autumn.3=25,3,30,50
+WeatherVibe.Profile.Azshara.Autumn.4=15,4,30,60
+WeatherVibe.Profile.Azshara.Autumn.5=10,86,20,40
+
+# Winter: cool, foggy, drizzly, overcast
+WeatherVibe.Profile.Azshara.Winter.1=25,0,20,40
+WeatherVibe.Profile.Azshara.Winter.2=25,1,30,60
+WeatherVibe.Profile.Azshara.Winter.3=25,3,30,60
+WeatherVibe.Profile.Azshara.Winter.4=15,4,30,60
+WeatherVibe.Profile.Azshara.Winter.5=10,86,20,40
+
+WeatherVibe.Profile.Azshara.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.Azshara.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.Azshara.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Azshara.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.Azshara.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# TheBarrens — Dry golden savanna/grassland
+# Theme: Wide open golden plains, sparse trees, hot and dry.
+# Fine weather dominates. Sandstorms (dust devils) occur.
+# Light rain possible. Light snow in deepest winter ONLY — never medium/heavy.
+# No heavy precipitation of any kind. Flat and exposed.
+#======================================================================
+
+# Spring: warm, mostly clear, occasional dust
+WeatherVibe.Profile.TheBarrens.Spring.1=50,0,40,70
+WeatherVibe.Profile.TheBarrens.Spring.2=10,1,20,40
+WeatherVibe.Profile.TheBarrens.Spring.3=10,3,20,40
+WeatherVibe.Profile.TheBarrens.Spring.4=20,22,30,50
+WeatherVibe.Profile.TheBarrens.Spring.5=10,41,20,50
+
+# Summer: hottest, clear skies, dust storms, rare thunder
+WeatherVibe.Profile.TheBarrens.Summer.1=40,0,60,90
+WeatherVibe.Profile.TheBarrens.Summer.2=5,1,20,30
+WeatherVibe.Profile.TheBarrens.Summer.3=5,3,20,30
+WeatherVibe.Profile.TheBarrens.Summer.4=20,22,40,60
+WeatherVibe.Profile.TheBarrens.Summer.5=15,41,30,60
+WeatherVibe.Profile.TheBarrens.Summer.6=10,86,30,50
+WeatherVibe.Profile.TheBarrens.Summer.7=5,42,30,50
+
+# Autumn: cooling, dust settles, rare light rain
+WeatherVibe.Profile.TheBarrens.Autumn.1=50,0,30,60
+WeatherVibe.Profile.TheBarrens.Autumn.2=10,1,20,40
+WeatherVibe.Profile.TheBarrens.Autumn.3=10,3,20,40
+WeatherVibe.Profile.TheBarrens.Autumn.4=20,22,20,50
+WeatherVibe.Profile.TheBarrens.Autumn.5=10,41,20,40
+
+# Winter: coolest, morning fog, rare light rain, very rare light snow
+WeatherVibe.Profile.TheBarrens.Winter.1=45,0,30,50
+WeatherVibe.Profile.TheBarrens.Winter.2=15,1,30,50
+WeatherVibe.Profile.TheBarrens.Winter.3=15,3,20,40
+WeatherVibe.Profile.TheBarrens.Winter.4=15,22,20,40
+WeatherVibe.Profile.TheBarrens.Winter.5=5,6,20,30
+WeatherVibe.Profile.TheBarrens.Winter.6=5,41,20,40
+
+WeatherVibe.Profile.TheBarrens.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.TheBarrens.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.TheBarrens.Transition.StepSize.Perc=15
+WeatherVibe.Profile.TheBarrens.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.TheBarrens.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# BlackrockMountain — Volcanic, fiery interior mountain
+# Theme: Smoke, ash, lava glow. Perpetually dark and oppressive.
+# Sandstorms represent ash/cinder. Thunder = volcanic rumble.
+# Fog = thick smoke. No rain, no snow. Barely any change.
+#======================================================================
+
+# Spring: smoke and ash, volcanic rumble
+WeatherVibe.Profile.BlackrockMountain.Spring.1=20,0,20,40
+WeatherVibe.Profile.BlackrockMountain.Spring.2=25,1,40,70
+WeatherVibe.Profile.BlackrockMountain.Spring.3=20,22,30,60
+WeatherVibe.Profile.BlackrockMountain.Spring.4=15,41,30,60
+WeatherVibe.Profile.BlackrockMountain.Spring.5=20,86,30,60
+
+# Summer: heat at peak, ash thick
+WeatherVibe.Profile.BlackrockMountain.Summer.1=15,0,20,40
+WeatherVibe.Profile.BlackrockMountain.Summer.2=20,1,30,60
+WeatherVibe.Profile.BlackrockMountain.Summer.3=20,22,40,70
+WeatherVibe.Profile.BlackrockMountain.Summer.4=20,41,40,70
+WeatherVibe.Profile.BlackrockMountain.Summer.5=15,42,30,60
+WeatherVibe.Profile.BlackrockMountain.Summer.6=10,86,40,70
+
+# Autumn: same oppressive feel
+WeatherVibe.Profile.BlackrockMountain.Autumn.1=20,0,20,40
+WeatherVibe.Profile.BlackrockMountain.Autumn.2=25,1,40,70
+WeatherVibe.Profile.BlackrockMountain.Autumn.3=20,22,30,60
+WeatherVibe.Profile.BlackrockMountain.Autumn.4=15,41,30,60
+WeatherVibe.Profile.BlackrockMountain.Autumn.5=20,86,30,60
+
+# Winter: slightly less active, smoke lingers thick
+WeatherVibe.Profile.BlackrockMountain.Winter.1=20,0,20,40
+WeatherVibe.Profile.BlackrockMountain.Winter.2=30,1,50,80
+WeatherVibe.Profile.BlackrockMountain.Winter.3=20,22,30,50
+WeatherVibe.Profile.BlackrockMountain.Winter.4=15,41,30,50
+WeatherVibe.Profile.BlackrockMountain.Winter.5=15,86,30,60
+
+WeatherVibe.Profile.BlackrockMountain.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.BlackrockMountain.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.BlackrockMountain.Transition.StepSize.Perc=10
+WeatherVibe.Profile.BlackrockMountain.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.BlackrockMountain.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# WesternPlaguelands — Corrupted, diseased farmland
+# Theme: Grey, sickly, undead corruption. Overcast and gloomy.
+# Fog and light rain dominate. Rare light snow in winter.
+# Thunder occasionally rumbles through the dead sky.
+#======================================================================
+
+# Spring: gloomy, fog and drizzle, corruption haze
+WeatherVibe.Profile.WesternPlaguelands.Spring.1=15,0,10,30
+WeatherVibe.Profile.WesternPlaguelands.Spring.2=35,1,40,70
+WeatherVibe.Profile.WesternPlaguelands.Spring.3=25,3,30,50
+WeatherVibe.Profile.WesternPlaguelands.Spring.4=15,4,30,50
+WeatherVibe.Profile.WesternPlaguelands.Spring.5=10,86,20,40
+
+# Summer: slightly warmer, fog thins, drizzle persists
+WeatherVibe.Profile.WesternPlaguelands.Summer.1=20,0,20,40
+WeatherVibe.Profile.WesternPlaguelands.Summer.2=30,1,30,60
+WeatherVibe.Profile.WesternPlaguelands.Summer.3=25,3,30,50
+WeatherVibe.Profile.WesternPlaguelands.Summer.4=15,4,30,50
+WeatherVibe.Profile.WesternPlaguelands.Summer.5=10,86,30,50
+
+# Autumn: peak gloom, thick plague-fog, steady rain
+WeatherVibe.Profile.WesternPlaguelands.Autumn.1=10,0,10,25
+WeatherVibe.Profile.WesternPlaguelands.Autumn.2=40,1,50,80
+WeatherVibe.Profile.WesternPlaguelands.Autumn.3=25,3,30,60
+WeatherVibe.Profile.WesternPlaguelands.Autumn.4=15,4,30,60
+WeatherVibe.Profile.WesternPlaguelands.Autumn.5=10,86,20,40
+
+# Winter: cold, fog, light rain, occasional light snow
+WeatherVibe.Profile.WesternPlaguelands.Winter.1=10,0,10,25
+WeatherVibe.Profile.WesternPlaguelands.Winter.2=35,1,50,80
+WeatherVibe.Profile.WesternPlaguelands.Winter.3=20,3,30,50
+WeatherVibe.Profile.WesternPlaguelands.Winter.4=15,4,30,60
+WeatherVibe.Profile.WesternPlaguelands.Winter.5=10,6,20,40
+WeatherVibe.Profile.WesternPlaguelands.Winter.6=10,86,20,40
+
+WeatherVibe.Profile.WesternPlaguelands.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.WesternPlaguelands.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.WesternPlaguelands.Transition.StepSize.Perc=10
+WeatherVibe.Profile.WesternPlaguelands.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.WesternPlaguelands.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# StranglethornVale — Lush tropical jungle
+# Theme: Hot, humid, tropical. Heavy rain and thunderstorms.
+# Dense canopy, heavy downpours, steamy humidity.
+# Fine = muggy tropical heat. No snow, no sand. Pure jungle.
+#======================================================================
+
+# Spring: wet season starting, showers frequent, thunder builds
+WeatherVibe.Profile.StranglethornVale.Spring.1=20,0,30,50
+WeatherVibe.Profile.StranglethornVale.Spring.2=10,1,20,40
+WeatherVibe.Profile.StranglethornVale.Spring.3=20,3,30,50
+WeatherVibe.Profile.StranglethornVale.Spring.4=20,4,40,70
+WeatherVibe.Profile.StranglethornVale.Spring.5=15,5,40,70
+WeatherVibe.Profile.StranglethornVale.Spring.6=15,86,40,70
+
+# Summer: peak wet season, torrential rain, constant thunder
+WeatherVibe.Profile.StranglethornVale.Summer.1=15,0,30,50
+WeatherVibe.Profile.StranglethornVale.Summer.2=5,1,20,30
+WeatherVibe.Profile.StranglethornVale.Summer.3=15,3,30,50
+WeatherVibe.Profile.StranglethornVale.Summer.4=20,4,40,70
+WeatherVibe.Profile.StranglethornVale.Summer.5=20,5,50,80
+WeatherVibe.Profile.StranglethornVale.Summer.6=25,86,50,80
+
+# Autumn: rain easing slightly, still tropical, humid
+WeatherVibe.Profile.StranglethornVale.Autumn.1=20,0,30,50
+WeatherVibe.Profile.StranglethornVale.Autumn.2=10,1,20,40
+WeatherVibe.Profile.StranglethornVale.Autumn.3=20,3,30,60
+WeatherVibe.Profile.StranglethornVale.Autumn.4=20,4,40,70
+WeatherVibe.Profile.StranglethornVale.Autumn.5=15,5,40,70
+WeatherVibe.Profile.StranglethornVale.Autumn.6=15,86,40,70
+
+# Winter: "dry" season, still humid, showers less frequent but present
+WeatherVibe.Profile.StranglethornVale.Winter.1=30,0,30,60
+WeatherVibe.Profile.StranglethornVale.Winter.2=10,1,20,40
+WeatherVibe.Profile.StranglethornVale.Winter.3=20,3,30,50
+WeatherVibe.Profile.StranglethornVale.Winter.4=20,4,30,60
+WeatherVibe.Profile.StranglethornVale.Winter.5=10,5,30,60
+WeatherVibe.Profile.StranglethornVale.Winter.6=10,86,30,60
+
+WeatherVibe.Profile.StranglethornVale.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.StranglethornVale.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.StranglethornVale.Transition.StepSize.Perc=25
+WeatherVibe.Profile.StranglethornVale.Transition.Max.Changes.Per.Hour=15
+WeatherVibe.Profile.StranglethornVale.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# AlteracMountains — Snowy highlands, less extreme than Dun Morogh
+# Theme: Mountainous, snow-covered ruins, contested highlands.
+# Snow dominant but more temperate valleys. Summer thaw brings rain.
+# Similar to Dun Morogh but with more rain and less extreme cold.
+#======================================================================
+
+# Spring: snow melting, rain appears, fog in valleys, clear days
+WeatherVibe.Profile.AlteracMountains.Spring.1=15,0,30,60
+WeatherVibe.Profile.AlteracMountains.Spring.2=15,1,30,60
+WeatherVibe.Profile.AlteracMountains.Spring.3=10,3,30,50
+WeatherVibe.Profile.AlteracMountains.Spring.4=10,4,30,50
+WeatherVibe.Profile.AlteracMountains.Spring.5=30,6,30,50
+WeatherVibe.Profile.AlteracMountains.Spring.6=15,7,30,60
+WeatherVibe.Profile.AlteracMountains.Spring.7=5,8,30,60
+
+# Summer: thaw, more rain and fine days, light snow at peaks
+WeatherVibe.Profile.AlteracMountains.Summer.1=30,0,40,70
+WeatherVibe.Profile.AlteracMountains.Summer.2=10,1,20,50
+WeatherVibe.Profile.AlteracMountains.Summer.3=15,3,30,50
+WeatherVibe.Profile.AlteracMountains.Summer.4=10,4,30,50
+WeatherVibe.Profile.AlteracMountains.Summer.5=20,6,20,40
+WeatherVibe.Profile.AlteracMountains.Summer.6=10,7,30,50
+WeatherVibe.Profile.AlteracMountains.Summer.7=5,86,30,50
+
+# Autumn: cold returning, snow increasing, fog, rain fading
+WeatherVibe.Profile.AlteracMountains.Autumn.1=10,0,20,50
+WeatherVibe.Profile.AlteracMountains.Autumn.2=15,1,30,60
+WeatherVibe.Profile.AlteracMountains.Autumn.3=5,3,20,40
+WeatherVibe.Profile.AlteracMountains.Autumn.4=30,6,30,50
+WeatherVibe.Profile.AlteracMountains.Autumn.5=20,7,30,70
+WeatherVibe.Profile.AlteracMountains.Autumn.6=15,8,30,70
+WeatherVibe.Profile.AlteracMountains.Autumn.7=5,86,20,40
+
+# Winter: harsh, heavy snow and blizzards, rare clear days
+WeatherVibe.Profile.AlteracMountains.Winter.1=5,0,20,40
+WeatherVibe.Profile.AlteracMountains.Winter.2=10,1,40,70
+WeatherVibe.Profile.AlteracMountains.Winter.3=20,6,30,50
+WeatherVibe.Profile.AlteracMountains.Winter.4=30,7,30,80
+WeatherVibe.Profile.AlteracMountains.Winter.5=30,8,40,85
+WeatherVibe.Profile.AlteracMountains.Winter.6=5,86,20,40
+
+WeatherVibe.Profile.AlteracMountains.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.AlteracMountains.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.AlteracMountains.Transition.StepSize.Perc=20
+WeatherVibe.Profile.AlteracMountains.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.AlteracMountains.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# LochModan — Highland loch region
+# Theme: Scottish highlands feel. Loch, rolling green hills, dwarven.
+# Balanced between fine and rain. Fog over the loch.
+# Winter brings light snow. Temperate but cool.
+#======================================================================
+
+# Spring: fresh, showers and sun, morning fog over loch
+WeatherVibe.Profile.LochModan.Spring.1=25,0,30,60
+WeatherVibe.Profile.LochModan.Spring.2=15,1,20,50
+WeatherVibe.Profile.LochModan.Spring.3=25,3,30,50
+WeatherVibe.Profile.LochModan.Spring.4=15,4,30,50
+WeatherVibe.Profile.LochModan.Spring.5=10,5,30,50
+WeatherVibe.Profile.LochModan.Spring.6=10,86,30,50
+
+# Summer: warmest, most clear, light showers
+WeatherVibe.Profile.LochModan.Summer.1=35,0,40,70
+WeatherVibe.Profile.LochModan.Summer.2=10,1,20,40
+WeatherVibe.Profile.LochModan.Summer.3=25,3,20,50
+WeatherVibe.Profile.LochModan.Summer.4=15,4,30,50
+WeatherVibe.Profile.LochModan.Summer.5=5,5,30,50
+WeatherVibe.Profile.LochModan.Summer.6=10,86,30,50
+
+# Autumn: wet, fog thickens, frequent rain
+WeatherVibe.Profile.LochModan.Autumn.1=15,0,20,40
+WeatherVibe.Profile.LochModan.Autumn.2=20,1,30,60
+WeatherVibe.Profile.LochModan.Autumn.3=25,3,30,60
+WeatherVibe.Profile.LochModan.Autumn.4=20,4,30,60
+WeatherVibe.Profile.LochModan.Autumn.5=10,5,30,60
+WeatherVibe.Profile.LochModan.Autumn.6=10,86,20,40
+
+# Winter: cold, fog over frozen loch, rain, occasional light snow
+WeatherVibe.Profile.LochModan.Winter.1=15,0,20,40
+WeatherVibe.Profile.LochModan.Winter.2=20,1,30,60
+WeatherVibe.Profile.LochModan.Winter.3=20,3,30,60
+WeatherVibe.Profile.LochModan.Winter.4=15,4,30,60
+WeatherVibe.Profile.LochModan.Winter.5=15,6,30,50
+WeatherVibe.Profile.LochModan.Winter.6=10,7,20,40
+WeatherVibe.Profile.LochModan.Winter.7=5,86,20,40
+
+WeatherVibe.Profile.LochModan.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.LochModan.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.LochModan.Transition.StepSize.Perc=20
+WeatherVibe.Profile.LochModan.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.LochModan.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# Westfall — Dry, wind-swept farmland
+# Theme: Dust bowl, dead crops, golden-brown plains. Open and barren.
+# Fine weather dominates. Light rain occasionally. Dry, exposed.
+# No snow. Light sandstorm represents dust blowing across fields.
+#======================================================================
+
+# Spring: warming, mostly clear, morning fog, light showers
+WeatherVibe.Profile.Westfall.Spring.1=45,0,30,60
+WeatherVibe.Profile.Westfall.Spring.2=10,1,20,40
+WeatherVibe.Profile.Westfall.Spring.3=20,3,20,50
+WeatherVibe.Profile.Westfall.Spring.4=10,4,30,50
+WeatherVibe.Profile.Westfall.Spring.5=15,22,20,40
+
+# Summer: hot, dry, dusty, rare storm
+WeatherVibe.Profile.Westfall.Summer.1=50,0,50,80
+WeatherVibe.Profile.Westfall.Summer.2=5,1,20,30
+WeatherVibe.Profile.Westfall.Summer.3=10,3,20,40
+WeatherVibe.Profile.Westfall.Summer.4=15,22,30,50
+WeatherVibe.Profile.Westfall.Summer.5=10,41,30,50
+WeatherVibe.Profile.Westfall.Summer.6=10,86,30,50
+
+# Autumn: cooling, fog returns, occasional rain, harvest dust
+WeatherVibe.Profile.Westfall.Autumn.1=40,0,30,50
+WeatherVibe.Profile.Westfall.Autumn.2=15,1,20,50
+WeatherVibe.Profile.Westfall.Autumn.3=20,3,30,50
+WeatherVibe.Profile.Westfall.Autumn.4=10,4,30,50
+WeatherVibe.Profile.Westfall.Autumn.5=15,22,20,40
+
+# Winter: cool, fog, drizzle, dry overall
+WeatherVibe.Profile.Westfall.Winter.1=40,0,20,50
+WeatherVibe.Profile.Westfall.Winter.2=15,1,30,50
+WeatherVibe.Profile.Westfall.Winter.3=20,3,30,50
+WeatherVibe.Profile.Westfall.Winter.4=15,4,30,50
+WeatherVibe.Profile.Westfall.Winter.5=10,22,20,40
+
+WeatherVibe.Profile.Westfall.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.Westfall.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.Westfall.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Westfall.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.Westfall.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# DeadwindPass — Eerie, haunted mountain pass
+# Theme: Dead, lifeless, perpetual gloom. Thinnest air, darkest skies.
+# Fog is absolute dominant. Even more oppressive than Duskwood.
+# Almost no clear weather. Drizzle seeps through.
+# No snow, no storms — just suffocating emptiness.
+#======================================================================
+
+# Spring: fog, drizzle, rare thin breaks
+WeatherVibe.Profile.DeadwindPass.Spring.1=5,0,10,20
+WeatherVibe.Profile.DeadwindPass.Spring.2=55,1,50,90
+WeatherVibe.Profile.DeadwindPass.Spring.3=25,3,20,50
+WeatherVibe.Profile.DeadwindPass.Spring.4=15,4,20,50
+
+# Summer: fog slightly thinner, still oppressive
+WeatherVibe.Profile.DeadwindPass.Summer.1=10,0,10,25
+WeatherVibe.Profile.DeadwindPass.Summer.2=50,1,40,80
+WeatherVibe.Profile.DeadwindPass.Summer.3=25,3,20,50
+WeatherVibe.Profile.DeadwindPass.Summer.4=15,4,20,50
+
+# Autumn: peak gloom, fog at maximum
+WeatherVibe.Profile.DeadwindPass.Autumn.1=5,0,10,15
+WeatherVibe.Profile.DeadwindPass.Autumn.2=60,1,60,95
+WeatherVibe.Profile.DeadwindPass.Autumn.3=20,3,30,60
+WeatherVibe.Profile.DeadwindPass.Autumn.4=15,4,30,60
+
+# Winter: darkest, densest fog, cold drizzle
+WeatherVibe.Profile.DeadwindPass.Winter.1=5,0,10,15
+WeatherVibe.Profile.DeadwindPass.Winter.2=60,1,60,95
+WeatherVibe.Profile.DeadwindPass.Winter.3=20,3,30,60
+WeatherVibe.Profile.DeadwindPass.Winter.4=15,4,30,60
+
+WeatherVibe.Profile.DeadwindPass.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.DeadwindPass.Transition.Step.TimeSeconds.Max=60
+WeatherVibe.Profile.DeadwindPass.Transition.StepSize.Perc=10
+WeatherVibe.Profile.DeadwindPass.Transition.Max.Changes.Per.Hour=4
+WeatherVibe.Profile.DeadwindPass.Transition.Max.Consecutive.Same=5
+
+
+#======================================================================
+# RedridgeMountains — Warm temperate mountain forest
+# Theme: Autumn-tinged oaks, lakeside, warm and moderate.
+# Similar to Elwynn but slightly warmer and drier.
+# Rain common, fine days plentiful. No snow. Feels cozy.
+#======================================================================
+
+# Spring: pleasant, showers and sun, light fog
+WeatherVibe.Profile.RedridgeMountains.Spring.1=30,0,30,60
+WeatherVibe.Profile.RedridgeMountains.Spring.2=15,1,20,40
+WeatherVibe.Profile.RedridgeMountains.Spring.3=25,3,20,50
+WeatherVibe.Profile.RedridgeMountains.Spring.4=15,4,30,50
+WeatherVibe.Profile.RedridgeMountains.Spring.5=10,5,30,50
+WeatherVibe.Profile.RedridgeMountains.Spring.6=5,86,30,50
+
+# Summer: warm, clear, occasional afternoon thunderstorm
+WeatherVibe.Profile.RedridgeMountains.Summer.1=40,0,40,70
+WeatherVibe.Profile.RedridgeMountains.Summer.2=10,1,20,40
+WeatherVibe.Profile.RedridgeMountains.Summer.3=20,3,20,40
+WeatherVibe.Profile.RedridgeMountains.Summer.4=10,4,30,50
+WeatherVibe.Profile.RedridgeMountains.Summer.5=5,5,30,50
+WeatherVibe.Profile.RedridgeMountains.Summer.6=15,86,30,60
+
+# Autumn: wet, lake fog, frequent rain
+WeatherVibe.Profile.RedridgeMountains.Autumn.1=20,0,20,50
+WeatherVibe.Profile.RedridgeMountains.Autumn.2=20,1,30,60
+WeatherVibe.Profile.RedridgeMountains.Autumn.3=25,3,30,60
+WeatherVibe.Profile.RedridgeMountains.Autumn.4=20,4,30,60
+WeatherVibe.Profile.RedridgeMountains.Autumn.5=10,5,30,60
+WeatherVibe.Profile.RedridgeMountains.Autumn.6=5,86,20,40
+
+# Winter: cool, foggy, steady rain
+WeatherVibe.Profile.RedridgeMountains.Winter.1=25,0,20,40
+WeatherVibe.Profile.RedridgeMountains.Winter.2=20,1,30,60
+WeatherVibe.Profile.RedridgeMountains.Winter.3=25,3,30,60
+WeatherVibe.Profile.RedridgeMountains.Winter.4=20,4,30,60
+WeatherVibe.Profile.RedridgeMountains.Winter.5=10,5,30,50
+
+WeatherVibe.Profile.RedridgeMountains.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.RedridgeMountains.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.RedridgeMountains.Transition.StepSize.Perc=20
+WeatherVibe.Profile.RedridgeMountains.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.RedridgeMountains.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# ArathiHighlands — Open, windy highlands
+# Theme: Windswept green highlands, stone walls, exposed.
+# Dynamic weather. Rain and fine balanced. Fog rolls in.
+# Light snow possible in winter. Feels breezy and changeable.
+#======================================================================
+
+# Spring: dynamic, sun and showers, fog
+WeatherVibe.Profile.ArathiHighlands.Spring.1=25,0,30,60
+WeatherVibe.Profile.ArathiHighlands.Spring.2=15,1,20,50
+WeatherVibe.Profile.ArathiHighlands.Spring.3=25,3,30,50
+WeatherVibe.Profile.ArathiHighlands.Spring.4=15,4,30,60
+WeatherVibe.Profile.ArathiHighlands.Spring.5=10,5,30,50
+WeatherVibe.Profile.ArathiHighlands.Spring.6=10,86,30,50
+
+# Summer: warmest, clearest, occasional storms
+WeatherVibe.Profile.ArathiHighlands.Summer.1=35,0,40,70
+WeatherVibe.Profile.ArathiHighlands.Summer.2=10,1,20,40
+WeatherVibe.Profile.ArathiHighlands.Summer.3=20,3,20,50
+WeatherVibe.Profile.ArathiHighlands.Summer.4=15,4,30,50
+WeatherVibe.Profile.ArathiHighlands.Summer.5=10,5,30,50
+WeatherVibe.Profile.ArathiHighlands.Summer.6=10,86,30,60
+
+# Autumn: wet, windy, frequent rain, fog
+WeatherVibe.Profile.ArathiHighlands.Autumn.1=15,0,20,40
+WeatherVibe.Profile.ArathiHighlands.Autumn.2=20,1,30,60
+WeatherVibe.Profile.ArathiHighlands.Autumn.3=20,3,30,60
+WeatherVibe.Profile.ArathiHighlands.Autumn.4=20,4,40,70
+WeatherVibe.Profile.ArathiHighlands.Autumn.5=15,5,30,60
+WeatherVibe.Profile.ArathiHighlands.Autumn.6=10,86,30,50
+
+# Winter: cold, foggy, rain/sleet, occasional light snow
+WeatherVibe.Profile.ArathiHighlands.Winter.1=15,0,20,40
+WeatherVibe.Profile.ArathiHighlands.Winter.2=20,1,30,60
+WeatherVibe.Profile.ArathiHighlands.Winter.3=20,3,30,60
+WeatherVibe.Profile.ArathiHighlands.Winter.4=15,4,30,60
+WeatherVibe.Profile.ArathiHighlands.Winter.5=15,6,30,50
+WeatherVibe.Profile.ArathiHighlands.Winter.6=10,7,20,40
+WeatherVibe.Profile.ArathiHighlands.Winter.7=5,86,20,40
+
+WeatherVibe.Profile.ArathiHighlands.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.ArathiHighlands.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.ArathiHighlands.Transition.StepSize.Perc=25
+WeatherVibe.Profile.ArathiHighlands.Transition.Max.Changes.Per.Hour=15
+WeatherVibe.Profile.ArathiHighlands.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# BurningSteppes — Volcanic wasteland, charred earth
+# Theme: Blackened ground, lava pools, ash. Similar to Blackrock but outdoor.
+# Sandstorm = ash clouds. Thunder = volcanic rumble. Fog = smoke.
+# No rain, no snow. Oppressive heat.
+#======================================================================
+
+# Spring: smoke and ash, volcanic heat
+WeatherVibe.Profile.BurningSteppes.Spring.1=25,0,30,50
+WeatherVibe.Profile.BurningSteppes.Spring.2=20,1,30,60
+WeatherVibe.Profile.BurningSteppes.Spring.3=20,22,30,60
+WeatherVibe.Profile.BurningSteppes.Spring.4=15,41,30,60
+WeatherVibe.Profile.BurningSteppes.Spring.5=20,86,30,60
+
+# Summer: peak volcanic activity, thick ash
+WeatherVibe.Profile.BurningSteppes.Summer.1=20,0,30,50
+WeatherVibe.Profile.BurningSteppes.Summer.2=15,1,30,50
+WeatherVibe.Profile.BurningSteppes.Summer.3=20,22,40,70
+WeatherVibe.Profile.BurningSteppes.Summer.4=20,41,40,70
+WeatherVibe.Profile.BurningSteppes.Summer.5=10,42,30,60
+WeatherVibe.Profile.BurningSteppes.Summer.6=15,86,40,70
+
+# Autumn: ash settles slightly, smoke persists
+WeatherVibe.Profile.BurningSteppes.Autumn.1=25,0,30,50
+WeatherVibe.Profile.BurningSteppes.Autumn.2=20,1,30,60
+WeatherVibe.Profile.BurningSteppes.Autumn.3=20,22,30,60
+WeatherVibe.Profile.BurningSteppes.Autumn.4=15,41,30,60
+WeatherVibe.Profile.BurningSteppes.Autumn.5=20,86,30,60
+
+# Winter: cooler, smoke hangs low, ash drifts
+WeatherVibe.Profile.BurningSteppes.Winter.1=25,0,20,40
+WeatherVibe.Profile.BurningSteppes.Winter.2=25,1,40,70
+WeatherVibe.Profile.BurningSteppes.Winter.3=20,22,30,50
+WeatherVibe.Profile.BurningSteppes.Winter.4=15,41,30,50
+WeatherVibe.Profile.BurningSteppes.Winter.5=15,86,30,50
+
+WeatherVibe.Profile.BurningSteppes.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.BurningSteppes.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.BurningSteppes.Transition.StepSize.Perc=10
+WeatherVibe.Profile.BurningSteppes.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.BurningSteppes.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# TheHinterlands — Forested highlands, autumnal
+# Theme: Dense forest, troll ruins, hilly. Autumn-coloured.
+# Balanced rain and fine. Fog in valleys. Winter light snow.
+# Feels rugged but livable. Similar to Arathi but more forested.
+#======================================================================
+
+# Spring: mild, showers and sun through canopy, fog
+WeatherVibe.Profile.TheHinterlands.Spring.1=25,0,30,60
+WeatherVibe.Profile.TheHinterlands.Spring.2=15,1,20,50
+WeatherVibe.Profile.TheHinterlands.Spring.3=25,3,30,50
+WeatherVibe.Profile.TheHinterlands.Spring.4=15,4,30,60
+WeatherVibe.Profile.TheHinterlands.Spring.5=10,5,30,50
+WeatherVibe.Profile.TheHinterlands.Spring.6=10,86,30,50
+
+# Summer: warmest, dappled sun, light showers
+WeatherVibe.Profile.TheHinterlands.Summer.1=35,0,40,70
+WeatherVibe.Profile.TheHinterlands.Summer.2=10,1,20,40
+WeatherVibe.Profile.TheHinterlands.Summer.3=20,3,20,50
+WeatherVibe.Profile.TheHinterlands.Summer.4=15,4,30,50
+WeatherVibe.Profile.TheHinterlands.Summer.5=10,5,30,50
+WeatherVibe.Profile.TheHinterlands.Summer.6=10,86,30,50
+
+# Autumn: peak colour, fog and rain, moody
+WeatherVibe.Profile.TheHinterlands.Autumn.1=15,0,20,40
+WeatherVibe.Profile.TheHinterlands.Autumn.2=20,1,30,60
+WeatherVibe.Profile.TheHinterlands.Autumn.3=25,3,30,60
+WeatherVibe.Profile.TheHinterlands.Autumn.4=20,4,40,70
+WeatherVibe.Profile.TheHinterlands.Autumn.5=10,5,30,60
+WeatherVibe.Profile.TheHinterlands.Autumn.6=10,86,30,50
+
+# Winter: cold, fog, steady rain, occasional light snow
+WeatherVibe.Profile.TheHinterlands.Winter.1=15,0,20,40
+WeatherVibe.Profile.TheHinterlands.Winter.2=20,1,30,60
+WeatherVibe.Profile.TheHinterlands.Winter.3=20,3,30,50
+WeatherVibe.Profile.TheHinterlands.Winter.4=15,4,30,60
+WeatherVibe.Profile.TheHinterlands.Winter.5=15,6,30,50
+WeatherVibe.Profile.TheHinterlands.Winter.6=10,7,20,40
+WeatherVibe.Profile.TheHinterlands.Winter.7=5,86,20,40
+
+WeatherVibe.Profile.TheHinterlands.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.TheHinterlands.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.TheHinterlands.Transition.StepSize.Perc=20
+WeatherVibe.Profile.TheHinterlands.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.TheHinterlands.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# SearingGorge — Hot volcanic gorge
+# Theme: Red-hot rock, lava, forges, volcanic activity.
+# Sandstorms = ash/cinder. Fog = smoke/haze. Thunder = volcanic.
+# No rain, no snow. Extremely stable and hot.
+#======================================================================
+
+# Spring: hot, smoky, ash drifts
+WeatherVibe.Profile.SearingGorge.Spring.1=25,0,30,50
+WeatherVibe.Profile.SearingGorge.Spring.2=20,1,30,60
+WeatherVibe.Profile.SearingGorge.Spring.3=25,22,30,60
+WeatherVibe.Profile.SearingGorge.Spring.4=15,41,30,60
+WeatherVibe.Profile.SearingGorge.Spring.5=15,86,30,50
+
+# Summer: peak heat, heavy ash
+WeatherVibe.Profile.SearingGorge.Summer.1=20,0,40,60
+WeatherVibe.Profile.SearingGorge.Summer.2=15,1,30,50
+WeatherVibe.Profile.SearingGorge.Summer.3=20,22,40,70
+WeatherVibe.Profile.SearingGorge.Summer.4=20,41,40,70
+WeatherVibe.Profile.SearingGorge.Summer.5=10,42,30,60
+WeatherVibe.Profile.SearingGorge.Summer.6=15,86,40,70
+
+# Autumn: same as spring
+WeatherVibe.Profile.SearingGorge.Autumn.1=25,0,30,50
+WeatherVibe.Profile.SearingGorge.Autumn.2=20,1,30,60
+WeatherVibe.Profile.SearingGorge.Autumn.3=25,22,30,60
+WeatherVibe.Profile.SearingGorge.Autumn.4=15,41,30,60
+WeatherVibe.Profile.SearingGorge.Autumn.5=15,86,30,50
+
+# Winter: slightly cooler, smoke hangs heavy
+WeatherVibe.Profile.SearingGorge.Winter.1=25,0,20,40
+WeatherVibe.Profile.SearingGorge.Winter.2=25,1,40,70
+WeatherVibe.Profile.SearingGorge.Winter.3=20,22,30,50
+WeatherVibe.Profile.SearingGorge.Winter.4=15,41,30,50
+WeatherVibe.Profile.SearingGorge.Winter.5=15,86,30,50
+
+WeatherVibe.Profile.SearingGorge.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.SearingGorge.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.SearingGorge.Transition.StepSize.Perc=10
+WeatherVibe.Profile.SearingGorge.Transition.Max.Changes.Per.Hour=5
+WeatherVibe.Profile.SearingGorge.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Dragonblight — Vast snowy Northrend graveyard
+# Theme: White, flat, desolate snow plains. Dragon bones.
+# Snow dominant, bleak and cold. Fog = icy haze. Fine = crisp cold.
+# Less blizzard-intense than Storm Peaks. More desolate.
+#======================================================================
+
+# Spring: snow persists, slight thaw attempt, fog
+WeatherVibe.Profile.Dragonblight.Spring.1=10,0,30,50
+WeatherVibe.Profile.Dragonblight.Spring.2=15,1,30,60
+WeatherVibe.Profile.Dragonblight.Spring.3=35,6,30,50
+WeatherVibe.Profile.Dragonblight.Spring.4=25,7,30,60
+WeatherVibe.Profile.Dragonblight.Spring.5=15,8,30,70
+
+# Summer: mildest, some clear cold days, light snow
+WeatherVibe.Profile.Dragonblight.Summer.1=20,0,40,60
+WeatherVibe.Profile.Dragonblight.Summer.2=15,1,30,50
+WeatherVibe.Profile.Dragonblight.Summer.3=30,6,30,50
+WeatherVibe.Profile.Dragonblight.Summer.4=20,7,30,60
+WeatherVibe.Profile.Dragonblight.Summer.5=10,8,30,60
+WeatherVibe.Profile.Dragonblight.Summer.6=5,86,20,40
+
+# Autumn: cold returning fast, snow heavy, fog
+WeatherVibe.Profile.Dragonblight.Autumn.1=5,0,20,40
+WeatherVibe.Profile.Dragonblight.Autumn.2=15,1,40,70
+WeatherVibe.Profile.Dragonblight.Autumn.3=25,6,30,50
+WeatherVibe.Profile.Dragonblight.Autumn.4=30,7,30,70
+WeatherVibe.Profile.Dragonblight.Autumn.5=20,8,40,80
+WeatherVibe.Profile.Dragonblight.Autumn.6=5,86,20,40
+
+# Winter: bleak, heavy snow, icy fog
+WeatherVibe.Profile.Dragonblight.Winter.1=5,0,20,35
+WeatherVibe.Profile.Dragonblight.Winter.2=10,1,40,70
+WeatherVibe.Profile.Dragonblight.Winter.3=20,6,30,50
+WeatherVibe.Profile.Dragonblight.Winter.4=30,7,40,80
+WeatherVibe.Profile.Dragonblight.Winter.5=30,8,50,90
+WeatherVibe.Profile.Dragonblight.Winter.6=5,86,20,40
+
+WeatherVibe.Profile.Dragonblight.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.Dragonblight.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.Dragonblight.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Dragonblight.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.Dragonblight.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# ZulDrak — Corrupted Northrend troll plateau
+# Theme: Dark, sickly green, corrupted ice. Gloomy and cold.
+# Snow with gloomy fog. Feels diseased. Rain/sleet possible.
+# Thunder rumbles from Scourge corruption. Darker than Dragonblight.
+#======================================================================
+
+# Spring: cold, fog and snow, gloomy
+WeatherVibe.Profile.ZulDrak.Spring.1=10,0,20,40
+WeatherVibe.Profile.ZulDrak.Spring.2=20,1,40,70
+WeatherVibe.Profile.ZulDrak.Spring.3=10,3,30,50
+WeatherVibe.Profile.ZulDrak.Spring.4=25,6,30,50
+WeatherVibe.Profile.ZulDrak.Spring.5=20,7,30,60
+WeatherVibe.Profile.ZulDrak.Spring.6=10,8,30,60
+WeatherVibe.Profile.ZulDrak.Spring.7=5,86,30,50
+
+# Summer: slightly less harsh, fog and light snow persist
+WeatherVibe.Profile.ZulDrak.Summer.1=15,0,30,50
+WeatherVibe.Profile.ZulDrak.Summer.2=20,1,30,60
+WeatherVibe.Profile.ZulDrak.Summer.3=10,3,30,50
+WeatherVibe.Profile.ZulDrak.Summer.4=25,6,30,50
+WeatherVibe.Profile.ZulDrak.Summer.5=15,7,30,50
+WeatherVibe.Profile.ZulDrak.Summer.6=5,8,30,50
+WeatherVibe.Profile.ZulDrak.Summer.7=10,86,30,60
+
+# Autumn: cold deepening, fog thick, snow heavy
+WeatherVibe.Profile.ZulDrak.Autumn.1=5,0,20,30
+WeatherVibe.Profile.ZulDrak.Autumn.2=25,1,40,70
+WeatherVibe.Profile.ZulDrak.Autumn.3=5,3,30,50
+WeatherVibe.Profile.ZulDrak.Autumn.4=20,6,30,50
+WeatherVibe.Profile.ZulDrak.Autumn.5=25,7,30,70
+WeatherVibe.Profile.ZulDrak.Autumn.6=15,8,40,70
+WeatherVibe.Profile.ZulDrak.Autumn.7=5,86,30,50
+
+# Winter: harshest, blizzards and thick fog, oppressive
+WeatherVibe.Profile.ZulDrak.Winter.1=5,0,20,30
+WeatherVibe.Profile.ZulDrak.Winter.2=20,1,50,80
+WeatherVibe.Profile.ZulDrak.Winter.3=15,6,30,50
+WeatherVibe.Profile.ZulDrak.Winter.4=25,7,40,80
+WeatherVibe.Profile.ZulDrak.Winter.5=25,8,50,85
+WeatherVibe.Profile.ZulDrak.Winter.6=10,86,40,60
+
+WeatherVibe.Profile.ZulDrak.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.ZulDrak.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.ZulDrak.Transition.StepSize.Perc=20
+WeatherVibe.Profile.ZulDrak.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.ZulDrak.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# StormPeaks — Extreme Northrend mountain peaks
+# Theme: Towering peaks, blizzards, titan ruins, lightning storms.
+# THE stormiest zone. Heavy snow and thunder dominate.
+# Clear moments are rare and brief. Maximum severity.
+#======================================================================
+
+# Spring: still very harsh, blizzards easing slightly
+WeatherVibe.Profile.StormPeaks.Spring.1=5,0,30,50
+WeatherVibe.Profile.StormPeaks.Spring.2=10,1,30,60
+WeatherVibe.Profile.StormPeaks.Spring.3=25,6,30,50
+WeatherVibe.Profile.StormPeaks.Spring.4=25,7,30,70
+WeatherVibe.Profile.StormPeaks.Spring.5=20,8,40,80
+WeatherVibe.Profile.StormPeaks.Spring.6=15,86,40,70
+
+# Summer: "mildest" — still snowy, some clear, thunder
+WeatherVibe.Profile.StormPeaks.Summer.1=15,0,40,60
+WeatherVibe.Profile.StormPeaks.Summer.2=10,1,20,50
+WeatherVibe.Profile.StormPeaks.Summer.3=20,6,30,50
+WeatherVibe.Profile.StormPeaks.Summer.4=20,7,30,60
+WeatherVibe.Profile.StormPeaks.Summer.5=15,8,30,70
+WeatherVibe.Profile.StormPeaks.Summer.6=20,86,50,80
+
+# Autumn: storms intensify, snow heavy
+WeatherVibe.Profile.StormPeaks.Autumn.1=5,0,20,40
+WeatherVibe.Profile.StormPeaks.Autumn.2=10,1,30,60
+WeatherVibe.Profile.StormPeaks.Autumn.3=15,6,30,50
+WeatherVibe.Profile.StormPeaks.Autumn.4=25,7,40,70
+WeatherVibe.Profile.StormPeaks.Autumn.5=25,8,50,85
+WeatherVibe.Profile.StormPeaks.Autumn.6=20,86,50,80
+
+# Winter: maximum severity, constant blizzards and lightning
+WeatherVibe.Profile.StormPeaks.Winter.1=3,0,20,30
+WeatherVibe.Profile.StormPeaks.Winter.2=7,1,40,70
+WeatherVibe.Profile.StormPeaks.Winter.3=10,6,30,50
+WeatherVibe.Profile.StormPeaks.Winter.4=25,7,50,80
+WeatherVibe.Profile.StormPeaks.Winter.5=30,8,60,95
+WeatherVibe.Profile.StormPeaks.Winter.6=25,86,60,90
+
+WeatherVibe.Profile.StormPeaks.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.StormPeaks.Transition.Step.TimeSeconds.Max=25
+WeatherVibe.Profile.StormPeaks.Transition.StepSize.Perc=25
+WeatherVibe.Profile.StormPeaks.Transition.Max.Changes.Per.Hour=18
+WeatherVibe.Profile.StormPeaks.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# TirisfalGlades — Undead starting zone, perpetual overcast
+# Theme: Grey skies, dead trees, eerie calm. Not as dark as Duskwood
+# but permanently gloomy. Fog dominant, light rain. Undead atmosphere.
+# Very rare light snow in winter.
+#======================================================================
+
+# Spring: gloomy, fog, light rain
+WeatherVibe.Profile.TirisfalGlades.Spring.1=15,0,10,30
+WeatherVibe.Profile.TirisfalGlades.Spring.2=40,1,40,70
+WeatherVibe.Profile.TirisfalGlades.Spring.3=25,3,20,50
+WeatherVibe.Profile.TirisfalGlades.Spring.4=15,4,20,50
+WeatherVibe.Profile.TirisfalGlades.Spring.5=5,86,20,40
+
+# Summer: slightly less fog, still overcast
+WeatherVibe.Profile.TirisfalGlades.Summer.1=20,0,20,40
+WeatherVibe.Profile.TirisfalGlades.Summer.2=35,1,30,60
+WeatherVibe.Profile.TirisfalGlades.Summer.3=25,3,20,50
+WeatherVibe.Profile.TirisfalGlades.Summer.4=15,4,20,50
+WeatherVibe.Profile.TirisfalGlades.Summer.5=5,86,20,40
+
+# Autumn: deepening gloom, heavy fog
+WeatherVibe.Profile.TirisfalGlades.Autumn.1=10,0,10,25
+WeatherVibe.Profile.TirisfalGlades.Autumn.2=45,1,50,80
+WeatherVibe.Profile.TirisfalGlades.Autumn.3=25,3,30,60
+WeatherVibe.Profile.TirisfalGlades.Autumn.4=15,4,30,60
+WeatherVibe.Profile.TirisfalGlades.Autumn.5=5,86,20,40
+
+# Winter: darkest, dense fog, drizzle, very rare light snow
+WeatherVibe.Profile.TirisfalGlades.Winter.1=10,0,10,25
+WeatherVibe.Profile.TirisfalGlades.Winter.2=40,1,50,80
+WeatherVibe.Profile.TirisfalGlades.Winter.3=20,3,30,50
+WeatherVibe.Profile.TirisfalGlades.Winter.4=15,4,30,60
+WeatherVibe.Profile.TirisfalGlades.Winter.5=10,6,20,40
+WeatherVibe.Profile.TirisfalGlades.Winter.6=5,86,20,40
+
+WeatherVibe.Profile.TirisfalGlades.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.TirisfalGlades.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.TirisfalGlades.Transition.StepSize.Perc=10
+WeatherVibe.Profile.TirisfalGlades.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.TirisfalGlades.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# SilverpineForest — Dark, gloomy forest
+# Theme: Dark evergreen forest, haunted, worgen territory.
+# Similar to Tirisfal but wetter. More rain, same fog.
+# Occasional light snow in winter.
+#======================================================================
+
+# Spring: drizzly, foggy, rare clearings
+WeatherVibe.Profile.SilverpineForest.Spring.1=10,0,10,30
+WeatherVibe.Profile.SilverpineForest.Spring.2=30,1,40,70
+WeatherVibe.Profile.SilverpineForest.Spring.3=25,3,30,60
+WeatherVibe.Profile.SilverpineForest.Spring.4=20,4,30,60
+WeatherVibe.Profile.SilverpineForest.Spring.5=10,5,30,50
+WeatherVibe.Profile.SilverpineForest.Spring.6=5,86,20,40
+
+# Summer: warmest, fog thins, showers persist
+WeatherVibe.Profile.SilverpineForest.Summer.1=20,0,20,40
+WeatherVibe.Profile.SilverpineForest.Summer.2=25,1,30,60
+WeatherVibe.Profile.SilverpineForest.Summer.3=25,3,30,50
+WeatherVibe.Profile.SilverpineForest.Summer.4=15,4,30,50
+WeatherVibe.Profile.SilverpineForest.Summer.5=10,5,30,50
+WeatherVibe.Profile.SilverpineForest.Summer.6=5,86,20,40
+
+# Autumn: wet, foggy, frequent rain
+WeatherVibe.Profile.SilverpineForest.Autumn.1=5,0,10,25
+WeatherVibe.Profile.SilverpineForest.Autumn.2=35,1,50,80
+WeatherVibe.Profile.SilverpineForest.Autumn.3=25,3,30,60
+WeatherVibe.Profile.SilverpineForest.Autumn.4=20,4,40,70
+WeatherVibe.Profile.SilverpineForest.Autumn.5=10,5,30,60
+WeatherVibe.Profile.SilverpineForest.Autumn.6=5,86,20,40
+
+# Winter: cold, dense fog, rain, light snow
+WeatherVibe.Profile.SilverpineForest.Winter.1=5,0,10,25
+WeatherVibe.Profile.SilverpineForest.Winter.2=30,1,50,80
+WeatherVibe.Profile.SilverpineForest.Winter.3=20,3,30,60
+WeatherVibe.Profile.SilverpineForest.Winter.4=15,4,30,60
+WeatherVibe.Profile.SilverpineForest.Winter.5=15,6,30,50
+WeatherVibe.Profile.SilverpineForest.Winter.6=10,7,20,40
+WeatherVibe.Profile.SilverpineForest.Winter.7=5,86,20,40
+
+WeatherVibe.Profile.SilverpineForest.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.SilverpineForest.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.SilverpineForest.Transition.StepSize.Perc=15
+WeatherVibe.Profile.SilverpineForest.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.SilverpineForest.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# EasternPlaguelands — Heavily corrupted wasteland
+# Theme: Even more ruined than Western PL. Sickly brown/green.
+# Fog is heavier, gloom is absolute. Corruption hangs in the air.
+# Light rain. Rare light snow in winter. Thunder from undead storms.
+#======================================================================
+
+# Spring: thick plague-fog, drizzle, gloomy
+WeatherVibe.Profile.EasternPlaguelands.Spring.1=10,0,10,25
+WeatherVibe.Profile.EasternPlaguelands.Spring.2=40,1,50,80
+WeatherVibe.Profile.EasternPlaguelands.Spring.3=25,3,30,60
+WeatherVibe.Profile.EasternPlaguelands.Spring.4=15,4,30,60
+WeatherVibe.Profile.EasternPlaguelands.Spring.5=10,86,30,50
+
+# Summer: fog thins slightly, drizzle continues
+WeatherVibe.Profile.EasternPlaguelands.Summer.1=15,0,15,35
+WeatherVibe.Profile.EasternPlaguelands.Summer.2=35,1,40,70
+WeatherVibe.Profile.EasternPlaguelands.Summer.3=25,3,30,50
+WeatherVibe.Profile.EasternPlaguelands.Summer.4=15,4,30,50
+WeatherVibe.Profile.EasternPlaguelands.Summer.5=10,86,30,60
+
+# Autumn: peak corruption-fog, rain, oppressive
+WeatherVibe.Profile.EasternPlaguelands.Autumn.1=5,0,10,20
+WeatherVibe.Profile.EasternPlaguelands.Autumn.2=45,1,60,90
+WeatherVibe.Profile.EasternPlaguelands.Autumn.3=25,3,30,60
+WeatherVibe.Profile.EasternPlaguelands.Autumn.4=15,4,40,70
+WeatherVibe.Profile.EasternPlaguelands.Autumn.5=10,86,30,50
+
+# Winter: darkest, dense fog, drizzle, rare light snow
+WeatherVibe.Profile.EasternPlaguelands.Winter.1=5,0,10,20
+WeatherVibe.Profile.EasternPlaguelands.Winter.2=40,1,60,90
+WeatherVibe.Profile.EasternPlaguelands.Winter.3=20,3,30,60
+WeatherVibe.Profile.EasternPlaguelands.Winter.4=15,4,30,60
+WeatherVibe.Profile.EasternPlaguelands.Winter.5=10,6,20,40
+WeatherVibe.Profile.EasternPlaguelands.Winter.6=10,86,30,50
+
+WeatherVibe.Profile.EasternPlaguelands.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.EasternPlaguelands.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.EasternPlaguelands.Transition.StepSize.Perc=10
+WeatherVibe.Profile.EasternPlaguelands.Transition.Max.Changes.Per.Hour=5
+WeatherVibe.Profile.EasternPlaguelands.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Teldrassil — Mystical giant world-tree
+# Theme: Serene, magical, purple-tinted canopy. Night elf home.
+# Fine dominant — soft, filtered light through leaves. Light fog = mist.
+# Gentle rain. No snow, no storms. Peaceful and enchanted.
+#======================================================================
+
+# Spring: gentle mist, mostly fine, soft rain
+WeatherVibe.Profile.Teldrassil.Spring.1=40,0,40,70
+WeatherVibe.Profile.Teldrassil.Spring.2=20,1,20,50
+WeatherVibe.Profile.Teldrassil.Spring.3=25,3,20,50
+WeatherVibe.Profile.Teldrassil.Spring.4=15,4,20,40
+
+# Summer: clearest, warm, light mist
+WeatherVibe.Profile.Teldrassil.Summer.1=50,0,50,80
+WeatherVibe.Profile.Teldrassil.Summer.2=15,1,20,40
+WeatherVibe.Profile.Teldrassil.Summer.3=20,3,20,40
+WeatherVibe.Profile.Teldrassil.Summer.4=15,4,20,40
+
+# Autumn: mist thickens, gentle rain, serene
+WeatherVibe.Profile.Teldrassil.Autumn.1=30,0,30,60
+WeatherVibe.Profile.Teldrassil.Autumn.2=25,1,30,60
+WeatherVibe.Profile.Teldrassil.Autumn.3=25,3,30,50
+WeatherVibe.Profile.Teldrassil.Autumn.4=20,4,30,50
+
+# Winter: cool, misty, drizzle, still magical
+WeatherVibe.Profile.Teldrassil.Winter.1=30,0,30,50
+WeatherVibe.Profile.Teldrassil.Winter.2=25,1,30,60
+WeatherVibe.Profile.Teldrassil.Winter.3=25,3,30,60
+WeatherVibe.Profile.Teldrassil.Winter.4=20,4,30,50
+
+WeatherVibe.Profile.Teldrassil.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Teldrassil.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.Teldrassil.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Teldrassil.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.Teldrassil.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Darkshore — Dark coastal forest
+# Theme: Gloomy purple-grey coast, fallen trees, ominous.
+# Rain and fog dominant. Coastal storms. Much darker than Teldrassil.
+# No snow. Feels constantly overcast and damp.
+#======================================================================
+
+# Spring: fog and rain, occasional breaks
+WeatherVibe.Profile.Darkshore.Spring.1=15,0,20,40
+WeatherVibe.Profile.Darkshore.Spring.2=25,1,30,60
+WeatherVibe.Profile.Darkshore.Spring.3=25,3,30,60
+WeatherVibe.Profile.Darkshore.Spring.4=15,4,30,60
+WeatherVibe.Profile.Darkshore.Spring.5=10,5,30,60
+WeatherVibe.Profile.Darkshore.Spring.6=10,86,30,50
+
+# Summer: slightly less bleak, fog thins, showers persist
+WeatherVibe.Profile.Darkshore.Summer.1=20,0,30,50
+WeatherVibe.Profile.Darkshore.Summer.2=20,1,30,50
+WeatherVibe.Profile.Darkshore.Summer.3=25,3,30,50
+WeatherVibe.Profile.Darkshore.Summer.4=15,4,30,60
+WeatherVibe.Profile.Darkshore.Summer.5=10,5,30,50
+WeatherVibe.Profile.Darkshore.Summer.6=10,86,30,50
+
+# Autumn: wettest, fog thick, rain relentless
+WeatherVibe.Profile.Darkshore.Autumn.1=10,0,20,30
+WeatherVibe.Profile.Darkshore.Autumn.2=30,1,40,70
+WeatherVibe.Profile.Darkshore.Autumn.3=20,3,30,60
+WeatherVibe.Profile.Darkshore.Autumn.4=15,4,40,70
+WeatherVibe.Profile.Darkshore.Autumn.5=15,5,40,70
+WeatherVibe.Profile.Darkshore.Autumn.6=10,86,30,60
+
+# Winter: cold, dense fog, steady rain
+WeatherVibe.Profile.Darkshore.Winter.1=10,0,20,30
+WeatherVibe.Profile.Darkshore.Winter.2=30,1,40,70
+WeatherVibe.Profile.Darkshore.Winter.3=20,3,30,60
+WeatherVibe.Profile.Darkshore.Winter.4=20,4,40,70
+WeatherVibe.Profile.Darkshore.Winter.5=15,5,30,60
+WeatherVibe.Profile.Darkshore.Winter.6=5,86,20,40
+
+WeatherVibe.Profile.Darkshore.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.Darkshore.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.Darkshore.Transition.StepSize.Perc=20
+WeatherVibe.Profile.Darkshore.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.Darkshore.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# TheGreatSea — Open ocean (also used for Veiled Sea)
+# Theme: Vast open water, unpredictable. Highly dynamic.
+# All rain types, fog, fine, thunder. Very changeable.
+# No snow (temperate latitudes), no sand.
+#======================================================================
+
+# Spring: changeable, fog and squalls, some clear
+WeatherVibe.Profile.TheGreatSea.Spring.1=20,0,30,60
+WeatherVibe.Profile.TheGreatSea.Spring.2=20,1,30,60
+WeatherVibe.Profile.TheGreatSea.Spring.3=20,3,30,60
+WeatherVibe.Profile.TheGreatSea.Spring.4=15,4,40,70
+WeatherVibe.Profile.TheGreatSea.Spring.5=10,5,40,70
+WeatherVibe.Profile.TheGreatSea.Spring.6=15,86,40,70
+
+# Summer: calmest, more fine, still dynamic
+WeatherVibe.Profile.TheGreatSea.Summer.1=30,0,40,70
+WeatherVibe.Profile.TheGreatSea.Summer.2=15,1,20,50
+WeatherVibe.Profile.TheGreatSea.Summer.3=20,3,30,50
+WeatherVibe.Profile.TheGreatSea.Summer.4=10,4,30,60
+WeatherVibe.Profile.TheGreatSea.Summer.5=10,5,30,60
+WeatherVibe.Profile.TheGreatSea.Summer.6=15,86,40,70
+
+# Autumn: stormy, fog and heavy rain, rough seas
+WeatherVibe.Profile.TheGreatSea.Autumn.1=10,0,20,40
+WeatherVibe.Profile.TheGreatSea.Autumn.2=20,1,40,70
+WeatherVibe.Profile.TheGreatSea.Autumn.3=15,3,30,60
+WeatherVibe.Profile.TheGreatSea.Autumn.4=20,4,40,70
+WeatherVibe.Profile.TheGreatSea.Autumn.5=15,5,50,80
+WeatherVibe.Profile.TheGreatSea.Autumn.6=20,86,50,80
+
+# Winter: harsh, storms frequent, fog dense
+WeatherVibe.Profile.TheGreatSea.Winter.1=10,0,20,40
+WeatherVibe.Profile.TheGreatSea.Winter.2=20,1,40,70
+WeatherVibe.Profile.TheGreatSea.Winter.3=15,3,30,60
+WeatherVibe.Profile.TheGreatSea.Winter.4=20,4,40,70
+WeatherVibe.Profile.TheGreatSea.Winter.5=15,5,50,80
+WeatherVibe.Profile.TheGreatSea.Winter.6=20,86,50,80
+
+WeatherVibe.Profile.TheGreatSea.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.TheGreatSea.Transition.Step.TimeSeconds.Max=25
+WeatherVibe.Profile.TheGreatSea.Transition.StepSize.Perc=30
+WeatherVibe.Profile.TheGreatSea.Transition.Max.Changes.Per.Hour=18
+WeatherVibe.Profile.TheGreatSea.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# Icecrown — Frozen undead stronghold
+# Theme: Permanent ice, Scourge fortress, darkest cold.
+# Heavy snow and blizzards almost constant. Extremely harsh.
+# Even more severe than Storm Peaks but less thunder.
+# Fine = rare brief lull in the storm.
+#======================================================================
+
+# Spring: still deep winter, blizzards, rare lull
+WeatherVibe.Profile.Icecrown.Spring.1=5,0,20,35
+WeatherVibe.Profile.Icecrown.Spring.2=10,1,40,70
+WeatherVibe.Profile.Icecrown.Spring.3=15,6,30,50
+WeatherVibe.Profile.Icecrown.Spring.4=30,7,40,80
+WeatherVibe.Profile.Icecrown.Spring.5=35,8,50,90
+WeatherVibe.Profile.Icecrown.Spring.6=5,86,30,50
+
+# Summer: barely any relief, snow slightly lighter
+WeatherVibe.Profile.Icecrown.Summer.1=10,0,30,50
+WeatherVibe.Profile.Icecrown.Summer.2=10,1,30,60
+WeatherVibe.Profile.Icecrown.Summer.3=20,6,30,50
+WeatherVibe.Profile.Icecrown.Summer.4=30,7,30,70
+WeatherVibe.Profile.Icecrown.Summer.5=25,8,40,80
+WeatherVibe.Profile.Icecrown.Summer.6=5,86,30,50
+
+# Autumn: cold intensifying, heavy snow returning
+WeatherVibe.Profile.Icecrown.Autumn.1=5,0,20,35
+WeatherVibe.Profile.Icecrown.Autumn.2=10,1,40,70
+WeatherVibe.Profile.Icecrown.Autumn.3=15,6,30,50
+WeatherVibe.Profile.Icecrown.Autumn.4=30,7,40,80
+WeatherVibe.Profile.Icecrown.Autumn.5=35,8,50,90
+WeatherVibe.Profile.Icecrown.Autumn.6=5,86,30,50
+
+# Winter: absolute worst, near-constant blizzard
+WeatherVibe.Profile.Icecrown.Winter.1=3,0,20,30
+WeatherVibe.Profile.Icecrown.Winter.2=7,1,50,80
+WeatherVibe.Profile.Icecrown.Winter.3=10,6,30,50
+WeatherVibe.Profile.Icecrown.Winter.4=25,7,50,85
+WeatherVibe.Profile.Icecrown.Winter.5=45,8,60,95
+WeatherVibe.Profile.Icecrown.Winter.6=10,86,40,60
+
+WeatherVibe.Profile.Icecrown.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.Icecrown.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.Icecrown.Transition.StepSize.Perc=20
+WeatherVibe.Profile.Icecrown.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.Icecrown.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Mulgore — Beautiful green rolling plains
+# Theme: Idyllic, peaceful, Native-American prairie. Tauren homeland.
+# Fine is THE dominant weather — user notes it's prettiest at 100%.
+# Very occasional gentle rain. Rare morning fog. No snow, no storms.
+# Should feel serene and open above all else.
+#======================================================================
+
+# Spring: beautiful, fine dominant, gentle spring rain
+WeatherVibe.Profile.Mulgore.Spring.1=60,0,60,100
+WeatherVibe.Profile.Mulgore.Spring.2=10,1,20,40
+WeatherVibe.Profile.Mulgore.Spring.3=20,3,20,40
+WeatherVibe.Profile.Mulgore.Spring.4=10,4,20,40
+
+# Summer: peak beauty, almost always fine, rare shower
+WeatherVibe.Profile.Mulgore.Summer.1=75,0,70,100
+WeatherVibe.Profile.Mulgore.Summer.2=5,1,20,30
+WeatherVibe.Profile.Mulgore.Summer.3=15,3,20,30
+WeatherVibe.Profile.Mulgore.Summer.4=5,86,20,30
+
+# Autumn: slightly more rain, fog in mornings, still mostly fine
+WeatherVibe.Profile.Mulgore.Autumn.1=55,0,50,90
+WeatherVibe.Profile.Mulgore.Autumn.2=15,1,20,50
+WeatherVibe.Profile.Mulgore.Autumn.3=20,3,20,40
+WeatherVibe.Profile.Mulgore.Autumn.4=10,4,20,40
+
+# Winter: cool but still mostly fine, morning fog, rare light rain
+WeatherVibe.Profile.Mulgore.Winter.1=55,0,40,80
+WeatherVibe.Profile.Mulgore.Winter.2=15,1,30,50
+WeatherVibe.Profile.Mulgore.Winter.3=20,3,20,40
+WeatherVibe.Profile.Mulgore.Winter.4=10,4,20,40
+
+WeatherVibe.Profile.Mulgore.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.Mulgore.Transition.Step.TimeSeconds.Max=60
+WeatherVibe.Profile.Mulgore.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Mulgore.Transition.Max.Changes.Per.Hour=4
+WeatherVibe.Profile.Mulgore.Transition.Max.Consecutive.Same=5
+
+
+#======================================================================
+# HillsbradFoothills — Temperate green foothills
+# Theme: Pleasant farmland, rolling green hills, Southshore coast.
+# Similar to Elwynn but cooler, more northern. Balanced weather.
+# Winter brings light snow. Dynamic spring/autumn.
+#======================================================================
+
+# Spring: dynamic, showers and sun, morning fog
+WeatherVibe.Profile.HillsbradFoothills.Spring.1=25,0,30,60
+WeatherVibe.Profile.HillsbradFoothills.Spring.2=15,1,20,50
+WeatherVibe.Profile.HillsbradFoothills.Spring.3=25,3,30,50
+WeatherVibe.Profile.HillsbradFoothills.Spring.4=15,4,30,60
+WeatherVibe.Profile.HillsbradFoothills.Spring.5=10,5,30,50
+WeatherVibe.Profile.HillsbradFoothills.Spring.6=10,86,30,50
+
+# Summer: warm, clear, light showers
+WeatherVibe.Profile.HillsbradFoothills.Summer.1=35,0,40,70
+WeatherVibe.Profile.HillsbradFoothills.Summer.2=10,1,20,40
+WeatherVibe.Profile.HillsbradFoothills.Summer.3=25,3,20,50
+WeatherVibe.Profile.HillsbradFoothills.Summer.4=15,4,30,50
+WeatherVibe.Profile.HillsbradFoothills.Summer.5=5,5,30,50
+WeatherVibe.Profile.HillsbradFoothills.Summer.6=10,86,30,60
+
+# Autumn: wet, foggy, frequent rain
+WeatherVibe.Profile.HillsbradFoothills.Autumn.1=15,0,20,40
+WeatherVibe.Profile.HillsbradFoothills.Autumn.2=20,1,30,60
+WeatherVibe.Profile.HillsbradFoothills.Autumn.3=25,3,30,60
+WeatherVibe.Profile.HillsbradFoothills.Autumn.4=20,4,30,60
+WeatherVibe.Profile.HillsbradFoothills.Autumn.5=10,5,30,60
+WeatherVibe.Profile.HillsbradFoothills.Autumn.6=10,86,30,50
+
+# Winter: cold, fog, rain, light snow
+WeatherVibe.Profile.HillsbradFoothills.Winter.1=15,0,20,40
+WeatherVibe.Profile.HillsbradFoothills.Winter.2=20,1,30,60
+WeatherVibe.Profile.HillsbradFoothills.Winter.3=20,3,30,50
+WeatherVibe.Profile.HillsbradFoothills.Winter.4=15,4,30,60
+WeatherVibe.Profile.HillsbradFoothills.Winter.5=15,6,30,50
+WeatherVibe.Profile.HillsbradFoothills.Winter.6=10,7,20,40
+WeatherVibe.Profile.HillsbradFoothills.Winter.7=5,86,20,40
+
+WeatherVibe.Profile.HillsbradFoothills.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.HillsbradFoothills.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.HillsbradFoothills.Transition.StepSize.Perc=20
+WeatherVibe.Profile.HillsbradFoothills.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.HillsbradFoothills.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# Ashenvale — Dark mystical night-elf forest
+# Theme: Deep purple/blue forest, ancient, mystical. Shadowy canopy.
+# Fine through dappled canopy, fog = forest mist, gentle rain.
+# Darker than Teldrassil but not as oppressive as Duskwood.
+# No snow, no sand. Magical and calm.
+#======================================================================
+
+# Spring: mystical mist, soft light, gentle rain
+WeatherVibe.Profile.Ashenvale.Spring.1=30,0,30,60
+WeatherVibe.Profile.Ashenvale.Spring.2=25,1,30,60
+WeatherVibe.Profile.Ashenvale.Spring.3=25,3,20,50
+WeatherVibe.Profile.Ashenvale.Spring.4=15,4,20,50
+WeatherVibe.Profile.Ashenvale.Spring.5=5,86,20,40
+
+# Summer: warmest, more light through canopy, light mist
+WeatherVibe.Profile.Ashenvale.Summer.1=35,0,40,70
+WeatherVibe.Profile.Ashenvale.Summer.2=20,1,20,50
+WeatherVibe.Profile.Ashenvale.Summer.3=25,3,20,40
+WeatherVibe.Profile.Ashenvale.Summer.4=15,4,20,40
+WeatherVibe.Profile.Ashenvale.Summer.5=5,86,20,40
+
+# Autumn: mist thickens, rain increases, mystical
+WeatherVibe.Profile.Ashenvale.Autumn.1=20,0,20,50
+WeatherVibe.Profile.Ashenvale.Autumn.2=30,1,40,70
+WeatherVibe.Profile.Ashenvale.Autumn.3=25,3,30,60
+WeatherVibe.Profile.Ashenvale.Autumn.4=15,4,30,60
+WeatherVibe.Profile.Ashenvale.Autumn.5=10,5,30,50
+
+# Winter: cool, deep mist, steady drizzle
+WeatherVibe.Profile.Ashenvale.Winter.1=20,0,20,40
+WeatherVibe.Profile.Ashenvale.Winter.2=30,1,40,70
+WeatherVibe.Profile.Ashenvale.Winter.3=25,3,30,60
+WeatherVibe.Profile.Ashenvale.Winter.4=15,4,30,60
+WeatherVibe.Profile.Ashenvale.Winter.5=10,5,30,50
+
+WeatherVibe.Profile.Ashenvale.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Ashenvale.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.Ashenvale.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Ashenvale.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.Ashenvale.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Feralas — Lush green tropical forest
+# Theme: Dense, wet, green canopy. Thick vegetation, waterfalls.
+# Rain dominant. Fine = humid jungle heat. Fog in valleys.
+# Thunderstorms frequent. No snow, no sand.
+#======================================================================
+
+# Spring: wet, warm, rain and fog
+WeatherVibe.Profile.Feralas.Spring.1=20,0,30,50
+WeatherVibe.Profile.Feralas.Spring.2=15,1,20,50
+WeatherVibe.Profile.Feralas.Spring.3=25,3,30,50
+WeatherVibe.Profile.Feralas.Spring.4=20,4,30,60
+WeatherVibe.Profile.Feralas.Spring.5=10,5,30,60
+WeatherVibe.Profile.Feralas.Spring.6=10,86,30,50
+
+# Summer: steamiest, heavy rain, thunderstorms
+WeatherVibe.Profile.Feralas.Summer.1=15,0,30,50
+WeatherVibe.Profile.Feralas.Summer.2=10,1,20,40
+WeatherVibe.Profile.Feralas.Summer.3=20,3,30,50
+WeatherVibe.Profile.Feralas.Summer.4=20,4,40,70
+WeatherVibe.Profile.Feralas.Summer.5=15,5,40,70
+WeatherVibe.Profile.Feralas.Summer.6=20,86,40,70
+
+# Autumn: rain steady, fog, warm
+WeatherVibe.Profile.Feralas.Autumn.1=20,0,30,50
+WeatherVibe.Profile.Feralas.Autumn.2=15,1,30,60
+WeatherVibe.Profile.Feralas.Autumn.3=25,3,30,60
+WeatherVibe.Profile.Feralas.Autumn.4=20,4,40,70
+WeatherVibe.Profile.Feralas.Autumn.5=10,5,30,60
+WeatherVibe.Profile.Feralas.Autumn.6=10,86,30,50
+
+# Winter: cooler, rain persists, fog thick
+WeatherVibe.Profile.Feralas.Winter.1=20,0,30,50
+WeatherVibe.Profile.Feralas.Winter.2=20,1,30,60
+WeatherVibe.Profile.Feralas.Winter.3=25,3,30,60
+WeatherVibe.Profile.Feralas.Winter.4=20,4,30,60
+WeatherVibe.Profile.Feralas.Winter.5=10,5,30,50
+WeatherVibe.Profile.Feralas.Winter.6=5,86,20,40
+
+WeatherVibe.Profile.Feralas.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.Feralas.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.Feralas.Transition.StepSize.Perc=20
+WeatherVibe.Profile.Feralas.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.Feralas.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# Felwood — Corrupted night-elf forest
+# Theme: Sickly green corruption, demonic taint, oozing pools.
+# Fog = corruption haze. Light rain drips through dying canopy.
+# Similar to Duskwood in gloom but with a toxic/corrupted feel.
+# No snow, no sand. Oppressive and diseased.
+#======================================================================
+
+# Spring: corruption haze, drizzle
+WeatherVibe.Profile.Felwood.Spring.1=10,0,15,30
+WeatherVibe.Profile.Felwood.Spring.2=40,1,40,70
+WeatherVibe.Profile.Felwood.Spring.3=25,3,30,50
+WeatherVibe.Profile.Felwood.Spring.4=15,4,30,50
+WeatherVibe.Profile.Felwood.Spring.5=10,86,20,40
+
+# Summer: haze slightly thinner, drizzle persists
+WeatherVibe.Profile.Felwood.Summer.1=15,0,20,40
+WeatherVibe.Profile.Felwood.Summer.2=35,1,30,60
+WeatherVibe.Profile.Felwood.Summer.3=25,3,30,50
+WeatherVibe.Profile.Felwood.Summer.4=15,4,30,50
+WeatherVibe.Profile.Felwood.Summer.5=10,86,20,40
+
+# Autumn: peak corruption, thick fog, steady drizzle
+WeatherVibe.Profile.Felwood.Autumn.1=5,0,10,25
+WeatherVibe.Profile.Felwood.Autumn.2=45,1,50,80
+WeatherVibe.Profile.Felwood.Autumn.3=25,3,30,60
+WeatherVibe.Profile.Felwood.Autumn.4=15,4,30,60
+WeatherVibe.Profile.Felwood.Autumn.5=10,86,30,50
+
+# Winter: darkest corruption haze, cold drizzle
+WeatherVibe.Profile.Felwood.Winter.1=5,0,10,25
+WeatherVibe.Profile.Felwood.Winter.2=45,1,50,85
+WeatherVibe.Profile.Felwood.Winter.3=25,3,30,60
+WeatherVibe.Profile.Felwood.Winter.4=15,4,30,60
+WeatherVibe.Profile.Felwood.Winter.5=10,86,30,50
+
+WeatherVibe.Profile.Felwood.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Felwood.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.Felwood.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Felwood.Transition.Max.Changes.Per.Hour=5
+WeatherVibe.Profile.Felwood.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# GrizzlyHills — Boreal Northrend forest
+# Theme: Autumn-coloured boreal forest, tall redwoods, cozy but cold.
+# Mixed snow and rain. Fine on clear cold days. Fog in mornings.
+# Feels like a cold autumn forest year-round. Beautiful.
+#======================================================================
+
+# Spring: thawing, rain and snow mix, fog, clear days
+WeatherVibe.Profile.GrizzlyHills.Spring.1=20,0,30,60
+WeatherVibe.Profile.GrizzlyHills.Spring.2=15,1,30,50
+WeatherVibe.Profile.GrizzlyHills.Spring.3=15,3,30,50
+WeatherVibe.Profile.GrizzlyHills.Spring.4=10,4,30,50
+WeatherVibe.Profile.GrizzlyHills.Spring.5=20,6,30,50
+WeatherVibe.Profile.GrizzlyHills.Spring.6=15,7,30,50
+WeatherVibe.Profile.GrizzlyHills.Spring.7=5,8,30,50
+
+# Summer: warmest, most fine, light rain, light snow at altitude
+WeatherVibe.Profile.GrizzlyHills.Summer.1=30,0,40,70
+WeatherVibe.Profile.GrizzlyHills.Summer.2=10,1,20,40
+WeatherVibe.Profile.GrizzlyHills.Summer.3=20,3,30,50
+WeatherVibe.Profile.GrizzlyHills.Summer.4=10,4,30,50
+WeatherVibe.Profile.GrizzlyHills.Summer.5=15,6,20,40
+WeatherVibe.Profile.GrizzlyHills.Summer.6=10,7,30,50
+WeatherVibe.Profile.GrizzlyHills.Summer.7=5,86,30,50
+
+# Autumn: peak beauty, cold rain, snow returning, fog
+WeatherVibe.Profile.GrizzlyHills.Autumn.1=15,0,20,50
+WeatherVibe.Profile.GrizzlyHills.Autumn.2=15,1,30,60
+WeatherVibe.Profile.GrizzlyHills.Autumn.3=10,3,30,50
+WeatherVibe.Profile.GrizzlyHills.Autumn.4=10,4,30,60
+WeatherVibe.Profile.GrizzlyHills.Autumn.5=20,6,30,50
+WeatherVibe.Profile.GrizzlyHills.Autumn.6=20,7,30,60
+WeatherVibe.Profile.GrizzlyHills.Autumn.7=10,8,30,60
+
+# Winter: cold, heavy snow, fog, rare clear
+WeatherVibe.Profile.GrizzlyHills.Winter.1=10,0,20,40
+WeatherVibe.Profile.GrizzlyHills.Winter.2=15,1,40,60
+WeatherVibe.Profile.GrizzlyHills.Winter.3=5,3,20,40
+WeatherVibe.Profile.GrizzlyHills.Winter.4=25,6,30,50
+WeatherVibe.Profile.GrizzlyHills.Winter.5=25,7,30,70
+WeatherVibe.Profile.GrizzlyHills.Winter.6=15,8,40,70
+WeatherVibe.Profile.GrizzlyHills.Winter.7=5,86,20,40
+
+WeatherVibe.Profile.GrizzlyHills.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.GrizzlyHills.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.GrizzlyHills.Transition.StepSize.Perc=20
+WeatherVibe.Profile.GrizzlyHills.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.GrizzlyHills.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# ThousandNeedles — Desert canyon, towering mesas
+# Theme: Red rock pillars, deep canyons, bone dry.
+# Fine dominant. Sandstorms (canyon winds). Almost no rain.
+# No snow. Sheltered canyons mean less wind than open desert.
+#======================================================================
+
+# Spring: dry, clear, light canyon winds
+WeatherVibe.Profile.ThousandNeedles.Spring.1=55,0,50,80
+WeatherVibe.Profile.ThousandNeedles.Spring.2=5,1,20,30
+WeatherVibe.Profile.ThousandNeedles.Spring.3=5,3,20,30
+WeatherVibe.Profile.ThousandNeedles.Spring.4=25,22,20,50
+WeatherVibe.Profile.ThousandNeedles.Spring.5=10,41,20,40
+
+# Summer: baking hot, still, rare dust devil
+WeatherVibe.Profile.ThousandNeedles.Summer.1=55,0,70,100
+WeatherVibe.Profile.ThousandNeedles.Summer.2=20,22,30,60
+WeatherVibe.Profile.ThousandNeedles.Summer.3=15,41,30,60
+WeatherVibe.Profile.ThousandNeedles.Summer.4=10,42,30,50
+
+# Autumn: cooling, light dust, rare drizzle
+WeatherVibe.Profile.ThousandNeedles.Autumn.1=55,0,40,70
+WeatherVibe.Profile.ThousandNeedles.Autumn.2=10,1,20,40
+WeatherVibe.Profile.ThousandNeedles.Autumn.3=5,3,20,30
+WeatherVibe.Profile.ThousandNeedles.Autumn.4=20,22,20,50
+WeatherVibe.Profile.ThousandNeedles.Autumn.5=10,41,20,40
+
+# Winter: cool, morning haze in canyons, calm
+WeatherVibe.Profile.ThousandNeedles.Winter.1=55,0,30,60
+WeatherVibe.Profile.ThousandNeedles.Winter.2=15,1,30,50
+WeatherVibe.Profile.ThousandNeedles.Winter.3=5,3,20,30
+WeatherVibe.Profile.ThousandNeedles.Winter.4=15,22,20,40
+WeatherVibe.Profile.ThousandNeedles.Winter.5=10,41,20,40
+
+WeatherVibe.Profile.ThousandNeedles.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.ThousandNeedles.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.ThousandNeedles.Transition.StepSize.Perc=10
+WeatherVibe.Profile.ThousandNeedles.Transition.Max.Changes.Per.Hour=5
+WeatherVibe.Profile.ThousandNeedles.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# Desolace — Barren grey wasteland
+# Theme: Grey, lifeless, flat. Barely anything grows. Desolate.
+# Fine = bleak emptiness. Fog = grey haze. Light dust/sandstorm.
+# Very rare drizzle. No snow. Oppressively empty.
+#======================================================================
+
+# Spring: grey, empty, light dust
+WeatherVibe.Profile.Desolace.Spring.1=40,0,30,50
+WeatherVibe.Profile.Desolace.Spring.2=15,1,20,50
+WeatherVibe.Profile.Desolace.Spring.3=5,3,20,40
+WeatherVibe.Profile.Desolace.Spring.4=25,22,30,50
+WeatherVibe.Profile.Desolace.Spring.5=15,41,20,50
+
+# Summer: hottest, dust, bleak
+WeatherVibe.Profile.Desolace.Summer.1=35,0,40,70
+WeatherVibe.Profile.Desolace.Summer.2=10,1,20,40
+WeatherVibe.Profile.Desolace.Summer.3=25,22,40,60
+WeatherVibe.Profile.Desolace.Summer.4=20,41,30,60
+WeatherVibe.Profile.Desolace.Summer.5=10,42,30,50
+
+# Autumn: grey, foggy, dust light
+WeatherVibe.Profile.Desolace.Autumn.1=40,0,30,50
+WeatherVibe.Profile.Desolace.Autumn.2=20,1,30,60
+WeatherVibe.Profile.Desolace.Autumn.3=5,3,20,40
+WeatherVibe.Profile.Desolace.Autumn.4=20,22,20,50
+WeatherVibe.Profile.Desolace.Autumn.5=15,41,20,40
+
+# Winter: cold grey, fog heavy, dust light
+WeatherVibe.Profile.Desolace.Winter.1=35,0,20,40
+WeatherVibe.Profile.Desolace.Winter.2=25,1,40,60
+WeatherVibe.Profile.Desolace.Winter.3=5,3,20,40
+WeatherVibe.Profile.Desolace.Winter.4=20,22,20,40
+WeatherVibe.Profile.Desolace.Winter.5=15,41,20,40
+
+WeatherVibe.Profile.Desolace.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.Desolace.Transition.Step.TimeSeconds.Max=55
+WeatherVibe.Profile.Desolace.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Desolace.Transition.Max.Changes.Per.Hour=5
+WeatherVibe.Profile.Desolace.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# StonetalonMountains — Mixed mountain and forest
+# Theme: Pine forest transitioning to barren peaks. Varied terrain.
+# Fine and fog balanced. Rain in forested areas. Light dust at peaks.
+# No snow (not high enough). Moderate and varied.
+#======================================================================
+
+# Spring: mild, forest showers, mountain fog
+WeatherVibe.Profile.StonetalonMountains.Spring.1=30,0,30,60
+WeatherVibe.Profile.StonetalonMountains.Spring.2=20,1,30,50
+WeatherVibe.Profile.StonetalonMountains.Spring.3=20,3,30,50
+WeatherVibe.Profile.StonetalonMountains.Spring.4=15,4,30,50
+WeatherVibe.Profile.StonetalonMountains.Spring.5=15,22,20,40
+
+# Summer: warm, drier, clear mountain days
+WeatherVibe.Profile.StonetalonMountains.Summer.1=40,0,40,70
+WeatherVibe.Profile.StonetalonMountains.Summer.2=10,1,20,40
+WeatherVibe.Profile.StonetalonMountains.Summer.3=20,3,20,40
+WeatherVibe.Profile.StonetalonMountains.Summer.4=15,4,30,50
+WeatherVibe.Profile.StonetalonMountains.Summer.5=15,22,30,50
+
+# Autumn: fog, rain, some dust
+WeatherVibe.Profile.StonetalonMountains.Autumn.1=25,0,20,50
+WeatherVibe.Profile.StonetalonMountains.Autumn.2=20,1,30,60
+WeatherVibe.Profile.StonetalonMountains.Autumn.3=20,3,30,50
+WeatherVibe.Profile.StonetalonMountains.Autumn.4=15,4,30,60
+WeatherVibe.Profile.StonetalonMountains.Autumn.5=10,5,30,50
+WeatherVibe.Profile.StonetalonMountains.Autumn.6=10,22,20,40
+
+# Winter: cool, foggy, drizzle
+WeatherVibe.Profile.StonetalonMountains.Winter.1=25,0,20,40
+WeatherVibe.Profile.StonetalonMountains.Winter.2=25,1,30,60
+WeatherVibe.Profile.StonetalonMountains.Winter.3=20,3,30,60
+WeatherVibe.Profile.StonetalonMountains.Winter.4=15,4,30,50
+WeatherVibe.Profile.StonetalonMountains.Winter.5=15,22,20,40
+
+WeatherVibe.Profile.StonetalonMountains.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.StonetalonMountains.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.StonetalonMountains.Transition.StepSize.Perc=15
+WeatherVibe.Profile.StonetalonMountains.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.StonetalonMountains.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Tanaris — Full desert, Gadgetzan
+# Theme: Endless sand dunes, scorching sun. THE desert zone.
+# Sandstorms absolutely dominant. Fine = baking heat.
+# Almost never rains. No snow. Maximum aridity.
+#======================================================================
+
+# Spring: hot, sand, rare rain
+WeatherVibe.Profile.Tanaris.Spring.1=35,0,50,80
+WeatherVibe.Profile.Tanaris.Spring.2=5,1,20,30
+WeatherVibe.Profile.Tanaris.Spring.3=5,3,20,30
+WeatherVibe.Profile.Tanaris.Spring.4=25,22,30,60
+WeatherVibe.Profile.Tanaris.Spring.5=20,41,30,60
+WeatherVibe.Profile.Tanaris.Spring.6=10,42,30,50
+
+# Summer: peak heat, worst sandstorms
+WeatherVibe.Profile.Tanaris.Summer.1=25,0,70,100
+WeatherVibe.Profile.Tanaris.Summer.2=20,22,50,80
+WeatherVibe.Profile.Tanaris.Summer.3=25,41,50,80
+WeatherVibe.Profile.Tanaris.Summer.4=20,42,50,80
+WeatherVibe.Profile.Tanaris.Summer.5=10,86,40,60
+
+# Autumn: cooling slightly, sand calmer
+WeatherVibe.Profile.Tanaris.Autumn.1=40,0,40,70
+WeatherVibe.Profile.Tanaris.Autumn.2=5,1,20,30
+WeatherVibe.Profile.Tanaris.Autumn.3=5,3,20,30
+WeatherVibe.Profile.Tanaris.Autumn.4=25,22,30,60
+WeatherVibe.Profile.Tanaris.Autumn.5=15,41,30,50
+WeatherVibe.Profile.Tanaris.Autumn.6=10,42,30,50
+
+# Winter: coolest, light haze, sand calmer
+WeatherVibe.Profile.Tanaris.Winter.1=40,0,30,60
+WeatherVibe.Profile.Tanaris.Winter.2=10,1,30,50
+WeatherVibe.Profile.Tanaris.Winter.3=5,3,20,30
+WeatherVibe.Profile.Tanaris.Winter.4=25,22,20,50
+WeatherVibe.Profile.Tanaris.Winter.5=15,41,20,50
+WeatherVibe.Profile.Tanaris.Winter.6=5,42,20,40
+
+WeatherVibe.Profile.Tanaris.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.Tanaris.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.Tanaris.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Tanaris.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.Tanaris.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# UnGoroCrater — Lush tropical crater (Jurassic)
+# Theme: Volcanic crater, dinosaurs, tropical vegetation, steam vents.
+# Rain and thunderstorms common. Fine = steamy heat. Fog = steam.
+# No snow, no sand. Volcanic tropical.
+#======================================================================
+
+# Spring: warm, steamy, showers
+WeatherVibe.Profile.UnGoroCrater.Spring.1=25,0,30,60
+WeatherVibe.Profile.UnGoroCrater.Spring.2=15,1,20,50
+WeatherVibe.Profile.UnGoroCrater.Spring.3=20,3,30,50
+WeatherVibe.Profile.UnGoroCrater.Spring.4=15,4,30,60
+WeatherVibe.Profile.UnGoroCrater.Spring.5=10,5,30,50
+WeatherVibe.Profile.UnGoroCrater.Spring.6=15,86,30,60
+
+# Summer: peak tropical, heavy rain, thunder, steamy
+WeatherVibe.Profile.UnGoroCrater.Summer.1=15,0,30,50
+WeatherVibe.Profile.UnGoroCrater.Summer.2=10,1,20,40
+WeatherVibe.Profile.UnGoroCrater.Summer.3=15,3,30,50
+WeatherVibe.Profile.UnGoroCrater.Summer.4=20,4,40,70
+WeatherVibe.Profile.UnGoroCrater.Summer.5=15,5,40,70
+WeatherVibe.Profile.UnGoroCrater.Summer.6=25,86,50,80
+
+# Autumn: rain easing, still tropical, steam
+WeatherVibe.Profile.UnGoroCrater.Autumn.1=25,0,30,50
+WeatherVibe.Profile.UnGoroCrater.Autumn.2=15,1,30,50
+WeatherVibe.Profile.UnGoroCrater.Autumn.3=20,3,30,60
+WeatherVibe.Profile.UnGoroCrater.Autumn.4=15,4,30,60
+WeatherVibe.Profile.UnGoroCrater.Autumn.5=10,5,30,50
+WeatherVibe.Profile.UnGoroCrater.Autumn.6=15,86,30,60
+
+# Winter: cooler, still tropical, less thunder
+WeatherVibe.Profile.UnGoroCrater.Winter.1=25,0,30,50
+WeatherVibe.Profile.UnGoroCrater.Winter.2=15,1,30,60
+WeatherVibe.Profile.UnGoroCrater.Winter.3=25,3,30,50
+WeatherVibe.Profile.UnGoroCrater.Winter.4=15,4,30,60
+WeatherVibe.Profile.UnGoroCrater.Winter.5=10,5,30,50
+WeatherVibe.Profile.UnGoroCrater.Winter.6=10,86,30,50
+
+WeatherVibe.Profile.UnGoroCrater.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.UnGoroCrater.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.UnGoroCrater.Transition.StepSize.Perc=20
+WeatherVibe.Profile.UnGoroCrater.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.UnGoroCrater.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# Moonglade — Mystical druid sanctuary
+# Theme: Serene, magical, moonlit. Sacred grove. Peaceful.
+# Fine dominant. Light mystical fog/mist. Gentle rain.
+# Very similar to Mulgore's serenity but more forested/mystical.
+# No snow, no storms. Pure tranquility.
+#======================================================================
+
+# Spring: serene, gentle mist, light rain
+WeatherVibe.Profile.Moonglade.Spring.1=50,0,50,80
+WeatherVibe.Profile.Moonglade.Spring.2=20,1,20,50
+WeatherVibe.Profile.Moonglade.Spring.3=20,3,20,40
+WeatherVibe.Profile.Moonglade.Spring.4=10,4,20,40
+
+# Summer: peak beauty, mostly fine, light mist
+WeatherVibe.Profile.Moonglade.Summer.1=60,0,60,90
+WeatherVibe.Profile.Moonglade.Summer.2=15,1,20,40
+WeatherVibe.Profile.Moonglade.Summer.3=15,3,20,30
+WeatherVibe.Profile.Moonglade.Summer.4=10,4,20,30
+
+# Autumn: mist thickens, gentle rain, still serene
+WeatherVibe.Profile.Moonglade.Autumn.1=40,0,40,70
+WeatherVibe.Profile.Moonglade.Autumn.2=25,1,30,60
+WeatherVibe.Profile.Moonglade.Autumn.3=20,3,30,50
+WeatherVibe.Profile.Moonglade.Autumn.4=15,4,30,50
+
+# Winter: cool, misty, gentle drizzle
+WeatherVibe.Profile.Moonglade.Winter.1=40,0,30,60
+WeatherVibe.Profile.Moonglade.Winter.2=25,1,30,60
+WeatherVibe.Profile.Moonglade.Winter.3=20,3,30,50
+WeatherVibe.Profile.Moonglade.Winter.4=15,4,30,50
+
+WeatherVibe.Profile.Moonglade.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.Moonglade.Transition.Step.TimeSeconds.Max=60
+WeatherVibe.Profile.Moonglade.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Moonglade.Transition.Max.Changes.Per.Hour=4
+WeatherVibe.Profile.Moonglade.Transition.Max.Consecutive.Same=5
+
+
+#======================================================================
+# HowlingFjord — Nordic coastal Northrend
+# Theme: Viking-inspired coastline, pine forests, fjords.
+# Cold and windy. Snow/rain mix. Fog from the fjords.
+# Dynamic weather. Less severe than Storm Peaks.
+#======================================================================
+
+# Spring: cold but thawing, rain/snow mix, fog
+WeatherVibe.Profile.HowlingFjord.Spring.1=15,0,30,50
+WeatherVibe.Profile.HowlingFjord.Spring.2=15,1,30,60
+WeatherVibe.Profile.HowlingFjord.Spring.3=15,3,30,50
+WeatherVibe.Profile.HowlingFjord.Spring.4=10,4,30,50
+WeatherVibe.Profile.HowlingFjord.Spring.5=20,6,30,50
+WeatherVibe.Profile.HowlingFjord.Spring.6=15,7,30,50
+WeatherVibe.Profile.HowlingFjord.Spring.7=10,86,30,50
+
+# Summer: mildest, more fine, rain persists, light snow fades
+WeatherVibe.Profile.HowlingFjord.Summer.1=25,0,40,60
+WeatherVibe.Profile.HowlingFjord.Summer.2=10,1,20,40
+WeatherVibe.Profile.HowlingFjord.Summer.3=20,3,30,50
+WeatherVibe.Profile.HowlingFjord.Summer.4=15,4,30,50
+WeatherVibe.Profile.HowlingFjord.Summer.5=15,6,20,40
+WeatherVibe.Profile.HowlingFjord.Summer.6=10,7,30,50
+WeatherVibe.Profile.HowlingFjord.Summer.7=5,86,30,50
+
+# Autumn: cold, rain/snow, fog thick, wind
+WeatherVibe.Profile.HowlingFjord.Autumn.1=10,0,20,40
+WeatherVibe.Profile.HowlingFjord.Autumn.2=15,1,30,60
+WeatherVibe.Profile.HowlingFjord.Autumn.3=15,3,30,60
+WeatherVibe.Profile.HowlingFjord.Autumn.4=10,4,30,60
+WeatherVibe.Profile.HowlingFjord.Autumn.5=20,6,30,50
+WeatherVibe.Profile.HowlingFjord.Autumn.6=15,7,30,60
+WeatherVibe.Profile.HowlingFjord.Autumn.7=10,8,30,60
+WeatherVibe.Profile.HowlingFjord.Autumn.8=5,86,30,50
+
+# Winter: harsh, heavy snow, fog, rare clear
+WeatherVibe.Profile.HowlingFjord.Winter.1=5,0,20,35
+WeatherVibe.Profile.HowlingFjord.Winter.2=15,1,40,70
+WeatherVibe.Profile.HowlingFjord.Winter.3=5,3,30,50
+WeatherVibe.Profile.HowlingFjord.Winter.4=20,6,30,50
+WeatherVibe.Profile.HowlingFjord.Winter.5=25,7,40,70
+WeatherVibe.Profile.HowlingFjord.Winter.6=20,8,40,80
+WeatherVibe.Profile.HowlingFjord.Winter.7=10,86,30,50
+
+WeatherVibe.Profile.HowlingFjord.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.HowlingFjord.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.HowlingFjord.Transition.StepSize.Perc=25
+WeatherVibe.Profile.HowlingFjord.Transition.Max.Changes.Per.Hour=15
+WeatherVibe.Profile.HowlingFjord.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# Winterspring — Perpetual winter forest
+# Theme: Snowy evergreen forest, frozen lakes, eternal winter.
+# Snow dominant year-round. Clear crisp days. Fog = ice mist.
+# Very similar to Dun Morogh but slightly more forested/serene.
+#======================================================================
+
+# Spring: snow easing slightly, more clear days, ice fog
+WeatherVibe.Profile.Winterspring.Spring.1=15,0,40,70
+WeatherVibe.Profile.Winterspring.Spring.2=15,1,30,60
+WeatherVibe.Profile.Winterspring.Spring.3=35,6,30,50
+WeatherVibe.Profile.Winterspring.Spring.4=20,7,30,60
+WeatherVibe.Profile.Winterspring.Spring.5=10,8,30,70
+WeatherVibe.Profile.Winterspring.Spring.6=5,86,20,40
+
+# Summer: mildest, clear days, light snow continues
+WeatherVibe.Profile.Winterspring.Summer.1=30,0,50,80
+WeatherVibe.Profile.Winterspring.Summer.2=10,1,20,50
+WeatherVibe.Profile.Winterspring.Summer.3=30,6,30,40
+WeatherVibe.Profile.Winterspring.Summer.4=15,7,30,50
+WeatherVibe.Profile.Winterspring.Summer.5=10,8,30,50
+WeatherVibe.Profile.Winterspring.Summer.6=5,86,20,40
+
+# Autumn: cold returning, snow heavy, fog
+WeatherVibe.Profile.Winterspring.Autumn.1=10,0,30,50
+WeatherVibe.Profile.Winterspring.Autumn.2=15,1,30,60
+WeatherVibe.Profile.Winterspring.Autumn.3=25,6,30,50
+WeatherVibe.Profile.Winterspring.Autumn.4=25,7,30,70
+WeatherVibe.Profile.Winterspring.Autumn.5=20,8,40,80
+WeatherVibe.Profile.Winterspring.Autumn.6=5,86,20,40
+
+# Winter: deep winter, heavy snow, blizzards
+WeatherVibe.Profile.Winterspring.Winter.1=5,0,30,50
+WeatherVibe.Profile.Winterspring.Winter.2=10,1,40,70
+WeatherVibe.Profile.Winterspring.Winter.3=20,6,30,50
+WeatherVibe.Profile.Winterspring.Winter.4=30,7,40,80
+WeatherVibe.Profile.Winterspring.Winter.5=30,8,50,90
+WeatherVibe.Profile.Winterspring.Winter.6=5,86,20,40
+
+WeatherVibe.Profile.Winterspring.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.Winterspring.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.Winterspring.Transition.StepSize.Perc=20
+WeatherVibe.Profile.Winterspring.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.Winterspring.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Silithus — Desert wasteland, insectoid hive
+# Theme: Sandy desert, bug silhouettes, ancient ruins.
+# Sandstorms very dominant. Fine = oppressive heat.
+# Even drier than Tanaris. Almost no rain ever. No snow.
+#======================================================================
+
+# Spring: dry, sandy, hot
+WeatherVibe.Profile.Silithus.Spring.1=30,0,40,70
+WeatherVibe.Profile.Silithus.Spring.2=5,1,20,30
+WeatherVibe.Profile.Silithus.Spring.3=30,22,30,60
+WeatherVibe.Profile.Silithus.Spring.4=20,41,30,60
+WeatherVibe.Profile.Silithus.Spring.5=15,42,30,50
+
+# Summer: worst sandstorms, baking
+WeatherVibe.Profile.Silithus.Summer.1=20,0,60,90
+WeatherVibe.Profile.Silithus.Summer.2=25,22,50,80
+WeatherVibe.Profile.Silithus.Summer.3=25,41,50,80
+WeatherVibe.Profile.Silithus.Summer.4=20,42,50,80
+WeatherVibe.Profile.Silithus.Summer.5=10,86,40,60
+
+# Autumn: slightly calmer, still sandy
+WeatherVibe.Profile.Silithus.Autumn.1=35,0,40,60
+WeatherVibe.Profile.Silithus.Autumn.2=5,1,20,30
+WeatherVibe.Profile.Silithus.Autumn.3=25,22,30,60
+WeatherVibe.Profile.Silithus.Autumn.4=20,41,30,60
+WeatherVibe.Profile.Silithus.Autumn.5=15,42,30,50
+
+# Winter: cooler, sand calmer, haze
+WeatherVibe.Profile.Silithus.Winter.1=35,0,30,50
+WeatherVibe.Profile.Silithus.Winter.2=10,1,30,50
+WeatherVibe.Profile.Silithus.Winter.3=25,22,20,50
+WeatherVibe.Profile.Silithus.Winter.4=20,41,20,50
+WeatherVibe.Profile.Silithus.Winter.5=10,42,20,40
+
+WeatherVibe.Profile.Silithus.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.Silithus.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.Silithus.Transition.StepSize.Perc=15
+WeatherVibe.Profile.Silithus.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.Silithus.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# EmeraldForest — Mystical green forest
+# Theme: Vibrant emerald green, magical, ethereal.
+# Fine dominant with soft mist. Very gentle rain. Peaceful.
+# Similar to Moonglade. No snow, no storms.
+#======================================================================
+
+# Spring: emerald beauty, gentle mist, soft rain
+WeatherVibe.Profile.EmeraldForest.Spring.1=50,0,50,80
+WeatherVibe.Profile.EmeraldForest.Spring.2=20,1,20,50
+WeatherVibe.Profile.EmeraldForest.Spring.3=20,3,20,40
+WeatherVibe.Profile.EmeraldForest.Spring.4=10,4,20,40
+
+# Summer: peak beauty, mostly fine
+WeatherVibe.Profile.EmeraldForest.Summer.1=60,0,60,90
+WeatherVibe.Profile.EmeraldForest.Summer.2=15,1,20,40
+WeatherVibe.Profile.EmeraldForest.Summer.3=15,3,20,30
+WeatherVibe.Profile.EmeraldForest.Summer.4=10,4,20,30
+
+# Autumn: mist thickens, still enchanted
+WeatherVibe.Profile.EmeraldForest.Autumn.1=40,0,40,70
+WeatherVibe.Profile.EmeraldForest.Autumn.2=25,1,30,60
+WeatherVibe.Profile.EmeraldForest.Autumn.3=20,3,30,50
+WeatherVibe.Profile.EmeraldForest.Autumn.4=15,4,30,50
+
+# Winter: cool, misty, drizzle
+WeatherVibe.Profile.EmeraldForest.Winter.1=40,0,30,60
+WeatherVibe.Profile.EmeraldForest.Winter.2=25,1,30,60
+WeatherVibe.Profile.EmeraldForest.Winter.3=20,3,30,50
+WeatherVibe.Profile.EmeraldForest.Winter.4=15,4,30,50
+
+WeatherVibe.Profile.EmeraldForest.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.EmeraldForest.Transition.Step.TimeSeconds.Max=60
+WeatherVibe.Profile.EmeraldForest.Transition.StepSize.Perc=10
+WeatherVibe.Profile.EmeraldForest.Transition.Max.Changes.Per.Hour=4
+WeatherVibe.Profile.EmeraldForest.Transition.Max.Consecutive.Same=5
+
+
+#======================================================================
+# AhnQiraj — Deep desert temple complex
+# Theme: Ancient insectoid ruins in blinding desert.
+# Sandstorms dominant. Even more intense than Silithus.
+# No rain, no snow. Pure desert extremity.
+#======================================================================
+
+# Spring: sandy, hot
+WeatherVibe.Profile.AhnQiraj.Spring.1=25,0,40,60
+WeatherVibe.Profile.AhnQiraj.Spring.2=30,22,40,70
+WeatherVibe.Profile.AhnQiraj.Spring.3=25,41,40,70
+WeatherVibe.Profile.AhnQiraj.Spring.4=20,42,30,60
+
+# Summer: worst sandstorms
+WeatherVibe.Profile.AhnQiraj.Summer.1=15,0,50,80
+WeatherVibe.Profile.AhnQiraj.Summer.2=25,22,50,80
+WeatherVibe.Profile.AhnQiraj.Summer.3=30,41,60,90
+WeatherVibe.Profile.AhnQiraj.Summer.4=20,42,60,90
+WeatherVibe.Profile.AhnQiraj.Summer.5=10,86,40,60
+
+# Autumn: slightly calmer
+WeatherVibe.Profile.AhnQiraj.Autumn.1=30,0,40,60
+WeatherVibe.Profile.AhnQiraj.Autumn.2=30,22,30,60
+WeatherVibe.Profile.AhnQiraj.Autumn.3=25,41,30,60
+WeatherVibe.Profile.AhnQiraj.Autumn.4=15,42,30,50
+
+# Winter: cooler, calmer sand
+WeatherVibe.Profile.AhnQiraj.Winter.1=30,0,30,50
+WeatherVibe.Profile.AhnQiraj.Winter.2=5,1,20,40
+WeatherVibe.Profile.AhnQiraj.Winter.3=30,22,20,50
+WeatherVibe.Profile.AhnQiraj.Winter.4=20,41,20,50
+WeatherVibe.Profile.AhnQiraj.Winter.5=15,42,20,40
+
+WeatherVibe.Profile.AhnQiraj.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.AhnQiraj.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.AhnQiraj.Transition.StepSize.Perc=15
+WeatherVibe.Profile.AhnQiraj.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.AhnQiraj.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# EversongWoods — Golden elven forest
+# Theme: Eternal autumn, golden/orange leaves, beautiful sunlight.
+# Fine absolutely dominant. Warm, golden, pleasant. Light mist.
+# Very occasional gentle rain. No snow, no storms.
+# Should feel like the most beautiful autumn day, always.
+#======================================================================
+
+# Spring: golden beauty, mostly fine, gentle mist
+WeatherVibe.Profile.EversongWoods.Spring.1=55,0,50,90
+WeatherVibe.Profile.EversongWoods.Spring.2=15,1,20,40
+WeatherVibe.Profile.EversongWoods.Spring.3=20,3,20,40
+WeatherVibe.Profile.EversongWoods.Spring.4=10,4,20,40
+
+# Summer: warmest, golden light, fine
+WeatherVibe.Profile.EversongWoods.Summer.1=65,0,60,100
+WeatherVibe.Profile.EversongWoods.Summer.2=10,1,20,30
+WeatherVibe.Profile.EversongWoods.Summer.3=15,3,20,30
+WeatherVibe.Profile.EversongWoods.Summer.4=10,4,20,30
+
+# Autumn: peak golden season, mostly fine, light mist
+WeatherVibe.Profile.EversongWoods.Autumn.1=55,0,50,90
+WeatherVibe.Profile.EversongWoods.Autumn.2=15,1,20,50
+WeatherVibe.Profile.EversongWoods.Autumn.3=20,3,20,40
+WeatherVibe.Profile.EversongWoods.Autumn.4=10,4,20,40
+
+# Winter: cooler, still pleasant, mist, light rain
+WeatherVibe.Profile.EversongWoods.Winter.1=45,0,40,80
+WeatherVibe.Profile.EversongWoods.Winter.2=20,1,30,50
+WeatherVibe.Profile.EversongWoods.Winter.3=20,3,30,50
+WeatherVibe.Profile.EversongWoods.Winter.4=15,4,30,50
+
+WeatherVibe.Profile.EversongWoods.Transition.Step.TimeSeconds.Min=30
+WeatherVibe.Profile.EversongWoods.Transition.Step.TimeSeconds.Max=60
+WeatherVibe.Profile.EversongWoods.Transition.StepSize.Perc=10
+WeatherVibe.Profile.EversongWoods.Transition.Max.Changes.Per.Hour=4
+WeatherVibe.Profile.EversongWoods.Transition.Max.Consecutive.Same=5
+
+
+#======================================================================
+# Ghostlands — Corrupted southern Eversong
+# Theme: Dark, dead trees, undead corruption. Stark contrast to Eversong.
+# Fog dominant. Light rain. Gloomy and oppressive.
+# Similar to Tirisfal/Silverpine gloom.
+#======================================================================
+
+# Spring: foggy, drizzly, bleak
+WeatherVibe.Profile.Ghostlands.Spring.1=10,0,10,30
+WeatherVibe.Profile.Ghostlands.Spring.2=40,1,40,70
+WeatherVibe.Profile.Ghostlands.Spring.3=25,3,30,50
+WeatherVibe.Profile.Ghostlands.Spring.4=15,4,30,50
+WeatherVibe.Profile.Ghostlands.Spring.5=10,86,20,40
+
+# Summer: slightly less fog, still gloomy
+WeatherVibe.Profile.Ghostlands.Summer.1=15,0,20,40
+WeatherVibe.Profile.Ghostlands.Summer.2=35,1,30,60
+WeatherVibe.Profile.Ghostlands.Summer.3=25,3,30,50
+WeatherVibe.Profile.Ghostlands.Summer.4=15,4,30,50
+WeatherVibe.Profile.Ghostlands.Summer.5=10,86,20,40
+
+# Autumn: peak gloom, thick fog
+WeatherVibe.Profile.Ghostlands.Autumn.1=5,0,10,25
+WeatherVibe.Profile.Ghostlands.Autumn.2=45,1,50,80
+WeatherVibe.Profile.Ghostlands.Autumn.3=25,3,30,60
+WeatherVibe.Profile.Ghostlands.Autumn.4=15,4,30,60
+WeatherVibe.Profile.Ghostlands.Autumn.5=10,86,30,50
+
+# Winter: darkest, dense fog, cold drizzle
+WeatherVibe.Profile.Ghostlands.Winter.1=5,0,10,25
+WeatherVibe.Profile.Ghostlands.Winter.2=45,1,50,80
+WeatherVibe.Profile.Ghostlands.Winter.3=25,3,30,60
+WeatherVibe.Profile.Ghostlands.Winter.4=15,4,30,60
+WeatherVibe.Profile.Ghostlands.Winter.5=10,6,20,30
+
+WeatherVibe.Profile.Ghostlands.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Ghostlands.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.Ghostlands.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Ghostlands.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.Ghostlands.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# HellfirePeninsula — Red alien wasteland (Outland)
+# Theme: Shattered red earth, alien sky, fel corruption.
+# Sandstorms = fel dust. Fine = harsh alien sun. Thunder = nether storm.
+# No rain, no snow. Alien and hostile.
+# (Outland has minimal seasonal variation)
+#======================================================================
+
+# Spring: dust and heat, nether rumble
+WeatherVibe.Profile.HellfirePeninsula.Spring.1=30,0,40,60
+WeatherVibe.Profile.HellfirePeninsula.Spring.2=10,1,20,40
+WeatherVibe.Profile.HellfirePeninsula.Spring.3=20,22,30,60
+WeatherVibe.Profile.HellfirePeninsula.Spring.4=20,41,30,60
+WeatherVibe.Profile.HellfirePeninsula.Spring.5=10,42,30,50
+WeatherVibe.Profile.HellfirePeninsula.Spring.6=10,86,30,50
+
+# Summer: peak dust storms, harsh
+WeatherVibe.Profile.HellfirePeninsula.Summer.1=25,0,50,70
+WeatherVibe.Profile.HellfirePeninsula.Summer.2=5,1,20,30
+WeatherVibe.Profile.HellfirePeninsula.Summer.3=20,22,40,70
+WeatherVibe.Profile.HellfirePeninsula.Summer.4=20,41,40,70
+WeatherVibe.Profile.HellfirePeninsula.Summer.5=15,42,40,70
+WeatherVibe.Profile.HellfirePeninsula.Summer.6=15,86,40,60
+
+# Autumn: dust settles slightly, nether rumble
+WeatherVibe.Profile.HellfirePeninsula.Autumn.1=30,0,40,60
+WeatherVibe.Profile.HellfirePeninsula.Autumn.2=10,1,20,40
+WeatherVibe.Profile.HellfirePeninsula.Autumn.3=20,22,30,60
+WeatherVibe.Profile.HellfirePeninsula.Autumn.4=20,41,30,60
+WeatherVibe.Profile.HellfirePeninsula.Autumn.5=10,42,30,50
+WeatherVibe.Profile.HellfirePeninsula.Autumn.6=10,86,30,50
+
+# Winter: cooler alien night, dust calmer
+WeatherVibe.Profile.HellfirePeninsula.Winter.1=30,0,30,50
+WeatherVibe.Profile.HellfirePeninsula.Winter.2=15,1,30,50
+WeatherVibe.Profile.HellfirePeninsula.Winter.3=20,22,20,50
+WeatherVibe.Profile.HellfirePeninsula.Winter.4=15,41,20,50
+WeatherVibe.Profile.HellfirePeninsula.Winter.5=10,42,20,40
+WeatherVibe.Profile.HellfirePeninsula.Winter.6=10,86,30,50
+
+WeatherVibe.Profile.HellfirePeninsula.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.HellfirePeninsula.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.HellfirePeninsula.Transition.StepSize.Perc=15
+WeatherVibe.Profile.HellfirePeninsula.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.HellfirePeninsula.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# ShadowmoonValley — Dark volcanic Outland zone
+# Theme: Dark purple/black sky, lava, fel volcanoes, Hand of Gul'dan.
+# Fog = thick fel smoke. Thunder = volcanic/nether energy. Sandstorm = ash.
+# No rain, no snow. Oppressive alien darkness.
+#======================================================================
+
+# Spring: dark, smoky, nether thunder
+WeatherVibe.Profile.ShadowmoonValley.Spring.1=15,0,20,40
+WeatherVibe.Profile.ShadowmoonValley.Spring.2=25,1,40,70
+WeatherVibe.Profile.ShadowmoonValley.Spring.3=20,22,30,60
+WeatherVibe.Profile.ShadowmoonValley.Spring.4=15,41,30,60
+WeatherVibe.Profile.ShadowmoonValley.Spring.5=25,86,40,70
+
+# Summer: peak volcanic, heavy ash and thunder
+WeatherVibe.Profile.ShadowmoonValley.Summer.1=10,0,20,40
+WeatherVibe.Profile.ShadowmoonValley.Summer.2=20,1,30,60
+WeatherVibe.Profile.ShadowmoonValley.Summer.3=20,22,40,70
+WeatherVibe.Profile.ShadowmoonValley.Summer.4=15,41,40,70
+WeatherVibe.Profile.ShadowmoonValley.Summer.5=10,42,30,60
+WeatherVibe.Profile.ShadowmoonValley.Summer.6=25,86,50,80
+
+# Autumn: same oppressive feel
+WeatherVibe.Profile.ShadowmoonValley.Autumn.1=15,0,20,40
+WeatherVibe.Profile.ShadowmoonValley.Autumn.2=25,1,40,70
+WeatherVibe.Profile.ShadowmoonValley.Autumn.3=20,22,30,60
+WeatherVibe.Profile.ShadowmoonValley.Autumn.4=15,41,30,60
+WeatherVibe.Profile.ShadowmoonValley.Autumn.5=25,86,40,70
+
+# Winter: slightly calmer, smoke lingers
+WeatherVibe.Profile.ShadowmoonValley.Winter.1=15,0,20,35
+WeatherVibe.Profile.ShadowmoonValley.Winter.2=30,1,50,80
+WeatherVibe.Profile.ShadowmoonValley.Winter.3=20,22,30,50
+WeatherVibe.Profile.ShadowmoonValley.Winter.4=15,41,30,50
+WeatherVibe.Profile.ShadowmoonValley.Winter.5=20,86,40,60
+
+WeatherVibe.Profile.ShadowmoonValley.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.ShadowmoonValley.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.ShadowmoonValley.Transition.StepSize.Perc=15
+WeatherVibe.Profile.ShadowmoonValley.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.ShadowmoonValley.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Zangarmarsh — Alien mushroom swamp (Outland)
+# Theme: Glowing mushrooms, bioluminescent water, alien marsh.
+# Fog = spore clouds. Rain = dripping moisture. Fine = eerie glow.
+# No snow, no sand. Damp alien atmosphere.
+#======================================================================
+
+# Spring: spore clouds, dripping, foggy
+WeatherVibe.Profile.Zangarmarsh.Spring.1=15,0,20,40
+WeatherVibe.Profile.Zangarmarsh.Spring.2=30,1,40,70
+WeatherVibe.Profile.Zangarmarsh.Spring.3=25,3,30,60
+WeatherVibe.Profile.Zangarmarsh.Spring.4=20,4,30,60
+WeatherVibe.Profile.Zangarmarsh.Spring.5=10,5,30,50
+
+# Summer: warmest, spores lighter, still damp
+WeatherVibe.Profile.Zangarmarsh.Summer.1=20,0,30,50
+WeatherVibe.Profile.Zangarmarsh.Summer.2=25,1,30,60
+WeatherVibe.Profile.Zangarmarsh.Summer.3=25,3,30,50
+WeatherVibe.Profile.Zangarmarsh.Summer.4=20,4,30,60
+WeatherVibe.Profile.Zangarmarsh.Summer.5=10,5,30,50
+
+# Autumn: thick spore fog, wet
+WeatherVibe.Profile.Zangarmarsh.Autumn.1=10,0,20,30
+WeatherVibe.Profile.Zangarmarsh.Autumn.2=35,1,50,80
+WeatherVibe.Profile.Zangarmarsh.Autumn.3=25,3,30,60
+WeatherVibe.Profile.Zangarmarsh.Autumn.4=20,4,40,70
+WeatherVibe.Profile.Zangarmarsh.Autumn.5=10,5,30,60
+
+# Winter: cold spores, dense fog, drizzle
+WeatherVibe.Profile.Zangarmarsh.Winter.1=10,0,20,30
+WeatherVibe.Profile.Zangarmarsh.Winter.2=35,1,50,80
+WeatherVibe.Profile.Zangarmarsh.Winter.3=25,3,30,60
+WeatherVibe.Profile.Zangarmarsh.Winter.4=20,4,40,70
+WeatherVibe.Profile.Zangarmarsh.Winter.5=10,5,30,60
+
+WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.Zangarmarsh.Transition.StepSize.Perc=10
+WeatherVibe.Profile.Zangarmarsh.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.Zangarmarsh.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# BladesEdgeMountains — Rocky, harsh Outland mountains
+# Theme: Jagged rock spires, harsh terrain, ogre territory.
+# Fine = dry harsh light. Fog = mountain haze. Sandstorm = rock dust.
+# Occasional nether thunder. No rain, no snow.
+#======================================================================
+
+# Spring: dusty, hazy, mountain winds
+WeatherVibe.Profile.BladesEdgeMountains.Spring.1=30,0,30,60
+WeatherVibe.Profile.BladesEdgeMountains.Spring.2=20,1,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Spring.3=20,22,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Spring.4=15,41,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Spring.5=15,86,30,50
+
+# Summer: peak harshness, dust heavy
+WeatherVibe.Profile.BladesEdgeMountains.Summer.1=25,0,40,60
+WeatherVibe.Profile.BladesEdgeMountains.Summer.2=15,1,20,40
+WeatherVibe.Profile.BladesEdgeMountains.Summer.3=20,22,40,60
+WeatherVibe.Profile.BladesEdgeMountains.Summer.4=20,41,40,60
+WeatherVibe.Profile.BladesEdgeMountains.Summer.5=10,42,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Summer.6=10,86,40,60
+
+# Autumn: dust settles, haze
+WeatherVibe.Profile.BladesEdgeMountains.Autumn.1=30,0,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Autumn.2=20,1,30,60
+WeatherVibe.Profile.BladesEdgeMountains.Autumn.3=20,22,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Autumn.4=15,41,30,50
+WeatherVibe.Profile.BladesEdgeMountains.Autumn.5=15,86,30,50
+
+# Winter: calmer, haze thick
+WeatherVibe.Profile.BladesEdgeMountains.Winter.1=30,0,20,40
+WeatherVibe.Profile.BladesEdgeMountains.Winter.2=25,1,40,60
+WeatherVibe.Profile.BladesEdgeMountains.Winter.3=20,22,20,40
+WeatherVibe.Profile.BladesEdgeMountains.Winter.4=15,41,20,40
+WeatherVibe.Profile.BladesEdgeMountains.Winter.5=10,86,30,50
+
+WeatherVibe.Profile.BladesEdgeMountains.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.BladesEdgeMountains.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.BladesEdgeMountains.Transition.StepSize.Perc=15
+WeatherVibe.Profile.BladesEdgeMountains.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.BladesEdgeMountains.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Netherstorm — Shattered magical void (Outland)
+# Theme: Purple void, shattered islands, arcane energy, unstable.
+# Thunder = nether energy discharges (dominant). Fog = arcane haze.
+# Fine = eerie magical calm. Sandstorm = nether debris.
+# No rain, no snow. Chaotic and magical.
+#======================================================================
+
+# Spring: nether storms, arcane haze
+WeatherVibe.Profile.Netherstorm.Spring.1=15,0,20,40
+WeatherVibe.Profile.Netherstorm.Spring.2=20,1,30,60
+WeatherVibe.Profile.Netherstorm.Spring.3=15,22,30,50
+WeatherVibe.Profile.Netherstorm.Spring.4=15,41,30,50
+WeatherVibe.Profile.Netherstorm.Spring.5=35,86,40,70
+
+# Summer: peak nether activity, thunder constant
+WeatherVibe.Profile.Netherstorm.Summer.1=10,0,20,40
+WeatherVibe.Profile.Netherstorm.Summer.2=15,1,20,50
+WeatherVibe.Profile.Netherstorm.Summer.3=15,22,40,60
+WeatherVibe.Profile.Netherstorm.Summer.4=15,41,40,60
+WeatherVibe.Profile.Netherstorm.Summer.5=5,42,30,50
+WeatherVibe.Profile.Netherstorm.Summer.6=40,86,50,85
+
+# Autumn: nether rumbles, haze
+WeatherVibe.Profile.Netherstorm.Autumn.1=15,0,20,40
+WeatherVibe.Profile.Netherstorm.Autumn.2=20,1,30,60
+WeatherVibe.Profile.Netherstorm.Autumn.3=15,22,30,50
+WeatherVibe.Profile.Netherstorm.Autumn.4=15,41,30,50
+WeatherVibe.Profile.Netherstorm.Autumn.5=35,86,40,70
+
+# Winter: slightly calmer but still chaotic
+WeatherVibe.Profile.Netherstorm.Winter.1=15,0,20,35
+WeatherVibe.Profile.Netherstorm.Winter.2=25,1,40,70
+WeatherVibe.Profile.Netherstorm.Winter.3=15,22,20,40
+WeatherVibe.Profile.Netherstorm.Winter.4=10,41,20,40
+WeatherVibe.Profile.Netherstorm.Winter.5=35,86,40,70
+
+WeatherVibe.Profile.Netherstorm.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.Netherstorm.Transition.Step.TimeSeconds.Max=25
+WeatherVibe.Profile.Netherstorm.Transition.StepSize.Perc=25
+WeatherVibe.Profile.Netherstorm.Transition.Max.Changes.Per.Hour=18
+WeatherVibe.Profile.Netherstorm.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# AzuremystIsle — Mystical draenei island
+# Theme: Purple/blue crystal-studded, serene alien forest.
+# Fine dominant with light mist. Gentle rain. Peaceful and magical.
+# No snow, no storms. Serene like Teldrassil.
+#======================================================================
+
+# Spring: gentle, misty, soft rain
+WeatherVibe.Profile.AzuremystIsle.Spring.1=40,0,40,70
+WeatherVibe.Profile.AzuremystIsle.Spring.2=20,1,20,50
+WeatherVibe.Profile.AzuremystIsle.Spring.3=25,3,20,50
+WeatherVibe.Profile.AzuremystIsle.Spring.4=15,4,20,40
+
+# Summer: clearest, fine and gentle mist
+WeatherVibe.Profile.AzuremystIsle.Summer.1=50,0,50,80
+WeatherVibe.Profile.AzuremystIsle.Summer.2=15,1,20,40
+WeatherVibe.Profile.AzuremystIsle.Summer.3=20,3,20,40
+WeatherVibe.Profile.AzuremystIsle.Summer.4=15,4,20,40
+
+# Autumn: mist thickens, gentle rain
+WeatherVibe.Profile.AzuremystIsle.Autumn.1=30,0,30,60
+WeatherVibe.Profile.AzuremystIsle.Autumn.2=25,1,30,60
+WeatherVibe.Profile.AzuremystIsle.Autumn.3=25,3,30,50
+WeatherVibe.Profile.AzuremystIsle.Autumn.4=20,4,30,50
+
+# Winter: cool, misty, drizzle
+WeatherVibe.Profile.AzuremystIsle.Winter.1=30,0,30,50
+WeatherVibe.Profile.AzuremystIsle.Winter.2=25,1,30,60
+WeatherVibe.Profile.AzuremystIsle.Winter.3=25,3,30,60
+WeatherVibe.Profile.AzuremystIsle.Winter.4=20,4,30,50
+
+WeatherVibe.Profile.AzuremystIsle.Transition.Step.TimeSeconds.Min=25
+WeatherVibe.Profile.AzuremystIsle.Transition.Step.TimeSeconds.Max=50
+WeatherVibe.Profile.AzuremystIsle.Transition.StepSize.Perc=10
+WeatherVibe.Profile.AzuremystIsle.Transition.Max.Changes.Per.Hour=6
+WeatherVibe.Profile.AzuremystIsle.Transition.Max.Consecutive.Same=4
+
+
+#======================================================================
+# BloodmystIsle — Corrupted crystal island
+# Theme: Red corruption spreading from crashed ship, dark and eerie.
+# Fog dominant. Rain. Darker than Azuremyst. Corrupted atmosphere.
+# No snow, no sand.
+#======================================================================
+
+# Spring: foggy, drizzly, corrupted
+WeatherVibe.Profile.BloodmystIsle.Spring.1=15,0,20,40
+WeatherVibe.Profile.BloodmystIsle.Spring.2=30,1,30,60
+WeatherVibe.Profile.BloodmystIsle.Spring.3=25,3,30,60
+WeatherVibe.Profile.BloodmystIsle.Spring.4=20,4,30,60
+WeatherVibe.Profile.BloodmystIsle.Spring.5=10,5,30,50
+
+# Summer: fog thins slightly, rain persists
+WeatherVibe.Profile.BloodmystIsle.Summer.1=20,0,30,50
+WeatherVibe.Profile.BloodmystIsle.Summer.2=25,1,30,50
+WeatherVibe.Profile.BloodmystIsle.Summer.3=25,3,30,50
+WeatherVibe.Profile.BloodmystIsle.Summer.4=20,4,30,50
+WeatherVibe.Profile.BloodmystIsle.Summer.5=10,5,30,50
+
+# Autumn: fog thick, rain heavy
+WeatherVibe.Profile.BloodmystIsle.Autumn.1=10,0,20,30
+WeatherVibe.Profile.BloodmystIsle.Autumn.2=35,1,40,70
+WeatherVibe.Profile.BloodmystIsle.Autumn.3=25,3,30,60
+WeatherVibe.Profile.BloodmystIsle.Autumn.4=20,4,40,70
+WeatherVibe.Profile.BloodmystIsle.Autumn.5=10,5,30,60
+
+# Winter: cold, dense fog, rain
+WeatherVibe.Profile.BloodmystIsle.Winter.1=10,0,20,30
+WeatherVibe.Profile.BloodmystIsle.Winter.2=35,1,50,80
+WeatherVibe.Profile.BloodmystIsle.Winter.3=25,3,30,60
+WeatherVibe.Profile.BloodmystIsle.Winter.4=20,4,40,60
+WeatherVibe.Profile.BloodmystIsle.Winter.5=10,5,30,60
+
+WeatherVibe.Profile.BloodmystIsle.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.BloodmystIsle.Transition.Step.TimeSeconds.Max=40
+WeatherVibe.Profile.BloodmystIsle.Transition.StepSize.Perc=15
+WeatherVibe.Profile.BloodmystIsle.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.BloodmystIsle.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# MountHyjal — Sacred mountain forest (Caverns of Time past version)
+# Theme: Ancient lush mountain forest, World Tree roots.
+# Fine and rain balanced. Fog in valleys. Thunderstorms.
+# No snow (lower slopes). Feels ancient and powerful.
+#======================================================================
+
+# Spring: lush, showers, mountain fog
+WeatherVibe.Profile.MountHyjal.Spring.1=25,0,30,60
+WeatherVibe.Profile.MountHyjal.Spring.2=15,1,20,50
+WeatherVibe.Profile.MountHyjal.Spring.3=25,3,30,50
+WeatherVibe.Profile.MountHyjal.Spring.4=15,4,30,60
+WeatherVibe.Profile.MountHyjal.Spring.5=10,5,30,50
+WeatherVibe.Profile.MountHyjal.Spring.6=10,86,30,50
+
+# Summer: warm, clear, afternoon thunder
+WeatherVibe.Profile.MountHyjal.Summer.1=35,0,40,70
+WeatherVibe.Profile.MountHyjal.Summer.2=10,1,20,40
+WeatherVibe.Profile.MountHyjal.Summer.3=20,3,20,50
+WeatherVibe.Profile.MountHyjal.Summer.4=15,4,30,50
+WeatherVibe.Profile.MountHyjal.Summer.5=5,5,30,50
+WeatherVibe.Profile.MountHyjal.Summer.6=15,86,30,60
+
+# Autumn: wet, foggy, rain
+WeatherVibe.Profile.MountHyjal.Autumn.1=20,0,20,50
+WeatherVibe.Profile.MountHyjal.Autumn.2=20,1,30,60
+WeatherVibe.Profile.MountHyjal.Autumn.3=25,3,30,60
+WeatherVibe.Profile.MountHyjal.Autumn.4=15,4,30,60
+WeatherVibe.Profile.MountHyjal.Autumn.5=10,5,30,60
+WeatherVibe.Profile.MountHyjal.Autumn.6=10,86,30,50
+
+# Winter: cool, foggy, rain
+WeatherVibe.Profile.MountHyjal.Winter.1=20,0,20,40
+WeatherVibe.Profile.MountHyjal.Winter.2=20,1,30,60
+WeatherVibe.Profile.MountHyjal.Winter.3=25,3,30,60
+WeatherVibe.Profile.MountHyjal.Winter.4=15,4,30,60
+WeatherVibe.Profile.MountHyjal.Winter.5=10,5,30,50
+WeatherVibe.Profile.MountHyjal.Winter.6=10,86,20,40
+
+WeatherVibe.Profile.MountHyjal.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.MountHyjal.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.MountHyjal.Transition.StepSize.Perc=20
+WeatherVibe.Profile.MountHyjal.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.MountHyjal.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# SholazarBasin — Tropical oasis in Northrend
+# Theme: Lush tropical crater, titan-maintained, waterfalls.
+# Rain and thunderstorms common. Fine = humid warmth. Fog = steam.
+# No snow (titan-heated), no sand. Tropical paradise.
+#======================================================================
+
+# Spring: warm, rainy, thunder
+WeatherVibe.Profile.SholazarBasin.Spring.1=25,0,30,60
+WeatherVibe.Profile.SholazarBasin.Spring.2=15,1,20,40
+WeatherVibe.Profile.SholazarBasin.Spring.3=20,3,30,50
+WeatherVibe.Profile.SholazarBasin.Spring.4=15,4,30,60
+WeatherVibe.Profile.SholazarBasin.Spring.5=10,5,30,60
+WeatherVibe.Profile.SholazarBasin.Spring.6=15,86,40,60
+
+# Summer: peak tropical, heavy rain, thunder
+WeatherVibe.Profile.SholazarBasin.Summer.1=15,0,30,50
+WeatherVibe.Profile.SholazarBasin.Summer.2=10,1,20,40
+WeatherVibe.Profile.SholazarBasin.Summer.3=15,3,30,50
+WeatherVibe.Profile.SholazarBasin.Summer.4=20,4,40,70
+WeatherVibe.Profile.SholazarBasin.Summer.5=15,5,40,70
+WeatherVibe.Profile.SholazarBasin.Summer.6=25,86,50,80
+
+# Autumn: rain easing, still lush
+WeatherVibe.Profile.SholazarBasin.Autumn.1=25,0,30,50
+WeatherVibe.Profile.SholazarBasin.Autumn.2=15,1,30,50
+WeatherVibe.Profile.SholazarBasin.Autumn.3=20,3,30,50
+WeatherVibe.Profile.SholazarBasin.Autumn.4=15,4,30,60
+WeatherVibe.Profile.SholazarBasin.Autumn.5=10,5,30,60
+WeatherVibe.Profile.SholazarBasin.Autumn.6=15,86,30,60
+
+# Winter: cooler, rain persists, less thunder
+WeatherVibe.Profile.SholazarBasin.Winter.1=25,0,30,50
+WeatherVibe.Profile.SholazarBasin.Winter.2=15,1,30,50
+WeatherVibe.Profile.SholazarBasin.Winter.3=25,3,30,50
+WeatherVibe.Profile.SholazarBasin.Winter.4=15,4,30,60
+WeatherVibe.Profile.SholazarBasin.Winter.5=10,5,30,50
+WeatherVibe.Profile.SholazarBasin.Winter.6=10,86,30,50
+
+WeatherVibe.Profile.SholazarBasin.Transition.Step.TimeSeconds.Min=10
+WeatherVibe.Profile.SholazarBasin.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.SholazarBasin.Transition.StepSize.Perc=25
+WeatherVibe.Profile.SholazarBasin.Transition.Max.Changes.Per.Hour=15
+WeatherVibe.Profile.SholazarBasin.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# EyeOfTheStorm — Outland battleground, floating island
+# Theme: Nether-touched floating terrain, arcane energy.
+# Fine = eerie calm. Thunder = nether discharge. Fog = arcane haze.
+# Similar to Netherstorm but slightly less chaotic.
+#======================================================================
+
+# Spring: nether haze, thunder
+WeatherVibe.Profile.EyeOfTheStorm.Spring.1=25,0,30,50
+WeatherVibe.Profile.EyeOfTheStorm.Spring.2=20,1,30,50
+WeatherVibe.Profile.EyeOfTheStorm.Spring.3=10,22,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Spring.4=15,41,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Spring.5=30,86,40,70
+
+# Summer: more active, thunder heavy
+WeatherVibe.Profile.EyeOfTheStorm.Summer.1=20,0,30,50
+WeatherVibe.Profile.EyeOfTheStorm.Summer.2=15,1,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Summer.3=15,22,30,50
+WeatherVibe.Profile.EyeOfTheStorm.Summer.4=15,41,30,50
+WeatherVibe.Profile.EyeOfTheStorm.Summer.5=35,86,50,80
+
+# Autumn: haze and thunder
+WeatherVibe.Profile.EyeOfTheStorm.Autumn.1=25,0,30,50
+WeatherVibe.Profile.EyeOfTheStorm.Autumn.2=20,1,30,60
+WeatherVibe.Profile.EyeOfTheStorm.Autumn.3=10,22,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Autumn.4=15,41,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Autumn.5=30,86,40,70
+
+# Winter: calmer
+WeatherVibe.Profile.EyeOfTheStorm.Winter.1=25,0,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Winter.2=25,1,40,60
+WeatherVibe.Profile.EyeOfTheStorm.Winter.3=10,22,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Winter.4=10,41,20,40
+WeatherVibe.Profile.EyeOfTheStorm.Winter.5=30,86,40,60
+
+WeatherVibe.Profile.EyeOfTheStorm.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.EyeOfTheStorm.Transition.Step.TimeSeconds.Max=30
+WeatherVibe.Profile.EyeOfTheStorm.Transition.StepSize.Perc=20
+WeatherVibe.Profile.EyeOfTheStorm.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.EyeOfTheStorm.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# FrozenSea — Arctic ocean (Northrend waters)
+# Theme: Icy waters, icebergs, brutal cold. Arctic sea.
+# Snow and fog dominant. Heavy snow in storms.
+# No rain — too cold. No sand. Pure arctic.
+#======================================================================
+
+# Spring: icy, fog, snow
+WeatherVibe.Profile.FrozenSea.Spring.1=10,0,30,50
+WeatherVibe.Profile.FrozenSea.Spring.2=20,1,40,70
+WeatherVibe.Profile.FrozenSea.Spring.3=25,6,30,50
+WeatherVibe.Profile.FrozenSea.Spring.4=25,7,30,60
+WeatherVibe.Profile.FrozenSea.Spring.5=15,8,30,70
+WeatherVibe.Profile.FrozenSea.Spring.6=5,86,30,50
+
+# Summer: mildest, more clear, lighter snow
+WeatherVibe.Profile.FrozenSea.Summer.1=20,0,40,60
+WeatherVibe.Profile.FrozenSea.Summer.2=15,1,30,50
+WeatherVibe.Profile.FrozenSea.Summer.3=30,6,30,50
+WeatherVibe.Profile.FrozenSea.Summer.4=20,7,30,50
+WeatherVibe.Profile.FrozenSea.Summer.5=10,8,30,50
+WeatherVibe.Profile.FrozenSea.Summer.6=5,86,20,40
+
+# Autumn: cold intensifying, snow and fog heavy
+WeatherVibe.Profile.FrozenSea.Autumn.1=5,0,20,40
+WeatherVibe.Profile.FrozenSea.Autumn.2=20,1,40,70
+WeatherVibe.Profile.FrozenSea.Autumn.3=20,6,30,50
+WeatherVibe.Profile.FrozenSea.Autumn.4=25,7,40,70
+WeatherVibe.Profile.FrozenSea.Autumn.5=20,8,40,80
+WeatherVibe.Profile.FrozenSea.Autumn.6=10,86,30,60
+
+# Winter: brutal, heavy snow, icy fog
+WeatherVibe.Profile.FrozenSea.Winter.1=5,0,20,30
+WeatherVibe.Profile.FrozenSea.Winter.2=15,1,50,80
+WeatherVibe.Profile.FrozenSea.Winter.3=15,6,30,50
+WeatherVibe.Profile.FrozenSea.Winter.4=25,7,50,80
+WeatherVibe.Profile.FrozenSea.Winter.5=30,8,60,90
+WeatherVibe.Profile.FrozenSea.Winter.6=10,86,40,60
+
+WeatherVibe.Profile.FrozenSea.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.FrozenSea.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.FrozenSea.Transition.StepSize.Perc=20
+WeatherVibe.Profile.FrozenSea.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.FrozenSea.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# IsleOfQuelDanas — Coastal island, Sunwell Plateau
+# Theme: Bright coastal, elven architecture, beach.
+# Fine dominant. Light coastal fog. Occasional rain.
+# Pleasant and moderate. No snow, no sand.
+#======================================================================
+
+# Spring: pleasant, coastal breeze, light fog
+WeatherVibe.Profile.IsleOfQuelDanas.Spring.1=40,0,40,70
+WeatherVibe.Profile.IsleOfQuelDanas.Spring.2=15,1,20,40
+WeatherVibe.Profile.IsleOfQuelDanas.Spring.3=20,3,20,50
+WeatherVibe.Profile.IsleOfQuelDanas.Spring.4=15,4,30,50
+WeatherVibe.Profile.IsleOfQuelDanas.Spring.5=10,86,30,50
+
+# Summer: clear, warm, fine dominant
+WeatherVibe.Profile.IsleOfQuelDanas.Summer.1=50,0,50,80
+WeatherVibe.Profile.IsleOfQuelDanas.Summer.2=10,1,20,30
+WeatherVibe.Profile.IsleOfQuelDanas.Summer.3=15,3,20,40
+WeatherVibe.Profile.IsleOfQuelDanas.Summer.4=10,4,30,50
+WeatherVibe.Profile.IsleOfQuelDanas.Summer.5=15,86,30,50
+
+# Autumn: fog returns, rain more frequent
+WeatherVibe.Profile.IsleOfQuelDanas.Autumn.1=30,0,30,60
+WeatherVibe.Profile.IsleOfQuelDanas.Autumn.2=20,1,30,50
+WeatherVibe.Profile.IsleOfQuelDanas.Autumn.3=20,3,30,60
+WeatherVibe.Profile.IsleOfQuelDanas.Autumn.4=15,4,30,60
+WeatherVibe.Profile.IsleOfQuelDanas.Autumn.5=15,86,30,50
+
+# Winter: cool, foggy, drizzle
+WeatherVibe.Profile.IsleOfQuelDanas.Winter.1=30,0,30,50
+WeatherVibe.Profile.IsleOfQuelDanas.Winter.2=20,1,30,60
+WeatherVibe.Profile.IsleOfQuelDanas.Winter.3=20,3,30,60
+WeatherVibe.Profile.IsleOfQuelDanas.Winter.4=15,4,30,60
+WeatherVibe.Profile.IsleOfQuelDanas.Winter.5=15,86,20,40
+
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.StepSize.Perc=20
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.Max.Changes.Per.Hour=10
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.Max.Consecutive.Same=3
+
+
+#======================================================================
+# Wintergrasp — Snowy Northrend PvP zone
+# Theme: Snow-covered battlefield, frozen lake, fortifications.
+# Snow dominant. Fog = icy mist. Similar to Dragonblight.
+# Slightly less harsh than Icecrown.
+#======================================================================
+
+# Spring: snow persists, fog, slight thaw
+WeatherVibe.Profile.Wintergrasp.Spring.1=10,0,30,50
+WeatherVibe.Profile.Wintergrasp.Spring.2=15,1,30,60
+WeatherVibe.Profile.Wintergrasp.Spring.3=30,6,30,50
+WeatherVibe.Profile.Wintergrasp.Spring.4=25,7,30,60
+WeatherVibe.Profile.Wintergrasp.Spring.5=15,8,30,70
+WeatherVibe.Profile.Wintergrasp.Spring.6=5,86,20,40
+
+# Summer: mildest, some fine, light snow
+WeatherVibe.Profile.Wintergrasp.Summer.1=20,0,40,60
+WeatherVibe.Profile.Wintergrasp.Summer.2=10,1,20,40
+WeatherVibe.Profile.Wintergrasp.Summer.3=30,6,30,50
+WeatherVibe.Profile.Wintergrasp.Summer.4=20,7,30,50
+WeatherVibe.Profile.Wintergrasp.Summer.5=15,8,30,60
+WeatherVibe.Profile.Wintergrasp.Summer.6=5,86,20,40
+
+# Autumn: cold, snow heavy, fog
+WeatherVibe.Profile.Wintergrasp.Autumn.1=5,0,20,40
+WeatherVibe.Profile.Wintergrasp.Autumn.2=15,1,40,60
+WeatherVibe.Profile.Wintergrasp.Autumn.3=25,6,30,50
+WeatherVibe.Profile.Wintergrasp.Autumn.4=25,7,40,70
+WeatherVibe.Profile.Wintergrasp.Autumn.5=25,8,40,80
+WeatherVibe.Profile.Wintergrasp.Autumn.6=5,86,20,40
+
+# Winter: heavy snow, blizzards, icy fog
+WeatherVibe.Profile.Wintergrasp.Winter.1=5,0,20,35
+WeatherVibe.Profile.Wintergrasp.Winter.2=10,1,40,70
+WeatherVibe.Profile.Wintergrasp.Winter.3=15,6,30,50
+WeatherVibe.Profile.Wintergrasp.Winter.4=30,7,40,80
+WeatherVibe.Profile.Wintergrasp.Winter.5=35,8,50,90
+WeatherVibe.Profile.Wintergrasp.Winter.6=5,86,30,50
+
+WeatherVibe.Profile.Wintergrasp.Transition.Step.TimeSeconds.Min=15
+WeatherVibe.Profile.Wintergrasp.Transition.Step.TimeSeconds.Max=35
+WeatherVibe.Profile.Wintergrasp.Transition.StepSize.Perc=20
+WeatherVibe.Profile.Wintergrasp.Transition.Max.Changes.Per.Hour=12
+WeatherVibe.Profile.Wintergrasp.Transition.Max.Consecutive.Same=2
+
+
+#======================================================================
+# ScarletEnclave — Death Knight starting zone
+# Theme: Gloomy, corrupted, similar to Eastern Plaguelands.
+# Fog dominant, light rain, thunder from Scourge presence.
+# Synced to its own profile for distinct DK atmosphere.
+#======================================================================
+
+# Spring: gloomy, fog, drizzle
+WeatherVibe.Profile.ScarletEnclave.Spring.1=10,0,15,30
+WeatherVibe.Profile.ScarletEnclave.Spring.2=35,1,40,70
+WeatherVibe.Profile.ScarletEnclave.Spring.3=25,3,30,50
+WeatherVibe.Profile.ScarletEnclave.Spring.4=15,4,30,50
+WeatherVibe.Profile.ScarletEnclave.Spring.5=15,86,30,60
+
+# Summer: slightly less fog, still oppressive
+WeatherVibe.Profile.ScarletEnclave.Summer.1=15,0,20,40
+WeatherVibe.Profile.ScarletEnclave.Summer.2=30,1,30,60
+WeatherVibe.Profile.ScarletEnclave.Summer.3=25,3,30,50
+WeatherVibe.Profile.ScarletEnclave.Summer.4=15,4,30,50
+WeatherVibe.Profile.ScarletEnclave.Summer.5=15,86,30,60
+
+# Autumn: peak gloom, fog thick
+WeatherVibe.Profile.ScarletEnclave.Autumn.1=5,0,10,25
+WeatherVibe.Profile.ScarletEnclave.Autumn.2=40,1,50,80
+WeatherVibe.Profile.ScarletEnclave.Autumn.3=25,3,30,60
+WeatherVibe.Profile.ScarletEnclave.Autumn.4=15,4,30,60
+WeatherVibe.Profile.ScarletEnclave.Autumn.5=15,86,40,70
+
+# Winter: darkest, dense fog, cold, scourge thunder
+WeatherVibe.Profile.ScarletEnclave.Winter.1=5,0,10,25
+WeatherVibe.Profile.ScarletEnclave.Winter.2=35,1,50,85
+WeatherVibe.Profile.ScarletEnclave.Winter.3=20,3,30,60
+WeatherVibe.Profile.ScarletEnclave.Winter.4=15,4,30,60
+WeatherVibe.Profile.ScarletEnclave.Winter.5=10,6,20,40
+WeatherVibe.Profile.ScarletEnclave.Winter.6=15,86,40,70
+
+WeatherVibe.Profile.ScarletEnclave.Transition.Step.TimeSeconds.Min=20
+WeatherVibe.Profile.ScarletEnclave.Transition.Step.TimeSeconds.Max=45
+WeatherVibe.Profile.ScarletEnclave.Transition.StepSize.Perc=15
+WeatherVibe.Profile.ScarletEnclave.Transition.Max.Changes.Per.Hour=8
+WeatherVibe.Profile.ScarletEnclave.Transition.Max.Consecutive.Same=3
+
+
 #######################################################################################################
-# Zone-to-profile mappings
-# Format: zoneId,ProfileName � add as many as needed with .1, .2, .3, � suffix
-# Zones sharing the same profile name are automatically synced � same weather,
-# same transitions, same timing. Use this to keep outdoor cities in sync with
-# their surrounding zone (e.g. Stormwind + Elwynn Forest).
-#
-# Example:
-#   WeatherVibe.ZoneProfile.1=12,ElwynnForest
-#   WeatherVibe.ZoneProfile.2=1519,ElwynnForest    <- Stormwind synced to Elwynn
-#
+#######################################################################################################
+# Zone-to-Profile Mappings
+# Format: zoneId,ProfileName
+# Zones sharing the same profile name are automatically synced.
+# Cities sync with their surrounding outdoor zone.
+#######################################################################################################
 #######################################################################################################
 
-# DunMorogh mapping
-# ----------------------------------------------------------------------
+# --- Eastern Kingdoms ---
 WeatherVibe.ZoneProfile.1=1,DunMorogh
+WeatherVibe.ZoneProfile.2=3,Badlands
+WeatherVibe.ZoneProfile.3=4,BlastedLands
+WeatherVibe.ZoneProfile.4=8,SwampOfSorrows
+WeatherVibe.ZoneProfile.5=10,Duskwood
+WeatherVibe.ZoneProfile.6=11,Wetlands
+WeatherVibe.ZoneProfile.7=12,ElwynnForest
+WeatherVibe.ZoneProfile.8=1519,ElwynnForest
+WeatherVibe.ZoneProfile.9=25,BlackrockMountain
+WeatherVibe.ZoneProfile.10=28,WesternPlaguelands
+WeatherVibe.ZoneProfile.11=33,StranglethornVale
+WeatherVibe.ZoneProfile.12=36,AlteracMountains
+WeatherVibe.ZoneProfile.13=38,LochModan
+WeatherVibe.ZoneProfile.14=40,Westfall
+WeatherVibe.ZoneProfile.15=41,DeadwindPass
+WeatherVibe.ZoneProfile.16=44,RedridgeMountains
+WeatherVibe.ZoneProfile.17=45,ArathiHighlands
+WeatherVibe.ZoneProfile.18=46,BurningSteppes
+WeatherVibe.ZoneProfile.19=47,TheHinterlands
+WeatherVibe.ZoneProfile.20=51,SearingGorge
+WeatherVibe.ZoneProfile.21=85,TirisfalGlades
+WeatherVibe.ZoneProfile.22=130,SilverpineForest
+WeatherVibe.ZoneProfile.23=139,EasternPlaguelands
+WeatherVibe.ZoneProfile.24=267,HillsbradFoothills
 
-# ----------------------------------------------------------------------
-# ElwynnForest mapping
-WeatherVibe.ZoneProfile.2=12,ElwynnForest
-WeatherVibe.ZoneProfile.3=1519,ElwynnForest
+# --- Kalimdor ---
+WeatherVibe.ZoneProfile.25=14,Durotar
+WeatherVibe.ZoneProfile.26=1637,Durotar
+WeatherVibe.ZoneProfile.27=15,DustwallowMarsh
+WeatherVibe.ZoneProfile.28=16,Azshara
+WeatherVibe.ZoneProfile.29=17,TheBarrens
+WeatherVibe.ZoneProfile.30=1638,TheBarrens
+WeatherVibe.ZoneProfile.31=141,Teldrassil
+WeatherVibe.ZoneProfile.32=1657,Teldrassil
+WeatherVibe.ZoneProfile.33=148,Darkshore
+WeatherVibe.ZoneProfile.34=215,Mulgore
+WeatherVibe.ZoneProfile.35=331,Ashenvale
+WeatherVibe.ZoneProfile.36=357,Feralas
+WeatherVibe.ZoneProfile.37=361,Felwood
+WeatherVibe.ZoneProfile.38=400,ThousandNeedles
+WeatherVibe.ZoneProfile.39=405,Desolace
+WeatherVibe.ZoneProfile.40=406,StonetalonMountains
+WeatherVibe.ZoneProfile.41=440,Tanaris
+WeatherVibe.ZoneProfile.42=490,UnGoroCrater
+WeatherVibe.ZoneProfile.43=493,Moonglade
+WeatherVibe.ZoneProfile.44=618,Winterspring
+WeatherVibe.ZoneProfile.45=1377,Silithus
+WeatherVibe.ZoneProfile.46=1397,EmeraldForest
+
+# --- Seas ---
+WeatherVibe.ZoneProfile.47=207,TheGreatSea
+WeatherVibe.ZoneProfile.48=457,TheGreatSea
+
+# --- Battlegrounds (Eastern Kingdoms) ---
+WeatherVibe.ZoneProfile.49=3358,ArathiHighlands
+
+# --- Ahn'Qiraj ---
+WeatherVibe.ZoneProfile.50=3428,AhnQiraj
+WeatherVibe.ZoneProfile.51=3429,AhnQiraj
+
+# --- Blood Elf Zones ---
+WeatherVibe.ZoneProfile.52=3430,EversongWoods
+WeatherVibe.ZoneProfile.53=3487,EversongWoods
+WeatherVibe.ZoneProfile.54=3433,Ghostlands
+
+# --- Outland ---
+WeatherVibe.ZoneProfile.55=3483,HellfirePeninsula
+WeatherVibe.ZoneProfile.56=3520,ShadowmoonValley
+WeatherVibe.ZoneProfile.57=3521,Zangarmarsh
+WeatherVibe.ZoneProfile.58=3522,BladesEdgeMountains
+WeatherVibe.ZoneProfile.59=3523,Netherstorm
+WeatherVibe.ZoneProfile.60=3820,EyeOfTheStorm
+
+# --- Draenei Zones ---
+WeatherVibe.ZoneProfile.61=3524,AzuremystIsle
+WeatherVibe.ZoneProfile.62=3525,BloodmystIsle
+
+# --- Caverns of Time ---
+WeatherVibe.ZoneProfile.63=3605,MountHyjal
+
+# --- Northrend ---
+WeatherVibe.ZoneProfile.64=65,Dragonblight
+WeatherVibe.ZoneProfile.65=66,ZulDrak
+WeatherVibe.ZoneProfile.66=67,StormPeaks
+WeatherVibe.ZoneProfile.67=210,Icecrown
+WeatherVibe.ZoneProfile.68=394,GrizzlyHills
+WeatherVibe.ZoneProfile.69=495,HowlingFjord
+WeatherVibe.ZoneProfile.70=3711,SholazarBasin
+WeatherVibe.ZoneProfile.71=3817,Icecrown
+WeatherVibe.ZoneProfile.72=4197,Wintergrasp
+WeatherVibe.ZoneProfile.73=4201,GrizzlyHills
+
+# --- Northrend Seas ---
+WeatherVibe.ZoneProfile.74=3979,FrozenSea
+WeatherVibe.ZoneProfile.75=4258,FrozenSea
+
+# --- Isle of Quel'Danas ---
+WeatherVibe.ZoneProfile.76=4080,IsleOfQuelDanas
+
+# --- Scarlet Enclave (DK Starting Zone) ---
+WeatherVibe.ZoneProfile.77=4298,ScarletEnclave
