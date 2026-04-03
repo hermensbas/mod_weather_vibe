@@ -59,6 +59,8 @@ struct TransitionSettings
     uint32 changesPerHr  = 6;
     uint32 maxConsecSame = 3;
     float  stepSizePct   = 10.0f;
+    uint32 minHoldMs     = 30000;         // minimum time weather lingers after arriving
+    uint32 seasonBlendMs = 600000;        // how long (ms) to blend with previous season after change
 };
 
 // Cross-state transition phase.
@@ -88,6 +90,15 @@ struct TransitionState
     uint32 changesThisHour  = 0;
     uint32 hourTimerMs      = 3600000u;
     uint32 consecSameCount  = 0;
+
+    uint32 reapplyTimerMs   = 0;          // counts down to next re-broadcast
+
+    // Season blending — smooth the transition when the season changes.
+    Season prevSeason       = Season::SPRING;
+    Season blendFromSeason  = Season::SPRING;   // the old season we're blending away from
+    bool   seasonBlending   = false;
+    uint32 seasonBlendTimer = 0;          // counts down from seasonBlendMs
+    uint32 seasonBlendTotal = 0;          // snapshot of seasonBlendMs for ratio calc
 };
 
 // A named weather profile — loaded once, ticked once, broadcast to all mapped zones.
@@ -105,6 +116,7 @@ struct WeatherProfile
 // ─────────────────────────────────────────────────────────────
 
 static std::vector<WeatherProfile> gProfiles;
+static uint32 gReapplyIntervalMs = 10000;     // WeatherVibe.Profile.ReApply.PerSec (seconds -> ms)
 
 // ─────────────────────────────────────────────────────────────
 // Config helpers
@@ -212,6 +224,8 @@ static TransitionSettings LoadTransitionSettings(std::string const& profileName)
     ts.changesPerHr  = std::max(1u, sConfigMgr->GetOption<uint32>(key("Max.Changes.Per.Hour"), 6));
     ts.maxConsecSame = sConfigMgr->GetOption<uint32>(key("Max.Consecutive.Same"), 3);
     ts.stepSizePct   = std::clamp(sConfigMgr->GetOption<float>(key("StepSize.Perc"), 10.0f), 0.5f, 50.0f);
+    ts.minHoldMs     = sConfigMgr->GetOption<uint32>(key("MinHoldSeconds"), 30) * 1000;
+    ts.seasonBlendMs = std::min(sConfigMgr->GetOption<uint32>(key("SeasonBlendMinutes"), 10), 60u) * 60u * 1000u;
 
     return ts;
 }
@@ -252,8 +266,6 @@ static bool IsSameFamily(uint32 a, uint32 b)
     return fa == fb;
 }
 
-static bool IsUpgrade(uint32 current, uint32 target) { return target > current; }
-
 // Intensity tier: 0 = standalone, 1 = light, 2 = medium, 3 = heavy.
 static uint8 GetWeatherTier(uint32 sv)
 {
@@ -273,6 +285,11 @@ static uint8 GetWeatherTier(uint32 sv)
         case WEATHER_STATE_HEAVY_SANDSTORM:    return 3;
         default:                               return 0;
     }
+}
+
+static bool IsUpgrade(uint32 current, uint32 target)
+{
+    return GetWeatherTier(target) > GetWeatherTier(current);
 }
 
 // Natural escalation: standalone always reachable, +/-1 tier within family,
@@ -295,6 +312,34 @@ static bool IsNaturalTransition(uint32 current, uint32 candidate)
 }
 
 // ─────────────────────────────────────────────────────────────
+// Fog bridge boost
+// ─────────────────────────────────────────────────────────────
+
+// Returns true when fog should be preferred as a natural bridge between
+// clear weather and precipitation (or vice versa).
+static bool ShouldBoostFog(uint32 currentState, uint32 candidateState)
+{
+    if (GetWeatherFamily(candidateState) != WeatherFamily::FOG)
+        return false;
+
+    WeatherFamily curFam = GetWeatherFamily(currentState);
+
+    // Fine -> Fog  (fog as "something's coming")
+    if (curFam == WeatherFamily::FINE)
+        return true;
+
+    // Light precipitation -> Fog  (fog as "clearing up")
+    if (GetWeatherTier(currentState) == 1 &&
+        (curFam == WeatherFamily::RAIN || curFam == WeatherFamily::SNOW ||
+         curFam == WeatherFamily::SANDSTORM))
+        return true;
+
+    return false;
+}
+
+static constexpr float FOG_BRIDGE_MULTIPLIER = 1.5f;
+
+// ─────────────────────────────────────────────────────────────
 // Weighted random selection (three-pass: natural+consec -> natural -> any)
 // ─────────────────────────────────────────────────────────────
 
@@ -308,6 +353,7 @@ static WeatherEntry const* PickEntry(SeasonProfile const& profile, uint32 curren
     for (int pass = 0; pass < 3; ++pass)
     {
         std::vector<size_t> eligible;
+        std::vector<uint32> effectiveWeights;
         uint32 totalWeight = 0;
 
         for (size_t i = 0; i < profile.size(); ++i)
@@ -317,8 +363,16 @@ static WeatherEntry const* PickEntry(SeasonProfile const& profile, uint32 curren
             if (pass == 0 && excludeConsec && profile[i].stateVal == currentState)
                 continue;
 
+            uint32 w = profile[i].weight;
+
+            // Boost fog when it serves as a natural bridge between clear
+            // skies and precipitation (or vice versa).
+            if (ShouldBoostFog(currentState, profile[i].stateVal))
+                w = static_cast<uint32>(static_cast<float>(w) * FOG_BRIDGE_MULTIPLIER);
+
             eligible.push_back(i);
-            totalWeight += profile[i].weight;
+            effectiveWeights.push_back(w);
+            totalWeight += w;
         }
 
         if (eligible.empty() || totalWeight == 0)
@@ -326,10 +380,10 @@ static WeatherEntry const* PickEntry(SeasonProfile const& profile, uint32 curren
 
         uint32 roll = std::uniform_int_distribution<uint32>(0, totalWeight - 1)(Rng());
         uint32 acc = 0;
-        for (size_t idx : eligible)
+        for (size_t j = 0; j < eligible.size(); ++j)
         {
-            acc += profile[idx].weight;
-            if (roll < acc) return &profile[idx];
+            acc += effectiveWeights[j];
+            if (roll < acc) return &profile[eligible[j]];
         }
         return &profile[eligible.back()];
     }
@@ -359,6 +413,13 @@ static void BroadcastWeather(WeatherProfile const& prof, WeatherState state, flo
         sWeatherVibeCore.PushWeatherPercent(zoneId, state, pct);
 }
 
+// Broadcast a debug message to all zones mapped to this profile.
+static void BroadcastDebugText(WeatherProfile const& prof, char const* text)
+{
+    for (uint32 zoneId : prof.zoneIds)
+        sWeatherVibeCore.BroadcastZoneText(zoneId, text);
+}
+
 // Step intensity toward a goal by fixed step size. Returns true when arrived.
 static bool StepToward(float& current, float goal, float stepSize)
 {
@@ -375,6 +436,14 @@ static bool StepToward(float& current, float goal, float stepSize)
 // Forward declaration.
 static void ScheduleNextEvent(WeatherProfile& prof, Season season);
 
+// Ensure the interval timer has at least minHoldMs remaining so weather
+// lingers long enough for players to experience it after a transition.
+static void EnforceMinHold(TransitionState& st, TransitionSettings const& ts)
+{
+    if (ts.minHoldMs > 0 && st.intervalTimerMs < ts.minHoldMs)
+        st.intervalTimerMs = ts.minHoldMs;
+}
+
 // ─────────────────────────────────────────────────────────────
 // Per-profile tick (called once per profile per server tick)
 // ─────────────────────────────────────────────────────────────
@@ -383,6 +452,43 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 {
     TransitionState&    st = prof.state;
     TransitionSettings& ts = prof.transition;
+
+    // ── Season change detection ──
+    if (season != st.prevSeason)
+    {
+        if (ts.seasonBlendMs > 0)
+        {
+            st.blendFromSeason  = st.prevSeason;  // snapshot before overwrite
+            st.seasonBlending   = true;
+            st.seasonBlendTimer = ts.seasonBlendMs;
+            st.seasonBlendTotal = ts.seasonBlendMs;
+
+            if (sWeatherVibeCore.IsDebug())
+            {
+                LOG_INFO("server.loading",
+                    "[WeatherVibe] '{}' season changed {} -> {}, blending for {}s",
+                    prof.name, SeasonKey(st.prevSeason), SeasonKey(season),
+                    ts.seasonBlendMs / 1000);
+
+                char buf[256];
+                snprintf(buf, sizeof(buf),
+                    "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' season %s -> %s, blending %us",
+                    prof.name.c_str(), SeasonKey(st.prevSeason), SeasonKey(season),
+                    ts.seasonBlendMs / 1000);
+                BroadcastDebugText(prof, buf);
+            }
+        }
+        st.prevSeason = season;
+    }
+
+    // Tick down blend timer.
+    if (st.seasonBlending)
+    {
+        if (st.seasonBlendTimer <= diff)
+            st.seasonBlending = false;
+        else
+            st.seasonBlendTimer -= diff;
+    }
 
     // Hourly counter reset.
     if (st.hourTimerMs <= diff) { st.hourTimerMs = 3600000u; st.changesThisHour = 0; }
@@ -403,9 +509,50 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
                 LOG_INFO("server.loading",
                     "[WeatherVibe] '{}' interval expired, selecting next weather (changes {}/{})",
                     prof.name, st.changesThisHour, ts.changesPerHr);
+
+                char buf[256];
+                snprintf(buf, sizeof(buf),
+                    "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' interval expired, selecting next weather (changes %u/%u)",
+                    prof.name.c_str(), st.changesThisHour, ts.changesPerHr);
+                BroadcastDebugText(prof, buf);
             }
 
             ScheduleNextEvent(prof, season);
+        }
+        else if (gReapplyIntervalMs > 0)
+        {
+            // Periodic re-broadcast while holding — ensures late joiners /
+            // clients that lost state see the correct weather.  Never fires
+            // during an active transition (fade-out / fade-in / stepping).
+            if (st.reapplyTimerMs <= diff)
+            {
+                BroadcastWeather(prof,
+                    static_cast<WeatherState>(st.currentStateVal),
+                    std::clamp(st.currentPct, 0.0f, 100.0f));
+
+                st.reapplyTimerMs = gReapplyIntervalMs;
+
+               /* if (sWeatherVibeCore.IsDebug())
+                {
+                    LOG_INFO("server.loading",
+                        "[WeatherVibe] '{}' reapply: {}% {}",
+                        prof.name, static_cast<int>(st.currentPct),
+                        WeatherVibeCore::WeatherStateName(
+                            static_cast<WeatherState>(st.currentStateVal)));
+
+                    char buf[256];
+                    snprintf(buf, sizeof(buf),
+                        "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' reapply: %d%% %s",
+                        prof.name.c_str(), static_cast<int>(st.currentPct),
+                        WeatherVibeCore::WeatherStateName(
+                            static_cast<WeatherState>(st.currentStateVal)));
+                    BroadcastDebugText(prof, buf);
+                }*/
+            }
+            else
+            {
+                st.reapplyTimerMs -= diff;
+            }
         }
         return;
     }
@@ -456,6 +603,7 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
             st.currentStateVal    = st.targetStateVal;
             st.inTransition       = false;
             st.waitingForInterval = true;
+            EnforceMinHold(st, ts);
 
             if (sWeatherVibeCore.IsDebug())
             {
@@ -464,6 +612,14 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
                     prof.name, static_cast<int>(st.currentPct),
                     WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
                     st.intervalTimerMs, st.changesThisHour, ts.changesPerHr);
+
+                char buf[256];
+                snprintf(buf, sizeof(buf),
+                    "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' fadeIn arrived at %d%% %s, holding %ums, changes %u/%u",
+                    prof.name.c_str(), static_cast<int>(st.currentPct),
+                    WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
+                    st.intervalTimerMs, st.changesThisHour, ts.changesPerHr);
+                BroadcastDebugText(prof, buf);
             }
         }
         else { st.stepTimerMs = nextStep(); }
@@ -480,6 +636,7 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
         st.currentStateVal    = st.targetStateVal;
         st.inTransition       = false;
         st.waitingForInterval = true;
+        EnforceMinHold(st, ts);
 
         if (sWeatherVibeCore.IsDebug())
         {
@@ -488,6 +645,14 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
                 prof.name, static_cast<int>(st.currentPct),
                 WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
                 st.intervalTimerMs, st.changesThisHour, ts.changesPerHr);
+
+            char buf[256];
+            snprintf(buf, sizeof(buf),
+                "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' arrived at %d%% %s, holding %ums, changes %u/%u",
+                prof.name.c_str(), static_cast<int>(st.currentPct),
+                WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
+                st.intervalTimerMs, st.changesThisHour, ts.changesPerHr);
+            BroadcastDebugText(prof, buf);
         }
     }
     else { st.stepTimerMs = nextStep(); }
@@ -499,11 +664,46 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
 static void ScheduleNextEvent(WeatherProfile& prof, Season season)
 {
-    SeasonProfile const& entries = prof.seasons[(size_t)season];
     TransitionState&     st     = prof.state;
     TransitionSettings&  ts     = prof.transition;
 
-    if (entries.empty()) return;
+    // ── Build effective entry list, optionally blending two seasons ──
+    SeasonProfile const& currentEntries = prof.seasons[(size_t)season];
+
+    // During a season blend window, merge the previous season's entries with
+    // scaled-down weights so the transition feels gradual rather than instant.
+    SeasonProfile blended;
+    SeasonProfile const* entries = &currentEntries;
+
+    if (st.seasonBlending && st.seasonBlendTotal > 0)
+    {
+        SeasonProfile const& oldEntries = prof.seasons[(size_t)st.blendFromSeason];
+
+        if (!oldEntries.empty() && !currentEntries.empty())
+        {
+            // blendRatio: 1.0 right after the change, fading to 0.0 at end of window.
+            float blendRatio = static_cast<float>(st.seasonBlendTimer)
+                             / static_cast<float>(st.seasonBlendTotal);
+            blendRatio = std::clamp(blendRatio, 0.0f, 1.0f);
+
+            // Start with the full current season entries.
+            blended = currentEntries;
+
+            // Append previous season entries with scaled weights.
+            for (auto const& old : oldEntries)
+            {
+                WeatherEntry scaled = old;
+                scaled.weight = static_cast<uint32>(
+                    static_cast<float>(old.weight) * blendRatio + 0.5f);
+                if (scaled.weight > 0)
+                    blended.push_back(scaled);
+            }
+
+            entries = &blended;
+        }
+    }
+
+    if (entries->empty()) return;
 
     // Hourly budget exhausted — park until hour resets.
     if (st.changesThisHour >= ts.changesPerHr)
@@ -513,7 +713,7 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
         return;
     }
 
-    WeatherEntry const* entry = PickEntry(entries, st.currentStateVal,
+    WeatherEntry const* entry = PickEntry(*entries, st.currentStateVal,
                                            ts.maxConsecSame, st.consecSameCount);
     if (!entry) return;
 
@@ -569,6 +769,17 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
             static_cast<int>(st.targetPct), st.intervalTimerMs,
             st.phase == TransitionPhase::FADE_OUT ? "fadeOut" :
             st.phase == TransitionPhase::FADE_IN  ? "fadeIn"  : "direct");
+
+        char const* phaseStr = st.phase == TransitionPhase::FADE_OUT ? "fadeOut" :
+                               st.phase == TransitionPhase::FADE_IN  ? "fadeIn"  : "direct";
+        char buf[256];
+        snprintf(buf, sizeof(buf),
+            "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' scheduled: %s -> %s at %d%%, interval=%ums, phase=%s",
+            prof.name.c_str(),
+            WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
+            WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.targetStateVal)),
+            static_cast<int>(st.targetPct), st.intervalTimerMs, phaseStr);
+        BroadcastDebugText(prof, buf);
     }
 }
 
@@ -579,6 +790,10 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
 void WeatherVibeEngine_Init()
 {
     gProfiles.clear();
+
+    // Load reapply interval (seconds → ms, 0 = disabled).
+    uint32 reapplySec = sConfigMgr->GetOption<uint32>("WeatherVibe.Profile.ReApply.PerSec", 10);
+    gReapplyIntervalMs = reapplySec * 1000;
 
     // Parse zone-to-profile mappings and group by profile name.
     // Zones sharing the same profile name get synced weather.
@@ -651,6 +866,33 @@ void WeatherVibeEngine_Init()
     }
 
     LOG_INFO("server.loading", "[WeatherVibe] {} profile(s) active", gProfiles.size());
+
+    // Stagger reapply timers so profiles don't all re-broadcast on the same tick.
+    // Each profile gets an evenly-spaced offset within the interval window.
+    if (gReapplyIntervalMs > 0 && gProfiles.size() > 0)
+    {
+        uint32 staggerStep = gReapplyIntervalMs / static_cast<uint32>(gProfiles.size());
+        if (staggerStep == 0) staggerStep = 1;
+
+        for (size_t i = 0; i < gProfiles.size(); ++i)
+            gProfiles[i].state.reapplyTimerMs = staggerStep * static_cast<uint32>(i);
+
+        LOG_INFO("server.loading",
+            "[WeatherVibe] reapply every {}s, stagger step {}ms across {} profile(s)",
+            gReapplyIntervalMs / 1000, staggerStep, gProfiles.size());
+    }
+    else
+    {
+        LOG_INFO("server.loading", "[WeatherVibe] reapply disabled");
+    }
+
+    // Seed prevSeason so the first tick doesn't false-trigger a blend window.
+    Season initSeason = sWeatherVibeCore.GetCurrentSeason();
+    for (auto& p : gProfiles)
+    {
+        p.state.prevSeason      = initSeason;
+        p.state.blendFromSeason = initSeason;
+    }
 }
 
 // ─────────────────────────────────────────────────────────────

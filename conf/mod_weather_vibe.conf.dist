@@ -23,6 +23,7 @@ WeatherVibe.Debug = 1
 # but profiles will not drive weather automatically.
 # ----------------------------------------------------------------------
 WeatherVibe.Profile.Enable = 1
+WeatherVibe.Profile.ReApply.PerSec = 30
 
 #######################################################################################################
 #######################################################################################################
@@ -48,7 +49,7 @@ WeatherVibe.DayPart.NIGHT.Start     = 22:00
 #######################################################################################################
 #######################################################################################################
 # Internal intensity ranges - raw grade clamps per daypart/state (core)
-# Defaults: 0.30 â€“ 0.90 for every WeatherState and every daypart.
+# Defaults: 0.30 - 0.90 for every WeatherState and every daypart.
 #######################################################################################################
 
 # Fine (0)
@@ -138,7 +139,7 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.15, 0.50
 
 #######################################################################################################
 #######################################################################################################
-# WeatherVibe — Complete Zone Weather Profiles
+# WeatherVibe  -  Complete Zone Weather Profiles
 # Format: weight, weatherType, intensityMinPct, intensityMaxPct
 # Weather Types:
 #           0=Fine, 1=Fog,
@@ -151,7 +152,7 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.15, 0.50
 
 
 #======================================================================
-# DunMorogh — High-altitude snowy mountain region
+# DunMorogh  -  High-altitude snowy mountain region
 # Theme: Permanent snow, dwarven highlands. Snow dominant year-round.
 # Clear crisp days, mountain fog, rare sleet, summer thunderstorms.
 #======================================================================
@@ -192,13 +193,15 @@ WeatherVibe.Profile.DunMorogh.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.DunMorogh.Transition.StepSize.Perc=20
 WeatherVibe.Profile.DunMorogh.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.DunMorogh.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.DunMorogh.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.DunMorogh.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Badlands — Arid rocky desert wasteland
+# Badlands  -  Arid rocky desert wasteland
 # Theme: Scorched red earth, barren crags, no vegetation. Dry year-round.
 # Sandstorms and clear baking heat dominate. Rain is extremely rare.
-# No snow — too low and hot.
+# No snow  -  too low and hot.
 #======================================================================
 
 # Spring: warm and dry, occasional dust
@@ -235,10 +238,12 @@ WeatherVibe.Profile.Badlands.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.Badlands.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Badlands.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.Badlands.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Badlands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Badlands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# BlastedLands — Dark corrupted wasteland
+# BlastedLands  -  Dark corrupted wasteland
 # Theme: Red-scorched earth, demonic corruption, oppressive skies.
 # Thunder and fog dominate. Sandstorms represent dust/ash.
 # Rare rain, no snow. Feels permanently ominous.
@@ -281,13 +286,15 @@ WeatherVibe.Profile.BlastedLands.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.BlastedLands.Transition.StepSize.Perc=15
 WeatherVibe.Profile.BlastedLands.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.BlastedLands.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.BlastedLands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.BlastedLands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# SwampOfSorrows — Murky, humid swampland
+# SwampOfSorrows  -  Murky, humid swampland
 # Theme: Perpetually damp and gloomy. Fog rolls over dark water.
 # Rain is constant. Fine days are rare and short-lived.
-# No snow — too low and warm. Thunderstorms in summer.
+# No snow  -  too low and warm. Thunderstorms in summer.
 #======================================================================
 
 # Spring: warm and soggy, rain picks up, fog heavy
@@ -326,14 +333,16 @@ WeatherVibe.Profile.SwampOfSorrows.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.SwampOfSorrows.Transition.StepSize.Perc=15
 WeatherVibe.Profile.SwampOfSorrows.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.SwampOfSorrows.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.SwampOfSorrows.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.SwampOfSorrows.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Duskwood — Cursed, perpetually dark forest
+# Duskwood  -  Cursed, perpetually dark forest
 # Theme: Eternal twilight, thick fog, haunted atmosphere.
 # Fog is THE dominant weather. Light rain drips through canopy.
-# Never truly "fine" — even clear moments feel dark.
-# No snow, no thunderstorms — just quiet, creeping dread.
+# Never truly "fine"  -  even clear moments feel dark.
+# No snow, no thunderstorms  -  just quiet, creeping dread.
 #======================================================================
 
 # Spring: fog dominates, occasional drizzle, rare thin clearings
@@ -369,10 +378,12 @@ WeatherVibe.Profile.Duskwood.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.Duskwood.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Duskwood.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.Duskwood.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Duskwood.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Duskwood.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Wetlands — Marshy, rain-soaked lowlands
+# Wetlands  -  Marshy, rain-soaked lowlands
 # Theme: Perpetually grey and rainy. Soggy bogs and muddy roads.
 # Rain is the defining feature. Fog rolls in off the coast.
 # Winter brings rare sleet/light snow but map has no snow.
@@ -415,10 +426,12 @@ WeatherVibe.Profile.Wetlands.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.Wetlands.Transition.StepSize.Perc=20
 WeatherVibe.Profile.Wetlands.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.Wetlands.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.Wetlands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Wetlands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# ElwynnForest — Temperate, idyllic forest
+# ElwynnForest  -  Temperate, idyllic forest
 # Theme: Mild, lush, green. Classic fantasy countryside.
 # Rain is common but fine days are frequent. Morning fog.
 # Winter brings occasional light frost/snow.
@@ -461,10 +474,12 @@ WeatherVibe.Profile.ElwynnForest.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.ElwynnForest.Transition.StepSize.Perc=20
 WeatherVibe.Profile.ElwynnForest.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.ElwynnForest.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.ElwynnForest.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.ElwynnForest.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Durotar — Hot, dry, red rocky savanna
+# Durotar  -  Hot, dry, red rocky savanna
 # Theme: Harsh red earth, sparse scrub, orcish homeland.
 # Fine/clear dominates with sandstorms (dust winds). Rain is rare.
 # No snow ever. Thunderstorms on hot summer evenings.
@@ -506,10 +521,12 @@ WeatherVibe.Profile.Durotar.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.Durotar.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Durotar.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.Durotar.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Durotar.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Durotar.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# DustwallowMarsh — Thick, foggy swampland
+# DustwallowMarsh  -  Thick, foggy swampland
 # Theme: Dense fog over murky swamp. Darker and foggier than Swamp of Sorrows.
 # Fog is THE defining feature. Rain is constant underneath.
 # No snow. Occasional distant thunder rumbling over the bay.
@@ -551,10 +568,12 @@ WeatherVibe.Profile.DustwallowMarsh.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.DustwallowMarsh.Transition.StepSize.Perc=10
 WeatherVibe.Profile.DustwallowMarsh.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.DustwallowMarsh.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.DustwallowMarsh.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.DustwallowMarsh.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Azshara — Coastal autumnal cliffs
+# Azshara  -  Coastal autumnal cliffs
 # Theme: Perpetual autumn, orange/red foliage, ruined elven coast.
 # Moderate weather. Fog off the sea, occasional rain.
 # Fine weather common. No snow. Feels melancholy, not harsh.
@@ -593,13 +612,15 @@ WeatherVibe.Profile.Azshara.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.Azshara.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Azshara.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.Azshara.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Azshara.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Azshara.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# TheBarrens — Dry golden savanna/grassland
+# TheBarrens  -  Dry golden savanna/grassland
 # Theme: Wide open golden plains, sparse trees, hot and dry.
 # Fine weather dominates. Sandstorms (dust devils) occur.
-# Light rain possible. Light snow in deepest winter ONLY — never medium/heavy.
+# Light rain possible. Light snow in deepest winter ONLY  -  never medium/heavy.
 # No heavy precipitation of any kind. Flat and exposed.
 #======================================================================
 
@@ -639,10 +660,12 @@ WeatherVibe.Profile.TheBarrens.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.TheBarrens.Transition.StepSize.Perc=15
 WeatherVibe.Profile.TheBarrens.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.TheBarrens.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.TheBarrens.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.TheBarrens.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# BlackrockMountain — Volcanic, fiery interior mountain
+# BlackrockMountain  -  Volcanic, fiery interior mountain
 # Theme: Smoke, ash, lava glow. Perpetually dark and oppressive.
 # Sandstorms represent ash/cinder. Thunder = volcanic rumble.
 # Fog = thick smoke. No rain, no snow. Barely any change.
@@ -682,10 +705,12 @@ WeatherVibe.Profile.BlackrockMountain.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.BlackrockMountain.Transition.StepSize.Perc=10
 WeatherVibe.Profile.BlackrockMountain.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.BlackrockMountain.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.BlackrockMountain.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.BlackrockMountain.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# WesternPlaguelands — Corrupted, diseased farmland
+# WesternPlaguelands  -  Corrupted, diseased farmland
 # Theme: Grey, sickly, undead corruption. Overcast and gloomy.
 # Fog and light rain dominate. Rare light snow in winter.
 # Thunder occasionally rumbles through the dead sky.
@@ -725,10 +750,12 @@ WeatherVibe.Profile.WesternPlaguelands.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.WesternPlaguelands.Transition.StepSize.Perc=10
 WeatherVibe.Profile.WesternPlaguelands.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.WesternPlaguelands.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.WesternPlaguelands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.WesternPlaguelands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# StranglethornVale — Lush tropical jungle
+# StranglethornVale  -  Lush tropical jungle
 # Theme: Hot, humid, tropical. Heavy rain and thunderstorms.
 # Dense canopy, heavy downpours, steamy humidity.
 # Fine = muggy tropical heat. No snow, no sand. Pure jungle.
@@ -771,10 +798,12 @@ WeatherVibe.Profile.StranglethornVale.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.StranglethornVale.Transition.StepSize.Perc=25
 WeatherVibe.Profile.StranglethornVale.Transition.Max.Changes.Per.Hour=15
 WeatherVibe.Profile.StranglethornVale.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.StranglethornVale.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.StranglethornVale.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# AlteracMountains — Snowy highlands, less extreme than Dun Morogh
+# AlteracMountains  -  Snowy highlands, less extreme than Dun Morogh
 # Theme: Mountainous, snow-covered ruins, contested highlands.
 # Snow dominant but more temperate valleys. Summer thaw brings rain.
 # Similar to Dun Morogh but with more rain and less extreme cold.
@@ -820,10 +849,12 @@ WeatherVibe.Profile.AlteracMountains.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.AlteracMountains.Transition.StepSize.Perc=20
 WeatherVibe.Profile.AlteracMountains.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.AlteracMountains.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.AlteracMountains.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.AlteracMountains.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# LochModan — Highland loch region
+# LochModan  -  Highland loch region
 # Theme: Scottish highlands feel. Loch, rolling green hills, dwarven.
 # Balanced between fine and rain. Fog over the loch.
 # Winter brings light snow. Temperate but cool.
@@ -867,10 +898,12 @@ WeatherVibe.Profile.LochModan.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.LochModan.Transition.StepSize.Perc=20
 WeatherVibe.Profile.LochModan.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.LochModan.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.LochModan.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.LochModan.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Westfall — Dry, wind-swept farmland
+# Westfall  -  Dry, wind-swept farmland
 # Theme: Dust bowl, dead crops, golden-brown plains. Open and barren.
 # Fine weather dominates. Light rain occasionally. Dry, exposed.
 # No snow. Light sandstorm represents dust blowing across fields.
@@ -910,14 +943,16 @@ WeatherVibe.Profile.Westfall.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.Westfall.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Westfall.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.Westfall.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Westfall.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Westfall.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# DeadwindPass — Eerie, haunted mountain pass
+# DeadwindPass  -  Eerie, haunted mountain pass
 # Theme: Dead, lifeless, perpetual gloom. Thinnest air, darkest skies.
 # Fog is absolute dominant. Even more oppressive than Duskwood.
 # Almost no clear weather. Drizzle seeps through.
-# No snow, no storms — just suffocating emptiness.
+# No snow, no storms  -  just suffocating emptiness.
 #======================================================================
 
 # Spring: fog, drizzle, rare thin breaks
@@ -949,10 +984,12 @@ WeatherVibe.Profile.DeadwindPass.Transition.Step.TimeSeconds.Max=60
 WeatherVibe.Profile.DeadwindPass.Transition.StepSize.Perc=10
 WeatherVibe.Profile.DeadwindPass.Transition.Max.Changes.Per.Hour=4
 WeatherVibe.Profile.DeadwindPass.Transition.Max.Consecutive.Same=5
+WeatherVibe.Profile.DeadwindPass.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.DeadwindPass.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# RedridgeMountains — Warm temperate mountain forest
+# RedridgeMountains  -  Warm temperate mountain forest
 # Theme: Autumn-tinged oaks, lakeside, warm and moderate.
 # Similar to Elwynn but slightly warmer and drier.
 # Rain common, fine days plentiful. No snow. Feels cozy.
@@ -994,10 +1031,12 @@ WeatherVibe.Profile.RedridgeMountains.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.RedridgeMountains.Transition.StepSize.Perc=20
 WeatherVibe.Profile.RedridgeMountains.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.RedridgeMountains.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.RedridgeMountains.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.RedridgeMountains.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# ArathiHighlands — Open, windy highlands
+# ArathiHighlands  -  Open, windy highlands
 # Theme: Windswept green highlands, stone walls, exposed.
 # Dynamic weather. Rain and fine balanced. Fog rolls in.
 # Light snow possible in winter. Feels breezy and changeable.
@@ -1041,10 +1080,12 @@ WeatherVibe.Profile.ArathiHighlands.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.ArathiHighlands.Transition.StepSize.Perc=25
 WeatherVibe.Profile.ArathiHighlands.Transition.Max.Changes.Per.Hour=15
 WeatherVibe.Profile.ArathiHighlands.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.ArathiHighlands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.ArathiHighlands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# BurningSteppes — Volcanic wasteland, charred earth
+# BurningSteppes  -  Volcanic wasteland, charred earth
 # Theme: Blackened ground, lava pools, ash. Similar to Blackrock but outdoor.
 # Sandstorm = ash clouds. Thunder = volcanic rumble. Fog = smoke.
 # No rain, no snow. Oppressive heat.
@@ -1084,10 +1125,12 @@ WeatherVibe.Profile.BurningSteppes.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.BurningSteppes.Transition.StepSize.Perc=10
 WeatherVibe.Profile.BurningSteppes.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.BurningSteppes.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.BurningSteppes.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.BurningSteppes.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# TheHinterlands — Forested highlands, autumnal
+# TheHinterlands  -  Forested highlands, autumnal
 # Theme: Dense forest, troll ruins, hilly. Autumn-coloured.
 # Balanced rain and fine. Fog in valleys. Winter light snow.
 # Feels rugged but livable. Similar to Arathi but more forested.
@@ -1131,10 +1174,12 @@ WeatherVibe.Profile.TheHinterlands.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.TheHinterlands.Transition.StepSize.Perc=20
 WeatherVibe.Profile.TheHinterlands.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.TheHinterlands.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.TheHinterlands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.TheHinterlands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# SearingGorge — Hot volcanic gorge
+# SearingGorge  -  Hot volcanic gorge
 # Theme: Red-hot rock, lava, forges, volcanic activity.
 # Sandstorms = ash/cinder. Fog = smoke/haze. Thunder = volcanic.
 # No rain, no snow. Extremely stable and hot.
@@ -1174,10 +1219,12 @@ WeatherVibe.Profile.SearingGorge.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.SearingGorge.Transition.StepSize.Perc=10
 WeatherVibe.Profile.SearingGorge.Transition.Max.Changes.Per.Hour=5
 WeatherVibe.Profile.SearingGorge.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.SearingGorge.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.SearingGorge.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Dragonblight — Vast snowy Northrend graveyard
+# Dragonblight  -  Vast snowy Northrend graveyard
 # Theme: White, flat, desolate snow plains. Dragon bones.
 # Snow dominant, bleak and cold. Fog = icy haze. Fine = crisp cold.
 # Less blizzard-intense than Storm Peaks. More desolate.
@@ -1219,10 +1266,12 @@ WeatherVibe.Profile.Dragonblight.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.Dragonblight.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Dragonblight.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.Dragonblight.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Dragonblight.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Dragonblight.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# ZulDrak — Corrupted Northrend troll plateau
+# ZulDrak  -  Corrupted Northrend troll plateau
 # Theme: Dark, sickly green, corrupted ice. Gloomy and cold.
 # Snow with gloomy fog. Feels diseased. Rain/sleet possible.
 # Thunder rumbles from Scourge corruption. Darker than Dragonblight.
@@ -1268,10 +1317,12 @@ WeatherVibe.Profile.ZulDrak.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.ZulDrak.Transition.StepSize.Perc=20
 WeatherVibe.Profile.ZulDrak.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.ZulDrak.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.ZulDrak.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.ZulDrak.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# StormPeaks — Extreme Northrend mountain peaks
+# StormPeaks  -  Extreme Northrend mountain peaks
 # Theme: Towering peaks, blizzards, titan ruins, lightning storms.
 # THE stormiest zone. Heavy snow and thunder dominate.
 # Clear moments are rare and brief. Maximum severity.
@@ -1285,7 +1336,7 @@ WeatherVibe.Profile.StormPeaks.Spring.4=25,7,30,70
 WeatherVibe.Profile.StormPeaks.Spring.5=20,8,40,80
 WeatherVibe.Profile.StormPeaks.Spring.6=15,86,40,70
 
-# Summer: "mildest" — still snowy, some clear, thunder
+# Summer: "mildest"  -  still snowy, some clear, thunder
 WeatherVibe.Profile.StormPeaks.Summer.1=15,0,40,60
 WeatherVibe.Profile.StormPeaks.Summer.2=10,1,20,50
 WeatherVibe.Profile.StormPeaks.Summer.3=20,6,30,50
@@ -1314,10 +1365,12 @@ WeatherVibe.Profile.StormPeaks.Transition.Step.TimeSeconds.Max=25
 WeatherVibe.Profile.StormPeaks.Transition.StepSize.Perc=25
 WeatherVibe.Profile.StormPeaks.Transition.Max.Changes.Per.Hour=18
 WeatherVibe.Profile.StormPeaks.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.StormPeaks.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.StormPeaks.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# TirisfalGlades — Undead starting zone, perpetual overcast
+# TirisfalGlades  -  Undead starting zone, perpetual overcast
 # Theme: Grey skies, dead trees, eerie calm. Not as dark as Duskwood
 # but permanently gloomy. Fog dominant, light rain. Undead atmosphere.
 # Very rare light snow in winter.
@@ -1357,10 +1410,12 @@ WeatherVibe.Profile.TirisfalGlades.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.TirisfalGlades.Transition.StepSize.Perc=10
 WeatherVibe.Profile.TirisfalGlades.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.TirisfalGlades.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.TirisfalGlades.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.TirisfalGlades.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# SilverpineForest — Dark, gloomy forest
+# SilverpineForest  -  Dark, gloomy forest
 # Theme: Dark evergreen forest, haunted, worgen territory.
 # Similar to Tirisfal but wetter. More rain, same fog.
 # Occasional light snow in winter.
@@ -1404,10 +1459,12 @@ WeatherVibe.Profile.SilverpineForest.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.SilverpineForest.Transition.StepSize.Perc=15
 WeatherVibe.Profile.SilverpineForest.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.SilverpineForest.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.SilverpineForest.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.SilverpineForest.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# EasternPlaguelands — Heavily corrupted wasteland
+# EasternPlaguelands  -  Heavily corrupted wasteland
 # Theme: Even more ruined than Western PL. Sickly brown/green.
 # Fog is heavier, gloom is absolute. Corruption hangs in the air.
 # Light rain. Rare light snow in winter. Thunder from undead storms.
@@ -1447,12 +1504,14 @@ WeatherVibe.Profile.EasternPlaguelands.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.EasternPlaguelands.Transition.StepSize.Perc=10
 WeatherVibe.Profile.EasternPlaguelands.Transition.Max.Changes.Per.Hour=5
 WeatherVibe.Profile.EasternPlaguelands.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.EasternPlaguelands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.EasternPlaguelands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Teldrassil — Mystical giant world-tree
+# Teldrassil  -  Mystical giant world-tree
 # Theme: Serene, magical, purple-tinted canopy. Night elf home.
-# Fine dominant — soft, filtered light through leaves. Light fog = mist.
+# Fine dominant  -  soft, filtered light through leaves. Light fog = mist.
 # Gentle rain. No snow, no storms. Peaceful and enchanted.
 #======================================================================
 
@@ -1485,10 +1544,12 @@ WeatherVibe.Profile.Teldrassil.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.Teldrassil.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Teldrassil.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.Teldrassil.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Teldrassil.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Teldrassil.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Darkshore — Dark coastal forest
+# Darkshore  -  Dark coastal forest
 # Theme: Gloomy purple-grey coast, fallen trees, ominous.
 # Rain and fog dominant. Coastal storms. Much darker than Teldrassil.
 # No snow. Feels constantly overcast and damp.
@@ -1531,10 +1592,12 @@ WeatherVibe.Profile.Darkshore.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.Darkshore.Transition.StepSize.Perc=20
 WeatherVibe.Profile.Darkshore.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.Darkshore.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.Darkshore.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Darkshore.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# TheGreatSea — Open ocean (also used for Veiled Sea)
+# TheGreatSea  -  Open ocean (also used for Veiled Sea)
 # Theme: Vast open water, unpredictable. Highly dynamic.
 # All rain types, fog, fine, thunder. Very changeable.
 # No snow (temperate latitudes), no sand.
@@ -1577,10 +1640,12 @@ WeatherVibe.Profile.TheGreatSea.Transition.Step.TimeSeconds.Max=25
 WeatherVibe.Profile.TheGreatSea.Transition.StepSize.Perc=30
 WeatherVibe.Profile.TheGreatSea.Transition.Max.Changes.Per.Hour=18
 WeatherVibe.Profile.TheGreatSea.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.TheGreatSea.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.TheGreatSea.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Icecrown — Frozen undead stronghold
+# Icecrown  -  Frozen undead stronghold
 # Theme: Permanent ice, Scourge fortress, darkest cold.
 # Heavy snow and blizzards almost constant. Extremely harsh.
 # Even more severe than Storm Peaks but less thunder.
@@ -1624,12 +1689,14 @@ WeatherVibe.Profile.Icecrown.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.Icecrown.Transition.StepSize.Perc=20
 WeatherVibe.Profile.Icecrown.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.Icecrown.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Icecrown.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Icecrown.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Mulgore — Beautiful green rolling plains
+# Mulgore  -  Beautiful green rolling plains
 # Theme: Idyllic, peaceful, Native-American prairie. Tauren homeland.
-# Fine is THE dominant weather — user notes it's prettiest at 100%.
+# Fine is THE dominant weather  -  user notes it's prettiest at 100%.
 # Very occasional gentle rain. Rare morning fog. No snow, no storms.
 # Should feel serene and open above all else.
 #======================================================================
@@ -1663,10 +1730,12 @@ WeatherVibe.Profile.Mulgore.Transition.Step.TimeSeconds.Max=60
 WeatherVibe.Profile.Mulgore.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Mulgore.Transition.Max.Changes.Per.Hour=4
 WeatherVibe.Profile.Mulgore.Transition.Max.Consecutive.Same=5
+WeatherVibe.Profile.Mulgore.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Mulgore.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# HillsbradFoothills — Temperate green foothills
+# HillsbradFoothills  -  Temperate green foothills
 # Theme: Pleasant farmland, rolling green hills, Southshore coast.
 # Similar to Elwynn but cooler, more northern. Balanced weather.
 # Winter brings light snow. Dynamic spring/autumn.
@@ -1710,10 +1779,12 @@ WeatherVibe.Profile.HillsbradFoothills.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.HillsbradFoothills.Transition.StepSize.Perc=20
 WeatherVibe.Profile.HillsbradFoothills.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.HillsbradFoothills.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.HillsbradFoothills.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.HillsbradFoothills.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Ashenvale — Dark mystical night-elf forest
+# Ashenvale  -  Dark mystical night-elf forest
 # Theme: Deep purple/blue forest, ancient, mystical. Shadowy canopy.
 # Fine through dappled canopy, fog = forest mist, gentle rain.
 # Darker than Teldrassil but not as oppressive as Duskwood.
@@ -1753,10 +1824,12 @@ WeatherVibe.Profile.Ashenvale.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.Ashenvale.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Ashenvale.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.Ashenvale.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Ashenvale.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Ashenvale.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Feralas — Lush green tropical forest
+# Feralas  -  Lush green tropical forest
 # Theme: Dense, wet, green canopy. Thick vegetation, waterfalls.
 # Rain dominant. Fine = humid jungle heat. Fog in valleys.
 # Thunderstorms frequent. No snow, no sand.
@@ -1799,10 +1872,12 @@ WeatherVibe.Profile.Feralas.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.Feralas.Transition.StepSize.Perc=20
 WeatherVibe.Profile.Feralas.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.Feralas.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.Feralas.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Feralas.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Felwood — Corrupted night-elf forest
+# Felwood  -  Corrupted night-elf forest
 # Theme: Sickly green corruption, demonic taint, oozing pools.
 # Fog = corruption haze. Light rain drips through dying canopy.
 # Similar to Duskwood in gloom but with a toxic/corrupted feel.
@@ -1842,10 +1917,12 @@ WeatherVibe.Profile.Felwood.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.Felwood.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Felwood.Transition.Max.Changes.Per.Hour=5
 WeatherVibe.Profile.Felwood.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Felwood.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Felwood.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# GrizzlyHills — Boreal Northrend forest
+# GrizzlyHills  -  Boreal Northrend forest
 # Theme: Autumn-coloured boreal forest, tall redwoods, cozy but cold.
 # Mixed snow and rain. Fine on clear cold days. Fog in mornings.
 # Feels like a cold autumn forest year-round. Beautiful.
@@ -1892,10 +1969,12 @@ WeatherVibe.Profile.GrizzlyHills.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.GrizzlyHills.Transition.StepSize.Perc=20
 WeatherVibe.Profile.GrizzlyHills.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.GrizzlyHills.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.GrizzlyHills.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.GrizzlyHills.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# ThousandNeedles — Desert canyon, towering mesas
+# ThousandNeedles  -  Desert canyon, towering mesas
 # Theme: Red rock pillars, deep canyons, bone dry.
 # Fine dominant. Sandstorms (canyon winds). Almost no rain.
 # No snow. Sheltered canyons mean less wind than open desert.
@@ -1933,10 +2012,12 @@ WeatherVibe.Profile.ThousandNeedles.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.ThousandNeedles.Transition.StepSize.Perc=10
 WeatherVibe.Profile.ThousandNeedles.Transition.Max.Changes.Per.Hour=5
 WeatherVibe.Profile.ThousandNeedles.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.ThousandNeedles.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.ThousandNeedles.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Desolace — Barren grey wasteland
+# Desolace  -  Barren grey wasteland
 # Theme: Grey, lifeless, flat. Barely anything grows. Desolate.
 # Fine = bleak emptiness. Fog = grey haze. Light dust/sandstorm.
 # Very rare drizzle. No snow. Oppressively empty.
@@ -1975,10 +2056,12 @@ WeatherVibe.Profile.Desolace.Transition.Step.TimeSeconds.Max=55
 WeatherVibe.Profile.Desolace.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Desolace.Transition.Max.Changes.Per.Hour=5
 WeatherVibe.Profile.Desolace.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Desolace.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Desolace.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# StonetalonMountains — Mixed mountain and forest
+# StonetalonMountains  -  Mixed mountain and forest
 # Theme: Pine forest transitioning to barren peaks. Varied terrain.
 # Fine and fog balanced. Rain in forested areas. Light dust at peaks.
 # No snow (not high enough). Moderate and varied.
@@ -2018,10 +2101,12 @@ WeatherVibe.Profile.StonetalonMountains.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.StonetalonMountains.Transition.StepSize.Perc=15
 WeatherVibe.Profile.StonetalonMountains.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.StonetalonMountains.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.StonetalonMountains.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.StonetalonMountains.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Tanaris — Full desert, Gadgetzan
+# Tanaris  -  Full desert, Gadgetzan
 # Theme: Endless sand dunes, scorching sun. THE desert zone.
 # Sandstorms absolutely dominant. Fine = baking heat.
 # Almost never rains. No snow. Maximum aridity.
@@ -2063,10 +2148,12 @@ WeatherVibe.Profile.Tanaris.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.Tanaris.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Tanaris.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.Tanaris.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Tanaris.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Tanaris.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# UnGoroCrater — Lush tropical crater (Jurassic)
+# UnGoroCrater  -  Lush tropical crater (Jurassic)
 # Theme: Volcanic crater, dinosaurs, tropical vegetation, steam vents.
 # Rain and thunderstorms common. Fine = steamy heat. Fog = steam.
 # No snow, no sand. Volcanic tropical.
@@ -2109,10 +2196,12 @@ WeatherVibe.Profile.UnGoroCrater.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.UnGoroCrater.Transition.StepSize.Perc=20
 WeatherVibe.Profile.UnGoroCrater.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.UnGoroCrater.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.UnGoroCrater.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.UnGoroCrater.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Moonglade — Mystical druid sanctuary
+# Moonglade  -  Mystical druid sanctuary
 # Theme: Serene, magical, moonlit. Sacred grove. Peaceful.
 # Fine dominant. Light mystical fog/mist. Gentle rain.
 # Very similar to Mulgore's serenity but more forested/mystical.
@@ -2148,10 +2237,12 @@ WeatherVibe.Profile.Moonglade.Transition.Step.TimeSeconds.Max=60
 WeatherVibe.Profile.Moonglade.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Moonglade.Transition.Max.Changes.Per.Hour=4
 WeatherVibe.Profile.Moonglade.Transition.Max.Consecutive.Same=5
+WeatherVibe.Profile.Moonglade.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Moonglade.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# HowlingFjord — Nordic coastal Northrend
+# HowlingFjord  -  Nordic coastal Northrend
 # Theme: Viking-inspired coastline, pine forests, fjords.
 # Cold and windy. Snow/rain mix. Fog from the fjords.
 # Dynamic weather. Less severe than Storm Peaks.
@@ -2199,10 +2290,12 @@ WeatherVibe.Profile.HowlingFjord.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.HowlingFjord.Transition.StepSize.Perc=25
 WeatherVibe.Profile.HowlingFjord.Transition.Max.Changes.Per.Hour=15
 WeatherVibe.Profile.HowlingFjord.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.HowlingFjord.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.HowlingFjord.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Winterspring — Perpetual winter forest
+# Winterspring  -  Perpetual winter forest
 # Theme: Snowy evergreen forest, frozen lakes, eternal winter.
 # Snow dominant year-round. Clear crisp days. Fog = ice mist.
 # Very similar to Dun Morogh but slightly more forested/serene.
@@ -2245,10 +2338,12 @@ WeatherVibe.Profile.Winterspring.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.Winterspring.Transition.StepSize.Perc=20
 WeatherVibe.Profile.Winterspring.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.Winterspring.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Winterspring.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Winterspring.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Silithus — Desert wasteland, insectoid hive
+# Silithus  -  Desert wasteland, insectoid hive
 # Theme: Sandy desert, bug silhouettes, ancient ruins.
 # Sandstorms very dominant. Fine = oppressive heat.
 # Even drier than Tanaris. Almost no rain ever. No snow.
@@ -2287,10 +2382,12 @@ WeatherVibe.Profile.Silithus.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.Silithus.Transition.StepSize.Perc=15
 WeatherVibe.Profile.Silithus.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.Silithus.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.Silithus.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Silithus.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# EmeraldForest — Mystical green forest
+# EmeraldForest  -  Mystical green forest
 # Theme: Vibrant emerald green, magical, ethereal.
 # Fine dominant with soft mist. Very gentle rain. Peaceful.
 # Similar to Moonglade. No snow, no storms.
@@ -2325,10 +2422,12 @@ WeatherVibe.Profile.EmeraldForest.Transition.Step.TimeSeconds.Max=60
 WeatherVibe.Profile.EmeraldForest.Transition.StepSize.Perc=10
 WeatherVibe.Profile.EmeraldForest.Transition.Max.Changes.Per.Hour=4
 WeatherVibe.Profile.EmeraldForest.Transition.Max.Consecutive.Same=5
+WeatherVibe.Profile.EmeraldForest.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.EmeraldForest.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# AhnQiraj — Deep desert temple complex
+# AhnQiraj  -  Deep desert temple complex
 # Theme: Ancient insectoid ruins in blinding desert.
 # Sandstorms dominant. Even more intense than Silithus.
 # No rain, no snow. Pure desert extremity.
@@ -2365,10 +2464,12 @@ WeatherVibe.Profile.AhnQiraj.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.AhnQiraj.Transition.StepSize.Perc=15
 WeatherVibe.Profile.AhnQiraj.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.AhnQiraj.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.AhnQiraj.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.AhnQiraj.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# EversongWoods — Golden elven forest
+# EversongWoods  -  Golden elven forest
 # Theme: Eternal autumn, golden/orange leaves, beautiful sunlight.
 # Fine absolutely dominant. Warm, golden, pleasant. Light mist.
 # Very occasional gentle rain. No snow, no storms.
@@ -2404,10 +2505,12 @@ WeatherVibe.Profile.EversongWoods.Transition.Step.TimeSeconds.Max=60
 WeatherVibe.Profile.EversongWoods.Transition.StepSize.Perc=10
 WeatherVibe.Profile.EversongWoods.Transition.Max.Changes.Per.Hour=4
 WeatherVibe.Profile.EversongWoods.Transition.Max.Consecutive.Same=5
+WeatherVibe.Profile.EversongWoods.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.EversongWoods.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Ghostlands — Corrupted southern Eversong
+# Ghostlands  -  Corrupted southern Eversong
 # Theme: Dark, dead trees, undead corruption. Stark contrast to Eversong.
 # Fog dominant. Light rain. Gloomy and oppressive.
 # Similar to Tirisfal/Silverpine gloom.
@@ -2446,10 +2549,12 @@ WeatherVibe.Profile.Ghostlands.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.Ghostlands.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Ghostlands.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.Ghostlands.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Ghostlands.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Ghostlands.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# HellfirePeninsula — Red alien wasteland (Outland)
+# HellfirePeninsula  -  Red alien wasteland (Outland)
 # Theme: Shattered red earth, alien sky, fel corruption.
 # Sandstorms = fel dust. Fine = harsh alien sun. Thunder = nether storm.
 # No rain, no snow. Alien and hostile.
@@ -2493,10 +2598,12 @@ WeatherVibe.Profile.HellfirePeninsula.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.HellfirePeninsula.Transition.StepSize.Perc=15
 WeatherVibe.Profile.HellfirePeninsula.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.HellfirePeninsula.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.HellfirePeninsula.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.HellfirePeninsula.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# ShadowmoonValley — Dark volcanic Outland zone
+# ShadowmoonValley  -  Dark volcanic Outland zone
 # Theme: Dark purple/black sky, lava, fel volcanoes, Hand of Gul'dan.
 # Fog = thick fel smoke. Thunder = volcanic/nether energy. Sandstorm = ash.
 # No rain, no snow. Oppressive alien darkness.
@@ -2536,10 +2643,12 @@ WeatherVibe.Profile.ShadowmoonValley.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.ShadowmoonValley.Transition.StepSize.Perc=15
 WeatherVibe.Profile.ShadowmoonValley.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.ShadowmoonValley.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.ShadowmoonValley.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.ShadowmoonValley.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Zangarmarsh — Alien mushroom swamp (Outland)
+# Zangarmarsh  -  Alien mushroom swamp (Outland)
 # Theme: Glowing mushrooms, bioluminescent water, alien marsh.
 # Fog = spore clouds. Rain = dripping moisture. Fine = eerie glow.
 # No snow, no sand. Damp alien atmosphere.
@@ -2578,10 +2687,12 @@ WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.Zangarmarsh.Transition.StepSize.Perc=10
 WeatherVibe.Profile.Zangarmarsh.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.Zangarmarsh.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.Zangarmarsh.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Zangarmarsh.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# BladesEdgeMountains — Rocky, harsh Outland mountains
+# BladesEdgeMountains  -  Rocky, harsh Outland mountains
 # Theme: Jagged rock spires, harsh terrain, ogre territory.
 # Fine = dry harsh light. Fog = mountain haze. Sandstorm = rock dust.
 # Occasional nether thunder. No rain, no snow.
@@ -2621,10 +2732,12 @@ WeatherVibe.Profile.BladesEdgeMountains.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.BladesEdgeMountains.Transition.StepSize.Perc=15
 WeatherVibe.Profile.BladesEdgeMountains.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.BladesEdgeMountains.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.BladesEdgeMountains.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.BladesEdgeMountains.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Netherstorm — Shattered magical void (Outland)
+# Netherstorm  -  Shattered magical void (Outland)
 # Theme: Purple void, shattered islands, arcane energy, unstable.
 # Thunder = nether energy discharges (dominant). Fog = arcane haze.
 # Fine = eerie magical calm. Sandstorm = nether debris.
@@ -2665,10 +2778,12 @@ WeatherVibe.Profile.Netherstorm.Transition.Step.TimeSeconds.Max=25
 WeatherVibe.Profile.Netherstorm.Transition.StepSize.Perc=25
 WeatherVibe.Profile.Netherstorm.Transition.Max.Changes.Per.Hour=18
 WeatherVibe.Profile.Netherstorm.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.Netherstorm.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Netherstorm.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# AzuremystIsle — Mystical draenei island
+# AzuremystIsle  -  Mystical draenei island
 # Theme: Purple/blue crystal-studded, serene alien forest.
 # Fine dominant with light mist. Gentle rain. Peaceful and magical.
 # No snow, no storms. Serene like Teldrassil.
@@ -2703,10 +2818,12 @@ WeatherVibe.Profile.AzuremystIsle.Transition.Step.TimeSeconds.Max=50
 WeatherVibe.Profile.AzuremystIsle.Transition.StepSize.Perc=10
 WeatherVibe.Profile.AzuremystIsle.Transition.Max.Changes.Per.Hour=6
 WeatherVibe.Profile.AzuremystIsle.Transition.Max.Consecutive.Same=4
+WeatherVibe.Profile.AzuremystIsle.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.AzuremystIsle.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# BloodmystIsle — Corrupted crystal island
+# BloodmystIsle  -  Corrupted crystal island
 # Theme: Red corruption spreading from crashed ship, dark and eerie.
 # Fog dominant. Rain. Darker than Azuremyst. Corrupted atmosphere.
 # No snow, no sand.
@@ -2745,10 +2862,12 @@ WeatherVibe.Profile.BloodmystIsle.Transition.Step.TimeSeconds.Max=40
 WeatherVibe.Profile.BloodmystIsle.Transition.StepSize.Perc=15
 WeatherVibe.Profile.BloodmystIsle.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.BloodmystIsle.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.BloodmystIsle.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.BloodmystIsle.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# MountHyjal — Sacred mountain forest (Caverns of Time past version)
+# MountHyjal  -  Sacred mountain forest (Caverns of Time past version)
 # Theme: Ancient lush mountain forest, World Tree roots.
 # Fine and rain balanced. Fog in valleys. Thunderstorms.
 # No snow (lower slopes). Feels ancient and powerful.
@@ -2791,10 +2910,12 @@ WeatherVibe.Profile.MountHyjal.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.MountHyjal.Transition.StepSize.Perc=20
 WeatherVibe.Profile.MountHyjal.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.MountHyjal.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.MountHyjal.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.MountHyjal.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# SholazarBasin — Tropical oasis in Northrend
+# SholazarBasin  -  Tropical oasis in Northrend
 # Theme: Lush tropical crater, titan-maintained, waterfalls.
 # Rain and thunderstorms common. Fine = humid warmth. Fog = steam.
 # No snow (titan-heated), no sand. Tropical paradise.
@@ -2837,10 +2958,12 @@ WeatherVibe.Profile.SholazarBasin.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.SholazarBasin.Transition.StepSize.Perc=25
 WeatherVibe.Profile.SholazarBasin.Transition.Max.Changes.Per.Hour=15
 WeatherVibe.Profile.SholazarBasin.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.SholazarBasin.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.SholazarBasin.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# EyeOfTheStorm — Outland battleground, floating island
+# EyeOfTheStorm  -  Outland battleground, floating island
 # Theme: Nether-touched floating terrain, arcane energy.
 # Fine = eerie calm. Thunder = nether discharge. Fog = arcane haze.
 # Similar to Netherstorm but slightly less chaotic.
@@ -2879,13 +3002,15 @@ WeatherVibe.Profile.EyeOfTheStorm.Transition.Step.TimeSeconds.Max=30
 WeatherVibe.Profile.EyeOfTheStorm.Transition.StepSize.Perc=20
 WeatherVibe.Profile.EyeOfTheStorm.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.EyeOfTheStorm.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.EyeOfTheStorm.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.EyeOfTheStorm.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# FrozenSea — Arctic ocean (Northrend waters)
+# FrozenSea  -  Arctic ocean (Northrend waters)
 # Theme: Icy waters, icebergs, brutal cold. Arctic sea.
 # Snow and fog dominant. Heavy snow in storms.
-# No rain — too cold. No sand. Pure arctic.
+# No rain  -  too cold. No sand. Pure arctic.
 #======================================================================
 
 # Spring: icy, fog, snow
@@ -2925,10 +3050,12 @@ WeatherVibe.Profile.FrozenSea.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.FrozenSea.Transition.StepSize.Perc=20
 WeatherVibe.Profile.FrozenSea.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.FrozenSea.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.FrozenSea.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.FrozenSea.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# IsleOfQuelDanas — Coastal island, Sunwell Plateau
+# IsleOfQuelDanas  -  Coastal island, Sunwell Plateau
 # Theme: Bright coastal, elven architecture, beach.
 # Fine dominant. Light coastal fog. Occasional rain.
 # Pleasant and moderate. No snow, no sand.
@@ -2967,10 +3094,12 @@ WeatherVibe.Profile.IsleOfQuelDanas.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.IsleOfQuelDanas.Transition.StepSize.Perc=20
 WeatherVibe.Profile.IsleOfQuelDanas.Transition.Max.Changes.Per.Hour=10
 WeatherVibe.Profile.IsleOfQuelDanas.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.IsleOfQuelDanas.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# Wintergrasp — Snowy Northrend PvP zone
+# Wintergrasp  -  Snowy Northrend PvP zone
 # Theme: Snow-covered battlefield, frozen lake, fortifications.
 # Snow dominant. Fog = icy mist. Similar to Dragonblight.
 # Slightly less harsh than Icecrown.
@@ -3013,10 +3142,12 @@ WeatherVibe.Profile.Wintergrasp.Transition.Step.TimeSeconds.Max=35
 WeatherVibe.Profile.Wintergrasp.Transition.StepSize.Perc=20
 WeatherVibe.Profile.Wintergrasp.Transition.Max.Changes.Per.Hour=12
 WeatherVibe.Profile.Wintergrasp.Transition.Max.Consecutive.Same=2
+WeatherVibe.Profile.Wintergrasp.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.Wintergrasp.Transition.SeasonBlendMinutes=10
 
 
 #======================================================================
-# ScarletEnclave — Death Knight starting zone
+# ScarletEnclave  -  Death Knight starting zone
 # Theme: Gloomy, corrupted, similar to Eastern Plaguelands.
 # Fog dominant, light rain, thunder from Scourge presence.
 # Synced to its own profile for distinct DK atmosphere.
@@ -3056,6 +3187,8 @@ WeatherVibe.Profile.ScarletEnclave.Transition.Step.TimeSeconds.Max=45
 WeatherVibe.Profile.ScarletEnclave.Transition.StepSize.Perc=15
 WeatherVibe.Profile.ScarletEnclave.Transition.Max.Changes.Per.Hour=8
 WeatherVibe.Profile.ScarletEnclave.Transition.Max.Consecutive.Same=3
+WeatherVibe.Profile.ScarletEnclave.Transition.MinHoldSeconds=60
+WeatherVibe.Profile.ScarletEnclave.Transition.SeasonBlendMinutes=10
 
 
 #######################################################################################################
