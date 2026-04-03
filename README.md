@@ -11,7 +11,7 @@ no longer just _flips_; it **evolves** naturally over time with smooth intensity
 transitions, seasonal awareness, fog as a natural bridge between states, and
 regional syncing that makes the world feel **alive** and **immersive**.
 
-> ✅ **Important:** In your core config set `ActivateWeather = 0`.
+> ✅ **Important:** In your core config (worldserver.conf) set `ActivateWeather = 0`.
 > That disables the default `WeatherMgr` so it won't fight WeatherVibe's packets.
 
 ---
