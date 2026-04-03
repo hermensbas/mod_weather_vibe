@@ -43,8 +43,8 @@ static int RandInt(int lo, int hi)
 // Single weighted weather entry (parsed from config).
 struct WeatherEntry
 {
-    uint32 weight    = 0;
-    uint32 stateVal  = 0;
+    uint32 weight = 0;
+    uint32 stateVal = 0;
     float  intensMin = 30.0f;
     float  intensMax = 100.0f;
 };
@@ -56,10 +56,10 @@ struct TransitionSettings
 {
     uint32 stepTimeMinMs = 15000;
     uint32 stepTimeMaxMs = 30000;
-    uint32 changesPerHr  = 6;
+    uint32 changesPerHr = 6;
     uint32 maxConsecSame = 3;
-    float  stepSizePct   = 10.0f;
-    uint32 minHoldMs     = 30000;         // minimum time weather lingers after arriving
+    float  stepSizePct = 10.0f;
+    uint32 minHoldMs = 30000;         // minimum time weather lingers after arriving
     uint32 seasonBlendMs = 600000;        // how long (ms) to blend with previous season after change
 };
 
@@ -69,34 +69,34 @@ enum class TransitionPhase : uint8 { NONE, FADE_OUT, FADE_IN };
 // Live transition state — shared by all zones using the same profile.
 struct TransitionState
 {
-    uint32 currentStateVal  = WEATHER_STATE_FINE;
-    float  currentPct       = 0.0f;
+    uint32 currentStateVal = WEATHER_STATE_FINE;
+    float  currentPct = 0.0f;
 
-    uint32 targetStateVal   = WEATHER_STATE_FINE;
-    float  targetPct        = 0.0f;
+    uint32 targetStateVal = WEATHER_STATE_FINE;
+    float  targetPct = 0.0f;
 
-    uint32 stepTimerMs      = 0;
-    bool   inTransition     = false;
+    uint32 stepTimerMs = 0;
+    bool   inTransition = false;
 
-    uint32 intervalTimerMs    = 0;
+    uint32 intervalTimerMs = 0;
     bool   waitingForInterval = false;
 
-    TransitionPhase phase   = TransitionPhase::NONE;
-    bool   sameFamily       = false;
-    bool   isUpgrade        = false;
-    float  fadeOutPct       = 0.0f;
-    float  fadeInPct        = 0.0f;
+    TransitionPhase phase = TransitionPhase::NONE;
+    bool   sameFamily = false;
+    bool   isUpgrade = false;
+    float  fadeOutPct = 0.0f;
+    float  fadeInPct = 0.0f;
 
-    uint32 changesThisHour  = 0;
-    uint32 hourTimerMs      = 3600000u;
-    uint32 consecSameCount  = 0;
+    uint32 changesThisHour = 0;
+    uint32 hourTimerMs = 3600000u;
+    uint32 consecSameCount = 0;
 
-    uint32 reapplyTimerMs   = 0;          // counts down to next re-broadcast
+    uint32 reapplyTimerMs = 0;          // counts down to next re-broadcast
 
     // Season blending — smooth the transition when the season changes.
-    Season prevSeason       = Season::SPRING;
-    Season blendFromSeason  = Season::SPRING;   // the old season we're blending away from
-    bool   seasonBlending   = false;
+    Season prevSeason = Season::SPRING;
+    Season blendFromSeason = Season::SPRING;   // the old season we're blending away from
+    bool   seasonBlending = false;
     uint32 seasonBlendTimer = 0;          // counts down from seasonBlendMs
     uint32 seasonBlendTotal = 0;          // snapshot of seasonBlendMs for ratio calc
 };
@@ -133,11 +133,11 @@ static char const* SeasonKey(Season s)
 {
     switch (s)
     {
-        case Season::SPRING: return "Spring";
-        case Season::SUMMER: return "Summer";
-        case Season::AUTUMN: return "Autumn";
-        case Season::WINTER: return "Winter";
-        default:             return "Spring";
+    case Season::SPRING: return "Spring";
+    case Season::SUMMER: return "Summer";
+    case Season::AUTUMN: return "Autumn";
+    case Season::WINTER: return "Winter";
+    default:             return "Spring";
     }
 }
 
@@ -150,8 +150,8 @@ static bool ParseProfileEntry(std::string const& raw, WeatherEntry& out)
 
     if (mx < mn) std::swap(mn, mx);
 
-    out.weight    = static_cast<uint32>(w);
-    out.stateVal  = static_cast<uint32>(sv);
+    out.weight = static_cast<uint32>(w);
+    out.stateVal = static_cast<uint32>(sv);
     out.intensMin = std::clamp(mn, 0.0f, 100.0f);
     out.intensMax = std::clamp(mx, 0.0f, 100.0f);
     return out.weight > 0 && WeatherVibeCore::IsValidWeatherState(out.stateVal);
@@ -195,7 +195,7 @@ static bool ParseZoneMapping(std::string const& raw, uint32& outZoneId, std::str
     if (comma == std::string::npos || comma == 0) return false;
 
     std::string zoneStr = Trim(raw.substr(0, comma));
-    std::string name    = Trim(raw.substr(comma + 1));
+    std::string name = Trim(raw.substr(comma + 1));
     if (zoneStr.empty() || name.empty()) return false;
 
     char* end = nullptr;
@@ -203,7 +203,7 @@ static bool ParseZoneMapping(std::string const& raw, uint32& outZoneId, std::str
     if (end == zoneStr.c_str() || z == 0) return false;
 
     outZoneId = static_cast<uint32>(z);
-    outName   = name;
+    outName = name;
     return true;
 }
 
@@ -213,7 +213,7 @@ static TransitionSettings LoadTransitionSettings(std::string const& profileName)
 
     auto key = [&](char const* suffix) {
         return "WeatherVibe.Profile." + profileName + ".Transition." + suffix;
-    };
+        };
 
     uint32 stepMin = sConfigMgr->GetOption<uint32>(key("Step.TimeSeconds.Min"), 15);
     uint32 stepMax = sConfigMgr->GetOption<uint32>(key("Step.TimeSeconds.Max"), 30);
@@ -221,10 +221,10 @@ static TransitionSettings LoadTransitionSettings(std::string const& profileName)
 
     ts.stepTimeMinMs = stepMin * 1000;
     ts.stepTimeMaxMs = stepMax * 1000;
-    ts.changesPerHr  = std::max(1u, sConfigMgr->GetOption<uint32>(key("Max.Changes.Per.Hour"), 6));
+    ts.changesPerHr = std::max(1u, sConfigMgr->GetOption<uint32>(key("Max.Changes.Per.Hour"), 6));
     ts.maxConsecSame = sConfigMgr->GetOption<uint32>(key("Max.Consecutive.Same"), 3);
-    ts.stepSizePct   = std::clamp(sConfigMgr->GetOption<float>(key("StepSize.Perc"), 10.0f), 0.5f, 50.0f);
-    ts.minHoldMs     = sConfigMgr->GetOption<uint32>(key("MinHoldSeconds"), 30) * 1000;
+    ts.stepSizePct = std::clamp(sConfigMgr->GetOption<float>(key("StepSize.Perc"), 10.0f), 0.5f, 50.0f);
+    ts.minHoldMs = sConfigMgr->GetOption<uint32>(key("MinHoldSeconds"), 30) * 1000;
     ts.seasonBlendMs = std::min(sConfigMgr->GetOption<uint32>(key("SeasonBlendMinutes"), 10), 60u) * 60u * 1000u;
 
     return ts;
@@ -240,19 +240,19 @@ static WeatherFamily GetWeatherFamily(uint32 sv)
 {
     switch (sv)
     {
-        case WEATHER_STATE_FINE:             return WeatherFamily::FINE;
-        case WEATHER_STATE_FOG:              return WeatherFamily::FOG;
-        case WEATHER_STATE_LIGHT_RAIN:
-        case WEATHER_STATE_MEDIUM_RAIN:
-        case WEATHER_STATE_HEAVY_RAIN:       return WeatherFamily::RAIN;
-        case WEATHER_STATE_LIGHT_SNOW:
-        case WEATHER_STATE_MEDIUM_SNOW:
-        case WEATHER_STATE_HEAVY_SNOW:       return WeatherFamily::SNOW;
-        case WEATHER_STATE_LIGHT_SANDSTORM:
-        case WEATHER_STATE_MEDIUM_SANDSTORM:
-        case WEATHER_STATE_HEAVY_SANDSTORM:  return WeatherFamily::SANDSTORM;
-        case WEATHER_STATE_THUNDERS:         return WeatherFamily::THUNDER;
-        default:                             return WeatherFamily::UNKNOWN;
+    case WEATHER_STATE_FINE:             return WeatherFamily::FINE;
+    case WEATHER_STATE_FOG:              return WeatherFamily::FOG;
+    case WEATHER_STATE_LIGHT_RAIN:
+    case WEATHER_STATE_MEDIUM_RAIN:
+    case WEATHER_STATE_HEAVY_RAIN:       return WeatherFamily::RAIN;
+    case WEATHER_STATE_LIGHT_SNOW:
+    case WEATHER_STATE_MEDIUM_SNOW:
+    case WEATHER_STATE_HEAVY_SNOW:       return WeatherFamily::SNOW;
+    case WEATHER_STATE_LIGHT_SANDSTORM:
+    case WEATHER_STATE_MEDIUM_SANDSTORM:
+    case WEATHER_STATE_HEAVY_SANDSTORM:  return WeatherFamily::SANDSTORM;
+    case WEATHER_STATE_THUNDERS:         return WeatherFamily::THUNDER;
+    default:                             return WeatherFamily::UNKNOWN;
     }
 }
 
@@ -271,19 +271,19 @@ static uint8 GetWeatherTier(uint32 sv)
 {
     switch (sv)
     {
-        case WEATHER_STATE_FINE:
-        case WEATHER_STATE_FOG:
-        case WEATHER_STATE_THUNDERS:           return 0;
-        case WEATHER_STATE_LIGHT_RAIN:
-        case WEATHER_STATE_LIGHT_SNOW:
-        case WEATHER_STATE_LIGHT_SANDSTORM:    return 1;
-        case WEATHER_STATE_MEDIUM_RAIN:
-        case WEATHER_STATE_MEDIUM_SNOW:
-        case WEATHER_STATE_MEDIUM_SANDSTORM:   return 2;
-        case WEATHER_STATE_HEAVY_RAIN:
-        case WEATHER_STATE_HEAVY_SNOW:
-        case WEATHER_STATE_HEAVY_SANDSTORM:    return 3;
-        default:                               return 0;
+    case WEATHER_STATE_FINE:
+    case WEATHER_STATE_FOG:
+    case WEATHER_STATE_THUNDERS:           return 0;
+    case WEATHER_STATE_LIGHT_RAIN:
+    case WEATHER_STATE_LIGHT_SNOW:
+    case WEATHER_STATE_LIGHT_SANDSTORM:    return 1;
+    case WEATHER_STATE_MEDIUM_RAIN:
+    case WEATHER_STATE_MEDIUM_SNOW:
+    case WEATHER_STATE_MEDIUM_SANDSTORM:   return 2;
+    case WEATHER_STATE_HEAVY_RAIN:
+    case WEATHER_STATE_HEAVY_SNOW:
+    case WEATHER_STATE_HEAVY_SANDSTORM:    return 3;
+    default:                               return 0;
     }
 }
 
@@ -331,7 +331,7 @@ static bool ShouldBoostFog(uint32 currentState, uint32 candidateState)
     // Light precipitation -> Fog  (fog as "clearing up")
     if (GetWeatherTier(currentState) == 1 &&
         (curFam == WeatherFamily::RAIN || curFam == WeatherFamily::SNOW ||
-         curFam == WeatherFamily::SANDSTORM))
+            curFam == WeatherFamily::SANDSTORM))
         return true;
 
     return false;
@@ -344,7 +344,7 @@ static constexpr float FOG_BRIDGE_MULTIPLIER = 1.5f;
 // ─────────────────────────────────────────────────────────────
 
 static WeatherEntry const* PickEntry(SeasonProfile const& profile, uint32 currentState,
-                                      uint32 maxConsecSame, uint32 consecCount)
+    uint32 maxConsecSame, uint32 consecCount)
 {
     if (profile.empty()) return nullptr;
 
@@ -450,7 +450,7 @@ static void EnforceMinHold(TransitionState& st, TransitionSettings const& ts)
 
 static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 {
-    TransitionState&    st = prof.state;
+    TransitionState& st = prof.state;
     TransitionSettings& ts = prof.transition;
 
     // ── Season change detection ──
@@ -458,8 +458,8 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
     {
         if (ts.seasonBlendMs > 0)
         {
-            st.blendFromSeason  = st.prevSeason;  // snapshot before overwrite
-            st.seasonBlending   = true;
+            st.blendFromSeason = st.prevSeason;  // snapshot before overwrite
+            st.seasonBlending = true;
             st.seasonBlendTimer = ts.seasonBlendMs;
             st.seasonBlendTotal = ts.seasonBlendMs;
 
@@ -472,8 +472,8 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
                 char buf[256];
                 snprintf(buf, sizeof(buf),
-                    "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' season %s -> %s, blending %us",
-                    prof.name.c_str(), SeasonKey(st.prevSeason), SeasonKey(season),
+                    "|cff00ff00[WeatherVibe]|r [DEBUG][P] season %s -> %s, blending %us",
+                    SeasonKey(st.prevSeason), SeasonKey(season),
                     ts.seasonBlendMs / 1000);
                 BroadcastDebugText(prof, buf);
             }
@@ -492,7 +492,7 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
     // Hourly counter reset.
     if (st.hourTimerMs <= diff) { st.hourTimerMs = 3600000u; st.changesThisHour = 0; }
-    else                        { st.hourTimerMs -= diff; }
+    else { st.hourTimerMs -= diff; }
 
     // Interval timer always counts down (during transitions AND hold).
     st.intervalTimerMs = (st.intervalTimerMs > diff) ? st.intervalTimerMs - diff : 0;
@@ -512,8 +512,8 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
                 char buf[256];
                 snprintf(buf, sizeof(buf),
-                    "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' interval expired, selecting next weather (changes %u/%u)",
-                    prof.name.c_str(), st.changesThisHour, ts.changesPerHr);
+                    "|cff00ff00[WeatherVibe]|r [DEBUG][P] interval expired, selecting next weather (changes %u/%u)",
+                    st.changesThisHour, ts.changesPerHr);
                 BroadcastDebugText(prof, buf);
             }
 
@@ -532,22 +532,22 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
                 st.reapplyTimerMs = gReapplyIntervalMs;
 
-               /* if (sWeatherVibeCore.IsDebug())
-                {
-                    LOG_INFO("server.loading",
-                        "[WeatherVibe] '{}' reapply: {}% {}",
-                        prof.name, static_cast<int>(st.currentPct),
-                        WeatherVibeCore::WeatherStateName(
-                            static_cast<WeatherState>(st.currentStateVal)));
+                /* if (sWeatherVibeCore.IsDebug())
+                 {
+                     LOG_INFO("server.loading",
+                         "[WeatherVibe] '{}' reapply: {}% {}",
+                         prof.name, static_cast<int>(st.currentPct),
+                         WeatherVibeCore::WeatherStateName(
+                             static_cast<WeatherState>(st.currentStateVal)));
 
-                    char buf[256];
-                    snprintf(buf, sizeof(buf),
-                        "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' reapply: %d%% %s",
-                        prof.name.c_str(), static_cast<int>(st.currentPct),
-                        WeatherVibeCore::WeatherStateName(
-                            static_cast<WeatherState>(st.currentStateVal)));
-                    BroadcastDebugText(prof, buf);
-                }*/
+                     char buf[256];
+                     snprintf(buf, sizeof(buf),
+                         "|cff00ff00[WeatherVibe]|r [DEBUG][P] reapply: %d%% %s",
+                         static_cast<int>(st.currentPct),
+                         WeatherVibeCore::WeatherStateName(
+                             static_cast<WeatherState>(st.currentStateVal)));
+                     BroadcastDebugText(prof, buf);
+                 }*/
             }
             else
             {
@@ -570,21 +570,21 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
     auto nextStep = [&]() {
         return static_cast<uint32>(RandInt(
             static_cast<int>(ts.stepTimeMinMs), static_cast<int>(ts.stepTimeMaxMs)));
-    };
+        };
 
     // ── Fade out: old state toward exit point ──
     if (st.phase == TransitionPhase::FADE_OUT)
     {
         bool done = StepToward(st.currentPct, st.fadeOutPct, ts.stepSizePct);
         BroadcastWeather(prof, static_cast<WeatherState>(st.currentStateVal),
-                         std::clamp(st.currentPct, 0.0f, 100.0f));
+            std::clamp(st.currentPct, 0.0f, 100.0f));
 
         if (done)
         {
             st.currentStateVal = st.targetStateVal;
-            st.currentPct      = st.fadeInPct;
-            st.phase           = TransitionPhase::FADE_IN;
-            st.stepTimerMs     = 0;  // no gap between fadeOut and fadeIn
+            st.currentPct = st.fadeInPct;
+            st.phase = TransitionPhase::FADE_IN;
+            st.stepTimerMs = 0;  // no gap between fadeOut and fadeIn
         }
         else { st.stepTimerMs = nextStep(); }
         return;
@@ -595,13 +595,13 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
     {
         bool done = StepToward(st.currentPct, st.targetPct, ts.stepSizePct);
         BroadcastWeather(prof, static_cast<WeatherState>(st.targetStateVal),
-                         std::clamp(st.currentPct, 0.0f, 100.0f));
+            std::clamp(st.currentPct, 0.0f, 100.0f));
 
         if (done)
         {
-            st.phase              = TransitionPhase::NONE;
-            st.currentStateVal    = st.targetStateVal;
-            st.inTransition       = false;
+            st.phase = TransitionPhase::NONE;
+            st.currentStateVal = st.targetStateVal;
+            st.inTransition = false;
             st.waitingForInterval = true;
             EnforceMinHold(st, ts);
 
@@ -615,8 +615,8 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
                 char buf[256];
                 snprintf(buf, sizeof(buf),
-                    "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' fadeIn arrived at %d%% %s, holding %ums, changes %u/%u",
-                    prof.name.c_str(), static_cast<int>(st.currentPct),
+                    "|cff00ff00[WeatherVibe]|r [DEBUG][P] fadeIn arrived at %d%% %s, holding %ums, changes %u/%u",
+                    static_cast<int>(st.currentPct),
                     WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
                     st.intervalTimerMs, st.changesThisHour, ts.changesPerHr);
                 BroadcastDebugText(prof, buf);
@@ -629,12 +629,12 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
     // ── Same-state: step toward target ──
     bool arrived = StepToward(st.currentPct, st.targetPct, ts.stepSizePct);
     BroadcastWeather(prof, static_cast<WeatherState>(st.targetStateVal),
-                     std::clamp(st.currentPct, 0.0f, 100.0f));
+        std::clamp(st.currentPct, 0.0f, 100.0f));
 
     if (arrived)
     {
-        st.currentStateVal    = st.targetStateVal;
-        st.inTransition       = false;
+        st.currentStateVal = st.targetStateVal;
+        st.inTransition = false;
         st.waitingForInterval = true;
         EnforceMinHold(st, ts);
 
@@ -648,8 +648,8 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
             char buf[256];
             snprintf(buf, sizeof(buf),
-                "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' arrived at %d%% %s, holding %ums, changes %u/%u",
-                prof.name.c_str(), static_cast<int>(st.currentPct),
+                "|cff00ff00[WeatherVibe]|r [DEBUG][P] arrived at %d%% %s, holding %ums, changes %u/%u",
+                static_cast<int>(st.currentPct),
                 WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
                 st.intervalTimerMs, st.changesThisHour, ts.changesPerHr);
             BroadcastDebugText(prof, buf);
@@ -664,8 +664,8 @@ static void TickProfile(WeatherProfile& prof, uint32 diff, Season season)
 
 static void ScheduleNextEvent(WeatherProfile& prof, Season season)
 {
-    TransitionState&     st     = prof.state;
-    TransitionSettings&  ts     = prof.transition;
+    TransitionState& st = prof.state;
+    TransitionSettings& ts = prof.transition;
 
     // ── Build effective entry list, optionally blending two seasons ──
     SeasonProfile const& currentEntries = prof.seasons[(size_t)season];
@@ -683,7 +683,7 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
         {
             // blendRatio: 1.0 right after the change, fading to 0.0 at end of window.
             float blendRatio = static_cast<float>(st.seasonBlendTimer)
-                             / static_cast<float>(st.seasonBlendTotal);
+                / static_cast<float>(st.seasonBlendTotal);
             blendRatio = std::clamp(blendRatio, 0.0f, 1.0f);
 
             // Start with the full current season entries.
@@ -709,21 +709,21 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
     if (st.changesThisHour >= ts.changesPerHr)
     {
         st.waitingForInterval = true;
-        st.intervalTimerMs    = st.hourTimerMs;
+        st.intervalTimerMs = st.hourTimerMs;
         return;
     }
 
     WeatherEntry const* entry = PickEntry(*entries, st.currentStateVal,
-                                           ts.maxConsecSame, st.consecSameCount);
+        ts.maxConsecSame, st.consecSameCount);
     if (!entry) return;
 
-    bool samePick   = (entry->stateVal == st.currentStateVal);
+    bool samePick = (entry->stateVal == st.currentStateVal);
     float targetPct = RandFloat(entry->intensMin, entry->intensMax);
 
-    st.consecSameCount    = samePick ? st.consecSameCount + 1 : 1;
-    st.targetStateVal     = entry->stateVal;
-    st.targetPct          = targetPct;
-    st.inTransition       = true;
+    st.consecSameCount = samePick ? st.consecSameCount + 1 : 1;
+    st.targetStateVal = entry->stateVal;
+    st.targetPct = targetPct;
+    st.inTransition = true;
     st.waitingForInterval = false;
     st.changesThisHour++;
 
@@ -734,21 +734,21 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
     if (!samePick && st.currentPct > 0.0f)
     {
         st.sameFamily = IsSameFamily(st.currentStateVal, entry->stateVal);
-        st.isUpgrade  = st.sameFamily && IsUpgrade(st.currentStateVal, entry->stateVal);
-        st.phase      = TransitionPhase::FADE_OUT;
+        st.isUpgrade = st.sameFamily && IsUpgrade(st.currentStateVal, entry->stateVal);
+        st.phase = TransitionPhase::FADE_OUT;
 
         if (st.sameFamily)
         {
             // Same family upgrade:   old->100%, new starts at 0%
             // Same family downgrade: old->0%,   new starts at 100%
             st.fadeOutPct = st.isUpgrade ? 100.0f : 0.0f;
-            st.fadeInPct  = st.isUpgrade ? 0.0f   : 100.0f;
+            st.fadeInPct = st.isUpgrade ? 0.0f : 100.0f;
         }
         else
         {
             // Cross-family: old fades to 0%, new builds from 0%
             st.fadeOutPct = 0.0f;
-            st.fadeInPct  = 0.0f;
+            st.fadeInPct = 0.0f;
         }
     }
     else
@@ -768,14 +768,13 @@ static void ScheduleNextEvent(WeatherProfile& prof, Season season)
             WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.targetStateVal)),
             static_cast<int>(st.targetPct), st.intervalTimerMs,
             st.phase == TransitionPhase::FADE_OUT ? "fadeOut" :
-            st.phase == TransitionPhase::FADE_IN  ? "fadeIn"  : "direct");
+            st.phase == TransitionPhase::FADE_IN ? "fadeIn" : "direct");
 
         char const* phaseStr = st.phase == TransitionPhase::FADE_OUT ? "fadeOut" :
-                               st.phase == TransitionPhase::FADE_IN  ? "fadeIn"  : "direct";
+            st.phase == TransitionPhase::FADE_IN ? "fadeIn" : "direct";
         char buf[256];
         snprintf(buf, sizeof(buf),
-            "|cff00ff00[WeatherVibe]|r [DEBUG][SCHEDULER] '%s' scheduled: %s -> %s at %d%%, interval=%ums, phase=%s",
-            prof.name.c_str(),
+            "|cff00ff00[WeatherVibe]|r [DEBUG][P] scheduled: %s -> %s at %d%%, interval=%ums, phase=%s",
             WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.currentStateVal)),
             WeatherVibeCore::WeatherStateName(static_cast<WeatherState>(st.targetStateVal)),
             static_cast<int>(st.targetPct), st.intervalTimerMs, phaseStr);
@@ -824,7 +823,7 @@ void WeatherVibeEngine_Init()
     for (auto const& [profileName, zones] : profileZones)
     {
         WeatherProfile prof;
-        prof.name    = profileName;
+        prof.name = profileName;
         prof.zoneIds = zones;
         bool anyEntries = false;
 
@@ -856,7 +855,7 @@ void WeatherVibeEngine_Init()
         }
 
         prof.transition = LoadTransitionSettings(profileName);
-        prof.state      = {};
+        prof.state = {};
         gProfiles.push_back(std::move(prof));
 
         // Log with zone list.
@@ -890,7 +889,7 @@ void WeatherVibeEngine_Init()
     Season initSeason = sWeatherVibeCore.GetCurrentSeason();
     for (auto& p : gProfiles)
     {
-        p.state.prevSeason      = initSeason;
+        p.state.prevSeason = initSeason;
         p.state.blendFromSeason = initSeason;
     }
 }

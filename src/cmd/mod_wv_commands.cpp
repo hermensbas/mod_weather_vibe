@@ -95,7 +95,7 @@ public:
         }
 
         DayPart dp = sWeatherVibeCore.GetCurrentDayPart();
-        Season  s  = sWeatherVibeCore.GetCurrentSeason();
+        Season  s = sWeatherVibeCore.GetCurrentSeason();
 
         std::ostringstream oss;
         oss << "|cff00ff00WeatherVibe:|r show | season=" << WeatherVibeCore::SeasonName(s)
@@ -106,7 +106,7 @@ public:
             LastApplied const& la = kv.second;
             oss << "zone " << kv.first
                 << " -> state=" << WeatherVibeCore::WeatherStateName(la.state)
-                << " raw="      << std::fixed << std::setprecision(2) << la.grade
+                << " raw=" << std::fixed << std::setprecision(2) << la.grade
                 << "\n";
         }
 

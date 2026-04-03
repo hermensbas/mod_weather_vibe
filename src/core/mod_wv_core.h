@@ -37,16 +37,16 @@ struct Range
 
 struct DayPartStarts
 {
-    int morning   = 6  * 60;   // 06:00
+    int morning = 6 * 60;   // 06:00
     int afternoon = 12 * 60;   // 12:00
-    int evening   = 18 * 60;   // 18:00
-    int night     = 22 * 60;   // 22:00
+    int evening = 18 * 60;   // 18:00
+    int night = 22 * 60;   // 22:00
 };
 
 struct LastApplied
 {
-    WeatherState state    = WEATHER_STATE_FINE;
-    float        grade    = 0.f;
+    WeatherState state = WEATHER_STATE_FINE;
+    float        grade = 0.f;
     bool         hasValue = false;
 };
 
@@ -80,7 +80,7 @@ public:
     // State accessors
     bool IsEnabled()        const { return m_enabled; }
     bool IsProfileEnabled() const { return m_profileEnabled; }
-    bool IsDebug()          const { return m_debug;   }
+    bool IsDebug()          const { return m_debug; }
 
     // Broadcast helpers
     void BroadcastZoneText(uint32 zoneId, char const* text);
@@ -94,9 +94,9 @@ public:
     static bool IsValidWeatherState(uint32 value);
 
 private:
-    WeatherVibeCore()  = default;
+    WeatherVibeCore() = default;
     ~WeatherVibeCore() = default;
-    WeatherVibeCore(WeatherVibeCore const&)            = delete;
+    WeatherVibeCore(WeatherVibeCore const&) = delete;
     WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
 
     // Config reload — reloads daypart + intensity ranges
@@ -126,16 +126,16 @@ private:
     void ValidateDayPartStarts();
 
     // Module state
-    bool          m_enabled        = true;
+    bool          m_enabled = true;
     bool          m_profileEnabled = true;
-    bool          m_debug          = false;
+    bool          m_debug = false;
     DayPartStarts m_starts;
 
     // Cached daypart/season mode — resolved once on config load
-    bool    m_dayPartAuto    = true;
-    DayPart m_dayPartFixed   = DayPart::MORNING;
-    bool    m_seasonAuto     = true;
-    Season  m_seasonFixed    = Season::SPRING;
+    bool    m_dayPartAuto = true;
+    DayPart m_dayPartFixed = DayPart::MORNING;
+    bool    m_seasonAuto = true;
+    Season  m_seasonFixed = Season::SPRING;
 
     // Per-daypart per-WeatherState intensity ranges
     std::unordered_map<uint32, Range> m_stateRanges[(size_t)DayPart::COUNT];
