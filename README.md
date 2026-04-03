@@ -1,4 +1,4 @@
-# discontinued
+# !!discontinued!!
 
 New version can be found [HERE](https://github.com/hermensbas/mod_weather_vibe)
 
