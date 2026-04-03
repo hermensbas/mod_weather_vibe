@@ -1,7 +1,6 @@
-# This mod will replaced soon with a newer more refined version!
-since the mod is more liked then i initial though.
+# discontinued
 
-Still working on few features, weather profiles per zone and smoothness for the weather engine.
+New version can be found [HERE](https://github.com/hermensbas/mod_weather_vibe)
 
 ## WeatherVibe (AzerothCore module) (beta version)
 
