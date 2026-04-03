@@ -16,7 +16,7 @@ WeatherVibe.Enable = 1
 
 # Optional debug (zone-wide broadcast of pushes)
 # ----------------------------------------------------------------------
-WeatherVibe.Debug = 1
+WeatherVibe.Debug = 0
 
 # Toggle weather profiles (automatic weather engine).
 # When disabled, manual commands (.wvibe set / setRaw) still work
