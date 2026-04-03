@@ -1,6 +1,6 @@
 # WeatherVibe (AzerothCore module)
 
-New version and improved! the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta)
+New and final version! (the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta))
 
 demo: https://youtu.be/GRyTk5umEno
 
