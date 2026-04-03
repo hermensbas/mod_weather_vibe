@@ -2,7 +2,7 @@
 
 New version and improved! the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta)
 
-https://youtu.be/GRyTk5umEno
+demo: https://youtu.be/GRyTk5umEno
 
 Bring your world to life with **mod_weather_vibe**. This module gives each zone a
 distinct **mood** — misty mornings in Elwynn, a **gloomy** Duskwood that rumbles to life,
@@ -35,22 +35,19 @@ regional syncing that makes the world feel **alive** and **immersive**.
 
 ## Contents
 
-- [WeatherVibe (AzerothCore module)](#weathervibe-azerothcore-module)
-  - [Features](#features)
-  - [Contents](#contents)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-    - [Core toggles \& debug](#core-toggles--debug)
-    - [Season \& Dayparts](#season--dayparts)
-    - [Intensity ranges](#intensity-ranges)
-    - [Weather profiles](#weather-profiles)
-    - [Transition settings](#transition-settings)
-    - [Zone-to-profile mapping](#zone-to-profile-mapping)
-    - [Reapply interval](#reapply-interval)
-  - [Commands](#commands)
-  - [How it works](#how-it-works)
-  - [Troubleshooting](#troubleshooting)
-  - [License](#license)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [Core toggles & debug](#core-toggles--debug)
+  - [Season & Dayparts](#season--dayparts)
+  - [Intensity ranges](#intensity-ranges)
+  - [Weather profiles](#weather-profiles)
+  - [Transition settings](#transition-settings)
+  - [Zone-to-profile mapping and synced zones](#zone-to-profile-mapping-and-synced-zones)
+  - [Reapply interval](#reapply-interval)
+- [Commands](#commands)
+- [How it works](#how-it-works)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
 ---
 
@@ -163,9 +160,9 @@ WeatherVibe.Profile.DunMorogh.Transition.MinHoldSeconds = 60
 WeatherVibe.Profile.DunMorogh.Transition.SeasonBlendMinutes = 10
 ```
 
-### Zone-to-profile mapping
+### Zone-to-profile mapping and synced zones
 
-Assign zones to profiles using numbered entries. Zones sharing the same profile name are automatically synced — same weather, same transitions, same timing.
+Assign zones to profiles using numbered entries in the format `<zoneId>,<ProfileName>`.
 
 ```ini
 # Format: WeatherVibe.ZoneProfile.<N> = <zoneId>,<ProfileName>
@@ -174,15 +171,24 @@ WeatherVibe.ZoneProfile.2  = 12,ElwynnForest      # Elwynn Forest
 WeatherVibe.ZoneProfile.3  = 1519,ElwynnForest    # Stormwind synced to Elwynn
 ```
 
+**How synced zones work:** When multiple zones reference the **same profile name**, the engine treats them as a single weather unit. They share one state machine — one set of timers, one transition phase, one current intensity. Every weather broadcast goes to all zones in the group simultaneously, so players in any of those zones see identical weather at all times.
+
+This is designed for **connected areas** where it would break immersion if the weather changed as you walked through a gate or border. Typical uses:
+
+- **Cities within their outdoor zone** — Stormwind (1519) shares the `ElwynnForest` profile with Elwynn Forest (12), so stepping through the gates doesn't change the sky.
+- **Split zones that feel like one area** — Orgrimmar (1637) synced to Durotar (14), Ironforge (1537) synced to Dun Morogh (1), Thunder Bluff (1638) synced to The Barrens (17).
+- **Battleground instances** — Arathi Basin (3358) shares `ArathiHighlands` so the battleground has the same weather as the outdoor zone.
+
+Each profile name only creates **one** weather engine instance regardless of how many zones are mapped to it. Adding more zones to a profile has zero performance cost — it just adds zone IDs to the broadcast list.
+
 ### Reapply interval
 
 The engine periodically re-broadcasts weather during hold phases to ensure late joiners see the correct weather. Timing is staggered across profiles to avoid packet bursts.
-
-Aside of having core hook the zone changed and reapplying the weather, the reapply is simple extra measure to assure the correct weather.
+Aside of having core hook when player enters a zone changed and reapplying the weather, the reapply is simple extra measure to assure the correct weather.
 
 ```ini
-# Seconds between re-broadcasts (0 = disabled, default = 30)
-WeatherVibe.Profile.ReApply.PerSec = 30
+# Seconds between re-broadcasts (0 = disabled, default = 10)
+WeatherVibe.Profile.ReApply.PerSec = 10
 ```
 
 ---
