@@ -59,6 +59,11 @@ public:
     // Singleton accessor
     static WeatherVibeCore& Instance();
 
+    WeatherVibeCore() = default;
+    ~WeatherVibeCore() = default;
+    WeatherVibeCore(WeatherVibeCore const&) = delete;
+    WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
+
     // Lifecycle
     void OnStartup();
 
@@ -94,11 +99,6 @@ public:
     static bool IsValidWeatherState(uint32 value);
 
 private:
-    WeatherVibeCore() = default;
-    ~WeatherVibeCore() = default;
-    WeatherVibeCore(WeatherVibeCore const&) = delete;
-    WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
-
     // Config reload — reloads daypart + intensity ranges
     void ReloadConfig();
     void LoadDayPartConfig();
