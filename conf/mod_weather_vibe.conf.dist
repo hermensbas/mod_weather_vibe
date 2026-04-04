@@ -438,23 +438,23 @@ WeatherVibe.Profile.Wetlands.Transition.SeasonBlendMinutes=10
 #======================================================================
 
 # Spring: very dynamic, sun, showers, fog and thunder
-WeatherVibe.Profile.ElwynnForest.Spring.1=25,0,10,40
-WeatherVibe.Profile.ElwynnForest.Spring.2=15,1,20,50
+WeatherVibe.Profile.ElwynnForest.Spring.1=40,0,70,100
+WeatherVibe.Profile.ElwynnForest.Spring.2=20,1,20,50
 WeatherVibe.Profile.ElwynnForest.Spring.3=20,3,20,50
 WeatherVibe.Profile.ElwynnForest.Spring.4=10,4,30,60
-WeatherVibe.Profile.ElwynnForest.Spring.5=10,5,30,65
+WeatherVibe.Profile.ElwynnForest.Spring.5=5,5,30,65
 WeatherVibe.Profile.ElwynnForest.Spring.6=10,86,30,70
 WeatherVibe.Profile.ElwynnForest.Spring.7=10,3,30,60
 
 # Summer: stable warm, clear days, occasional storms
-WeatherVibe.Profile.ElwynnForest.Summer.1=40,0,10,40
+WeatherVibe.Profile.ElwynnForest.Summer.1=50,0,90,100
 WeatherVibe.Profile.ElwynnForest.Summer.2=15,1,20,50
 WeatherVibe.Profile.ElwynnForest.Summer.3=20,3,20,50
 WeatherVibe.Profile.ElwynnForest.Summer.4=15,4,30,60
 WeatherVibe.Profile.ElwynnForest.Summer.5=10,86,30,70
 
 # Autumn: wet, foggy, frequent rain
-WeatherVibe.Profile.ElwynnForest.Autumn.1=20,0,10,40
+WeatherVibe.Profile.ElwynnForest.Autumn.1=35,0,70,100
 WeatherVibe.Profile.ElwynnForest.Autumn.2=20,1,30,60
 WeatherVibe.Profile.ElwynnForest.Autumn.3=20,3,30,60
 WeatherVibe.Profile.ElwynnForest.Autumn.4=15,4,30,70
@@ -463,8 +463,8 @@ WeatherVibe.Profile.ElwynnForest.Autumn.6=10,86,30,60
 WeatherVibe.Profile.ElwynnForest.Autumn.7=5,3,30,60
 
 # Winter: colder, foggy, rain common, occasional light snow
-WeatherVibe.Profile.ElwynnForest.Winter.1=30,0,10,40
-WeatherVibe.Profile.ElwynnForest.Winter.2=20,1,30,60
+WeatherVibe.Profile.ElwynnForest.Winter.1=30,0,60,100
+WeatherVibe.Profile.ElwynnForest.Winter.2=25,1,30,60
 WeatherVibe.Profile.ElwynnForest.Winter.3=20,3,30,60
 WeatherVibe.Profile.ElwynnForest.Winter.4=15,4,30,70
 WeatherVibe.Profile.ElwynnForest.Winter.5=15,6,30,60
@@ -486,23 +486,23 @@ WeatherVibe.Profile.ElwynnForest.Transition.SeasonBlendMinutes=10
 #======================================================================
 
 # Spring: warming up, dust picks up, rare drizzle
-WeatherVibe.Profile.Durotar.Spring.1=40,0,50,80
+WeatherVibe.Profile.Durotar.Spring.1=60,0,70,100
 WeatherVibe.Profile.Durotar.Spring.2=10,1,20,40
 WeatherVibe.Profile.Durotar.Spring.3=5,3,20,40
-WeatherVibe.Profile.Durotar.Spring.4=25,22,30,60
-WeatherVibe.Profile.Durotar.Spring.5=15,41,30,60
+WeatherVibe.Profile.Durotar.Spring.4=15,22,30,60
+WeatherVibe.Profile.Durotar.Spring.5=5,41,30,60
 WeatherVibe.Profile.Durotar.Spring.6=5,86,30,50
 
 # Summer: scorching, peak sandstorms, thunderheads build
-WeatherVibe.Profile.Durotar.Summer.1=30,0,60,90
-WeatherVibe.Profile.Durotar.Summer.2=5,1,20,30
-WeatherVibe.Profile.Durotar.Summer.3=20,22,40,70
-WeatherVibe.Profile.Durotar.Summer.4=20,41,40,70
-WeatherVibe.Profile.Durotar.Summer.5=10,42,40,70
-WeatherVibe.Profile.Durotar.Summer.6=15,86,40,70
+WeatherVibe.Profile.Durotar.Summer.1=60,0,60,100
+WeatherVibe.Profile.Durotar.Summer.2=10,1,20,30
+WeatherVibe.Profile.Durotar.Summer.3=10,22,40,70
+WeatherVibe.Profile.Durotar.Summer.4=5,41,40,70
+WeatherVibe.Profile.Durotar.Summer.5=5,42,40,7
+WeatherVibe.Profile.Durotar.Summer.6=5,86,40,70
 
 # Autumn: heat fading, dust calmer, rare light rain
-WeatherVibe.Profile.Durotar.Autumn.1=40,0,40,70
+WeatherVibe.Profile.Durotar.Autumn.1=50,0,70,100
 WeatherVibe.Profile.Durotar.Autumn.2=10,1,20,40
 WeatherVibe.Profile.Durotar.Autumn.3=10,3,20,40
 WeatherVibe.Profile.Durotar.Autumn.4=20,22,30,50
@@ -510,11 +510,11 @@ WeatherVibe.Profile.Durotar.Autumn.5=15,41,30,50
 WeatherVibe.Profile.Durotar.Autumn.6=5,86,30,50
 
 # Winter: coolest, still dry, fog in mornings, dust light
-WeatherVibe.Profile.Durotar.Winter.1=40,0,30,60
+WeatherVibe.Profile.Durotar.Winter.1=50,0,70,100
 WeatherVibe.Profile.Durotar.Winter.2=15,1,30,50
 WeatherVibe.Profile.Durotar.Winter.3=10,3,20,40
 WeatherVibe.Profile.Durotar.Winter.4=20,22,20,50
-WeatherVibe.Profile.Durotar.Winter.5=15,41,20,50
+WeatherVibe.Profile.Durotar.Winter.5=15,6,20,50
 
 WeatherVibe.Profile.Durotar.Transition.Step.TimeSeconds.Min=20
 WeatherVibe.Profile.Durotar.Transition.Step.TimeSeconds.Max=45
@@ -1702,28 +1702,28 @@ WeatherVibe.Profile.Icecrown.Transition.SeasonBlendMinutes=10
 #======================================================================
 
 # Spring: beautiful, fine dominant, gentle spring rain
-WeatherVibe.Profile.Mulgore.Spring.1=60,0,60,100
-WeatherVibe.Profile.Mulgore.Spring.2=10,1,20,40
-WeatherVibe.Profile.Mulgore.Spring.3=20,3,20,40
-WeatherVibe.Profile.Mulgore.Spring.4=10,4,20,40
+WeatherVibe.Profile.Mulgore.Spring.1=60,0,90,100
+WeatherVibe.Profile.Mulgore.Spring.2=20,1,20,40
+WeatherVibe.Profile.Mulgore.Spring.3=15,3,20,40
+WeatherVibe.Profile.Mulgore.Spring.4=5,86,20,40
 
 # Summer: peak beauty, almost always fine, rare shower
-WeatherVibe.Profile.Mulgore.Summer.1=75,0,70,100
+WeatherVibe.Profile.Mulgore.Summer.1=75,0,90,100
 WeatherVibe.Profile.Mulgore.Summer.2=5,1,20,30
 WeatherVibe.Profile.Mulgore.Summer.3=15,3,20,30
 WeatherVibe.Profile.Mulgore.Summer.4=5,86,20,30
 
 # Autumn: slightly more rain, fog in mornings, still mostly fine
-WeatherVibe.Profile.Mulgore.Autumn.1=55,0,50,90
-WeatherVibe.Profile.Mulgore.Autumn.2=15,1,20,50
+WeatherVibe.Profile.Mulgore.Autumn.1=55,0,90,100
+WeatherVibe.Profile.Mulgore.Autumn.2=20,1,20,50
 WeatherVibe.Profile.Mulgore.Autumn.3=20,3,20,40
-WeatherVibe.Profile.Mulgore.Autumn.4=10,4,20,40
+WeatherVibe.Profile.Mulgore.Autumn.4=5,4,20,40
 
 # Winter: cool but still mostly fine, morning fog, rare light rain
 WeatherVibe.Profile.Mulgore.Winter.1=55,0,40,80
 WeatherVibe.Profile.Mulgore.Winter.2=15,1,30,50
-WeatherVibe.Profile.Mulgore.Winter.3=20,3,20,40
-WeatherVibe.Profile.Mulgore.Winter.4=10,4,20,40
+WeatherVibe.Profile.Mulgore.Winter.3=5,3,20,40
+WeatherVibe.Profile.Mulgore.Winter.4=20,6,20,40
 
 WeatherVibe.Profile.Mulgore.Transition.Step.TimeSeconds.Min=30
 WeatherVibe.Profile.Mulgore.Transition.Step.TimeSeconds.Max=60
@@ -1794,19 +1794,19 @@ WeatherVibe.Profile.HillsbradFoothills.Transition.SeasonBlendMinutes=10
 # Spring: mystical mist, soft light, gentle rain
 WeatherVibe.Profile.Ashenvale.Spring.1=30,0,30,60
 WeatherVibe.Profile.Ashenvale.Spring.2=25,1,30,60
-WeatherVibe.Profile.Ashenvale.Spring.3=25,3,20,50
+WeatherVibe.Profile.Ashenvale.Spring.3=15,3,20,50
 WeatherVibe.Profile.Ashenvale.Spring.4=15,4,20,50
 WeatherVibe.Profile.Ashenvale.Spring.5=5,86,20,40
 
 # Summer: warmest, more light through canopy, light mist
-WeatherVibe.Profile.Ashenvale.Summer.1=35,0,40,70
+WeatherVibe.Profile.Ashenvale.Summer.1=40,0,40,70
 WeatherVibe.Profile.Ashenvale.Summer.2=20,1,20,50
-WeatherVibe.Profile.Ashenvale.Summer.3=25,3,20,40
-WeatherVibe.Profile.Ashenvale.Summer.4=15,4,20,40
+WeatherVibe.Profile.Ashenvale.Summer.3=15,3,20,40
+WeatherVibe.Profile.Ashenvale.Summer.4=10,4,20,40
 WeatherVibe.Profile.Ashenvale.Summer.5=5,86,20,40
 
 # Autumn: mist thickens, rain increases, mystical
-WeatherVibe.Profile.Ashenvale.Autumn.1=20,0,20,50
+WeatherVibe.Profile.Ashenvale.Autumn.1=40,0,20,50
 WeatherVibe.Profile.Ashenvale.Autumn.2=30,1,40,70
 WeatherVibe.Profile.Ashenvale.Autumn.3=25,3,30,60
 WeatherVibe.Profile.Ashenvale.Autumn.4=15,4,30,60
@@ -2660,13 +2660,15 @@ WeatherVibe.Profile.Zangarmarsh.Spring.2=30,1,40,70
 WeatherVibe.Profile.Zangarmarsh.Spring.3=25,3,30,60
 WeatherVibe.Profile.Zangarmarsh.Spring.4=20,4,30,60
 WeatherVibe.Profile.Zangarmarsh.Spring.5=10,5,30,50
+WeatherVibe.Profile.Zangarmarsh.Spring.5=10,86,30,50
 
 # Summer: warmest, spores lighter, still damp
 WeatherVibe.Profile.Zangarmarsh.Summer.1=20,0,30,50
 WeatherVibe.Profile.Zangarmarsh.Summer.2=25,1,30,60
 WeatherVibe.Profile.Zangarmarsh.Summer.3=25,3,30,50
 WeatherVibe.Profile.Zangarmarsh.Summer.4=20,4,30,60
-WeatherVibe.Profile.Zangarmarsh.Summer.5=10,5,30,50
+WeatherVibe.Profile.Zangarmarsh.Summer.4=10,6,30,70
+WeatherVibe.Profile.Zangarmarsh.Summer.5=10,86,30,50
 
 # Autumn: thick spore fog, wet
 WeatherVibe.Profile.Zangarmarsh.Autumn.1=10,0,20,30
@@ -2681,6 +2683,7 @@ WeatherVibe.Profile.Zangarmarsh.Winter.2=35,1,50,80
 WeatherVibe.Profile.Zangarmarsh.Winter.3=25,3,30,60
 WeatherVibe.Profile.Zangarmarsh.Winter.4=20,4,40,70
 WeatherVibe.Profile.Zangarmarsh.Winter.5=10,5,30,60
+WeatherVibe.Profile.Zangarmarsh.Winter.5=10,6,20,40
 
 WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Min=25
 WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Max=50
