@@ -160,16 +160,16 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Thunders           = 0.15, 0.50
 # Spring: snow easing, clear days emerging, valley fog, rare sleet
 WeatherVibe.Profile.DunMorogh.Spring.1=10,0,40,70
 WeatherVibe.Profile.DunMorogh.Spring.2=15,1,30,60
-WeatherVibe.Profile.DunMorogh.Spring.3=5,3,30,50
-WeatherVibe.Profile.DunMorogh.Spring.4=40,6,30,50
-WeatherVibe.Profile.DunMorogh.Spring.5=15,7,30,70
+WeatherVibe.Profile.DunMorogh.Spring.3=5,3,30,60
+WeatherVibe.Profile.DunMorogh.Spring.4=40,6,30,70
+WeatherVibe.Profile.DunMorogh.Spring.5=15,7,40,70
 WeatherVibe.Profile.DunMorogh.Spring.6=10,8,30,80
 
 # Summer: mildest season, most clear days, light snow persists, morning fog, rare drizzle, occasional thunderstorms
 WeatherVibe.Profile.DunMorogh.Summer.1=30,0,50,80
 WeatherVibe.Profile.DunMorogh.Summer.2=15,1,30,60
 WeatherVibe.Profile.DunMorogh.Summer.3=8,3,30,50
-WeatherVibe.Profile.DunMorogh.Summer.4=25,6,30,40
+WeatherVibe.Profile.DunMorogh.Summer.4=25,6,30,60
 WeatherVibe.Profile.DunMorogh.Summer.5=12,7,30,60
 WeatherVibe.Profile.DunMorogh.Summer.6=5,8,30,60
 WeatherVibe.Profile.DunMorogh.Summer.7=5,86,30,50
@@ -184,7 +184,7 @@ WeatherVibe.Profile.DunMorogh.Autumn.5=15,8,30,80
 # Winter: harshest, heavy snow and blizzards dominant, rare clear cold days, dense mountain fog
 WeatherVibe.Profile.DunMorogh.Winter.1=5,0,30,50
 WeatherVibe.Profile.DunMorogh.Winter.2=10,1,40,70
-WeatherVibe.Profile.DunMorogh.Winter.3=20,6,30,50
+WeatherVibe.Profile.DunMorogh.Winter.3=20,6,30,60
 WeatherVibe.Profile.DunMorogh.Winter.4=30,7,30,80
 WeatherVibe.Profile.DunMorogh.Winter.5=30,8,40,90
 
@@ -2304,7 +2304,7 @@ WeatherVibe.Profile.HowlingFjord.Transition.SeasonBlendMinutes=10
 # Spring: snow easing slightly, more clear days, ice fog
 WeatherVibe.Profile.Winterspring.Spring.1=15,0,40,70
 WeatherVibe.Profile.Winterspring.Spring.2=15,1,30,60
-WeatherVibe.Profile.Winterspring.Spring.3=35,6,30,50
+WeatherVibe.Profile.Winterspring.Spring.3=35,6,30,60
 WeatherVibe.Profile.Winterspring.Spring.4=20,7,30,60
 WeatherVibe.Profile.Winterspring.Spring.5=10,8,30,70
 WeatherVibe.Profile.Winterspring.Spring.6=5,86,20,40
@@ -2312,8 +2312,8 @@ WeatherVibe.Profile.Winterspring.Spring.6=5,86,20,40
 # Summer: mildest, clear days, light snow continues
 WeatherVibe.Profile.Winterspring.Summer.1=30,0,50,80
 WeatherVibe.Profile.Winterspring.Summer.2=10,1,20,50
-WeatherVibe.Profile.Winterspring.Summer.3=30,6,30,40
-WeatherVibe.Profile.Winterspring.Summer.4=15,7,30,50
+WeatherVibe.Profile.Winterspring.Summer.3=30,6,30,60
+WeatherVibe.Profile.Winterspring.Summer.4=15,7,30,60
 WeatherVibe.Profile.Winterspring.Summer.5=10,8,30,50
 WeatherVibe.Profile.Winterspring.Summer.6=5,86,20,40
 
@@ -2328,7 +2328,7 @@ WeatherVibe.Profile.Winterspring.Autumn.6=5,86,20,40
 # Winter: deep winter, heavy snow, blizzards
 WeatherVibe.Profile.Winterspring.Winter.1=5,0,30,50
 WeatherVibe.Profile.Winterspring.Winter.2=10,1,40,70
-WeatherVibe.Profile.Winterspring.Winter.3=20,6,30,50
+WeatherVibe.Profile.Winterspring.Winter.3=20,6,30,70
 WeatherVibe.Profile.Winterspring.Winter.4=30,7,40,80
 WeatherVibe.Profile.Winterspring.Winter.5=30,8,50,90
 WeatherVibe.Profile.Winterspring.Winter.6=5,86,20,40
