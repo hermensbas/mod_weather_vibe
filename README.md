@@ -1,8 +1,8 @@
 # WeatherVibe (AzerothCore module)
 
-New and final version! (the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta))
-
-demo: https://youtu.be/GRyTk5umEno
+- New and final version! (the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta))
+- demo: https://youtu.be/GRyTk5umEno
+- **Pull request**: tweaking weather profiles are more then welcome
 
 Bring your world to life with **mod_weather_vibe**. This module gives each zone a
 distinct **mood** — misty mornings in Elwynn, a **gloomy** Duskwood that rumbles to life,
