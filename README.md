@@ -187,8 +187,8 @@ The engine periodically re-broadcasts weather during hold phases to ensure late 
 Aside of having core hook when player enters a zone changed and reapplying the weather, the reapply is simple extra measure to assure the correct weather.
 
 ```ini
-# Seconds between re-broadcasts (0 = disabled, default = 10)
-WeatherVibe.Profile.ReApply.PerSec = 10
+# Seconds between re-broadcasts (0 = disabled, default = 30)
+WeatherVibe.Profile.ReApply.PerSec = 30
 ```
 
 ---
