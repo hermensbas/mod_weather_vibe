@@ -60,6 +60,9 @@ void WeatherVibeCore::OnStartup()
         return;
     }
 
+    if (sWorld->getBoolConfig(CONFIG_WEATHER))
+        LOG_ERROR("module", "WeatherVibe: ActivateWeather is enabled in worldserver.conf, but WeatherVibe is also enabled. This will cause conflicts. Please set ActivateWeather = 0 to let WeatherVibe control weather.");
+
     m_announce = sConfigMgr->GetOption<bool>("WeatherVibe.Announce", true);
 
     m_debug = sConfigMgr->GetOption<uint32>("WeatherVibe.Debug", 0) != 0;
