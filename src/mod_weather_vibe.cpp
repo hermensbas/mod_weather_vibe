@@ -17,7 +17,7 @@ void RegisterWeatherVibeEngine();
 class WeatherVibe_PlayerScript : public PlayerScript
 {
 public:
-    WeatherVibe_PlayerScript() : PlayerScript("WeatherVibe_PlayerScript") {}
+    WeatherVibe_PlayerScript() : PlayerScript("WeatherVibe_PlayerScript", { PLAYERHOOK_ON_LOGIN, PLAYERHOOK_ON_UPDATE_ZONE }) {}
 
     void OnPlayerLogin(Player* player) override
     {
@@ -50,7 +50,7 @@ public:
 class WeatherVibe_WorldScript : public WorldScript
 {
 public:
-    WeatherVibe_WorldScript() : WorldScript("WeatherVibe_WorldScript") {}
+    WeatherVibe_WorldScript() : WorldScript("WeatherVibe_WorldScript", { WORLDHOOK_ON_STARTUP }) {}
 
     void OnStartup() override
     {
