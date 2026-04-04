@@ -26,7 +26,9 @@ public:
             return;
         }
 
-        ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00WeatherVibe:|r enabled");
+        if (sWeatherVibeCore.IsAnnounceEnabled())
+            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00WeatherVibe |rmodule.");
+
         sWeatherVibeCore.PushLastAppliedWeatherToClient(player->GetZoneId(), player);
     }
 

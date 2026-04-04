@@ -60,6 +60,8 @@ void WeatherVibeCore::OnStartup()
         return;
     }
 
+    m_announce = sConfigMgr->GetOption<bool>("WeatherVibe.Announce", true);
+
     m_debug = sConfigMgr->GetOption<uint32>("WeatherVibe.Debug", 0) != 0;
     m_profileEnabled = sConfigMgr->GetOption<bool>("WeatherVibe.Profile.Enable", true);
 
