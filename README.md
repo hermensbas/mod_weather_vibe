@@ -3,7 +3,8 @@
 [![Intro!](https://i3.ytimg.com/vi/iCn14KLCerY/maxresdefault.jpg)](https://www.youtube.com/watch?v=iCn14KLCerY)
 
 - New and final version! (the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta))
-- demo: https://youtu.be/GRyTk5umEno
+- demo: https://youtu.be/23jTJcT-n44
+- another demo: https://youtu.be/GRyTk5umEno
 - **Pull request**: tweaking weather profiles are more then welcome
 
 Bring your world to life with **mod_weather_vibe**. This module gives each zone a
