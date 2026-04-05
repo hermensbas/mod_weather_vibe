@@ -14,6 +14,10 @@
 # ----------------------------------------------------------------------
 WeatherVibe.Enable = 1
 
+# Enable or disable the announcement that you are using the module
+# ----------------------------------------------------------------------
+WeatherVibe.Announce = 1
+
 # Optional debug (zone-wide broadcast of pushes)
 # ----------------------------------------------------------------------
 WeatherVibe.Debug = 1

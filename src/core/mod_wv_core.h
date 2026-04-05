@@ -59,6 +59,11 @@ public:
     // Singleton accessor
     static WeatherVibeCore& Instance();
 
+    WeatherVibeCore() = default;
+    ~WeatherVibeCore() = default;
+    WeatherVibeCore(WeatherVibeCore const&) = delete;
+    WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
+
     // Lifecycle
     void OnStartup();
 
@@ -78,9 +83,10 @@ public:
     std::unordered_map<uint32, LastApplied> const& GetLastApplied() const { return m_lastApplied; }
 
     // State accessors
-    bool IsEnabled()        const { return m_enabled; }
-    bool IsProfileEnabled() const { return m_profileEnabled; }
-    bool IsDebug()          const { return m_debug; }
+    bool IsEnabled()         const { return m_enabled; }
+    bool IsAnnounceEnabled() const { return m_announce; }
+    bool IsProfileEnabled()  const { return m_profileEnabled; }
+    bool IsDebug()           const { return m_debug; }
 
     // Broadcast helpers
     void BroadcastZoneText(uint32 zoneId, char const* text);
@@ -94,11 +100,6 @@ public:
     static bool IsValidWeatherState(uint32 value);
 
 private:
-    WeatherVibeCore() = default;
-    ~WeatherVibeCore() = default;
-    WeatherVibeCore(WeatherVibeCore const&) = delete;
-    WeatherVibeCore& operator=(WeatherVibeCore const&) = delete;
-
     // Config reload — reloads daypart + intensity ranges
     void ReloadConfig();
     void LoadDayPartConfig();
@@ -127,6 +128,7 @@ private:
 
     // Module state
     bool          m_enabled = true;
+    bool          m_announce = true;
     bool          m_profileEnabled = true;
     bool          m_debug = false;
     DayPartStarts m_starts;

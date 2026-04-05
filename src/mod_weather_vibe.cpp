@@ -17,7 +17,7 @@ void RegisterWeatherVibeEngine();
 class WeatherVibe_PlayerScript : public PlayerScript
 {
 public:
-    WeatherVibe_PlayerScript() : PlayerScript("WeatherVibe_PlayerScript") {}
+    WeatherVibe_PlayerScript() : PlayerScript("WeatherVibe_PlayerScript", { PLAYERHOOK_ON_LOGIN, PLAYERHOOK_ON_UPDATE_ZONE }) {}
 
     void OnPlayerLogin(Player* player) override
     {
@@ -26,7 +26,9 @@ public:
             return;
         }
 
-        ChatHandler(player->GetSession()).SendSysMessage("|cff00ff00WeatherVibe:|r enabled");
+        if (sWeatherVibeCore.IsAnnounceEnabled())
+            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00WeatherVibe |rmodule.");
+
         sWeatherVibeCore.PushLastAppliedWeatherToClient(player->GetZoneId(), player);
     }
 
@@ -48,7 +50,7 @@ public:
 class WeatherVibe_WorldScript : public WorldScript
 {
 public:
-    WeatherVibe_WorldScript() : WorldScript("WeatherVibe_WorldScript") {}
+    WeatherVibe_WorldScript() : WorldScript("WeatherVibe_WorldScript", { WORLDHOOK_ON_STARTUP }) {}
 
     void OnStartup() override
     {
