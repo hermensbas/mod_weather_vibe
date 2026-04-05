@@ -2664,15 +2664,15 @@ WeatherVibe.Profile.Zangarmarsh.Spring.2=30,1,40,70
 WeatherVibe.Profile.Zangarmarsh.Spring.3=25,3,30,60
 WeatherVibe.Profile.Zangarmarsh.Spring.4=20,4,30,60
 WeatherVibe.Profile.Zangarmarsh.Spring.5=10,5,30,50
-WeatherVibe.Profile.Zangarmarsh.Spring.5=10,86,30,50
+WeatherVibe.Profile.Zangarmarsh.Spring.6=10,86,30,50
 
 # Summer: warmest, spores lighter, still damp
 WeatherVibe.Profile.Zangarmarsh.Summer.1=20,0,30,50
 WeatherVibe.Profile.Zangarmarsh.Summer.2=25,1,30,60
 WeatherVibe.Profile.Zangarmarsh.Summer.3=25,3,30,50
 WeatherVibe.Profile.Zangarmarsh.Summer.4=20,4,30,60
-WeatherVibe.Profile.Zangarmarsh.Summer.4=10,6,30,70
-WeatherVibe.Profile.Zangarmarsh.Summer.5=10,86,30,50
+WeatherVibe.Profile.Zangarmarsh.Summer.5=10,6,30,70
+WeatherVibe.Profile.Zangarmarsh.Summer.6=10,86,30,50
 
 # Autumn: thick spore fog, wet
 WeatherVibe.Profile.Zangarmarsh.Autumn.1=10,0,20,30
@@ -2687,7 +2687,7 @@ WeatherVibe.Profile.Zangarmarsh.Winter.2=35,1,50,80
 WeatherVibe.Profile.Zangarmarsh.Winter.3=25,3,30,60
 WeatherVibe.Profile.Zangarmarsh.Winter.4=20,4,40,70
 WeatherVibe.Profile.Zangarmarsh.Winter.5=10,5,30,60
-WeatherVibe.Profile.Zangarmarsh.Winter.5=10,6,20,40
+WeatherVibe.Profile.Zangarmarsh.Winter.6=10,6,20,40
 
 WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Min=25
 WeatherVibe.Profile.Zangarmarsh.Transition.Step.TimeSeconds.Max=50
