@@ -1,5 +1,7 @@
 # WeatherVibe (AzerothCore module)
 
+[![Intro!](https://i3.ytimg.com/vi/iCn14KLCerY/maxresdefault.jpg)](https://www.youtube.com/watch?v=iCn14KLCerY)
+
 - New and final version! (the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta))
 - demo: https://youtu.be/GRyTk5umEno
 - **Pull request**: tweaking weather profiles are more then welcome
