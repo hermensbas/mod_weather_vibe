@@ -629,34 +629,33 @@ WeatherVibe.Profile.Azshara.Transition.SeasonBlendMinutes=10
 #======================================================================
 
 # Spring: warm, mostly clear, occasional dust
-WeatherVibe.Profile.TheBarrens.Spring.1=50,0,40,70
+WeatherVibe.Profile.TheBarrens.Spring.1=60,0,90,100
 WeatherVibe.Profile.TheBarrens.Spring.2=10,1,20,40
 WeatherVibe.Profile.TheBarrens.Spring.3=10,3,20,40
 WeatherVibe.Profile.TheBarrens.Spring.4=20,22,30,50
-WeatherVibe.Profile.TheBarrens.Spring.5=10,41,20,50
+WeatherVibe.Profile.TheBarrens.Spring.5=5,41,20,50
 
 # Summer: hottest, clear skies, dust storms, rare thunder
-WeatherVibe.Profile.TheBarrens.Summer.1=40,0,60,90
+WeatherVibe.Profile.TheBarrens.Summer.1=60,0,60,100
 WeatherVibe.Profile.TheBarrens.Summer.2=5,1,20,30
 WeatherVibe.Profile.TheBarrens.Summer.3=5,3,20,30
 WeatherVibe.Profile.TheBarrens.Summer.4=20,22,40,60
 WeatherVibe.Profile.TheBarrens.Summer.5=15,41,30,60
 WeatherVibe.Profile.TheBarrens.Summer.6=10,86,30,50
-WeatherVibe.Profile.TheBarrens.Summer.7=5,42,30,50
 
 # Autumn: cooling, dust settles, rare light rain
-WeatherVibe.Profile.TheBarrens.Autumn.1=50,0,30,60
+WeatherVibe.Profile.TheBarrens.Autumn.1=50,0,80,100
 WeatherVibe.Profile.TheBarrens.Autumn.2=10,1,20,40
-WeatherVibe.Profile.TheBarrens.Autumn.3=10,3,20,40
-WeatherVibe.Profile.TheBarrens.Autumn.4=20,22,20,50
-WeatherVibe.Profile.TheBarrens.Autumn.5=10,41,20,40
+WeatherVibe.Profile.TheBarrens.Autumn.3=15,3,20,40
+WeatherVibe.Profile.TheBarrens.Autumn.4=15,22,20,50
+WeatherVibe.Profile.TheBarrens.Autumn.5=5,41,20,40
 
 # Winter: coolest, morning fog, rare light rain, very rare light snow
-WeatherVibe.Profile.TheBarrens.Winter.1=45,0,30,50
-WeatherVibe.Profile.TheBarrens.Winter.2=15,1,30,50
-WeatherVibe.Profile.TheBarrens.Winter.3=15,3,20,40
+WeatherVibe.Profile.TheBarrens.Winter.1=45,0,70,90
+WeatherVibe.Profile.TheBarrens.Winter.2=20,1,30,50
+WeatherVibe.Profile.TheBarrens.Winter.3=5,3,20,40
 WeatherVibe.Profile.TheBarrens.Winter.4=15,22,20,40
-WeatherVibe.Profile.TheBarrens.Winter.5=5,6,20,30
+WeatherVibe.Profile.TheBarrens.Winter.5=25,6,20,30
 WeatherVibe.Profile.TheBarrens.Winter.6=5,41,20,40
 
 WeatherVibe.Profile.TheBarrens.Transition.Step.TimeSeconds.Min=25
