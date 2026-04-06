@@ -2,7 +2,7 @@
 
 [![Intro!](https://i3.ytimg.com/vi/iCn14KLCerY/maxresdefault.jpg)](https://www.youtube.com/watch?v=iCn14KLCerY)
 
-- New and final version! (the old can be found [here](https://github.com/hermensbas/mod_weather_vibe/tree/main_beta))
+- New version!
 - demo: https://youtu.be/GRyTk5umEno
 - another demo: https://youtu.be/23jTJcT-n44
 - **Pull request**: tweaking weather profiles are more then welcome
