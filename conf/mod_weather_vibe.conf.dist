@@ -80,10 +80,10 @@ WeatherVibe.Intensity.InternalRange.NIGHT.Fog             = 0.15, 0.30
 
 # Light Rain (3)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightRain     = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightRain   = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.EVENING.LightRain     = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.NIGHT.LightRain       = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.MORNING.LightRain     = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightRain   = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.EVENING.LightRain     = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.NIGHT.LightRain       = 0.25, 0.60
 
 # Medium Rain (4)
 # ----------------------------------------------------------------------
@@ -101,10 +101,10 @@ WeatherVibe.Intensity.InternalRange.NIGHT.HeavyRain       = 0.25, 0.90
 
 # Light Snow (6)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightSnow     = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSnow   = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.EVENING.LightSnow     = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSnow       = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.MORNING.LightSnow     = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSnow   = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.EVENING.LightSnow     = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSnow       = 0.25, 0.60
 
 # Medium Snow (7)
 # ----------------------------------------------------------------------
@@ -122,10 +122,10 @@ WeatherVibe.Intensity.InternalRange.NIGHT.HeavySnow       = 0.25, 0.90
 
 # Light Sandstorm (22)
 # ----------------------------------------------------------------------
-WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.25, 0.50
-WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.25, 0.50
+WeatherVibe.Intensity.InternalRange.MORNING.LightSandstorm   = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.AFTERNOON.LightSandstorm = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.EVENING.LightSandstorm   = 0.25, 0.60
+WeatherVibe.Intensity.InternalRange.NIGHT.LightSandstorm     = 0.25, 0.60
 
 # Medium Sandstorm (41)
 # ----------------------------------------------------------------------
