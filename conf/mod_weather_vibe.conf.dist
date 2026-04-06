@@ -22,6 +22,14 @@ WeatherVibe.Announce = 1
 # ----------------------------------------------------------------------
 WeatherVibe.Debug = 1
 
+# Controls who can use .wvibe commands.
+# ----------------------------------------------------------------------
+#        Default:     0 - GM only (requires SEC_GAMEMASTER or higher)
+#                     1 - Enabled for all players
+#
+WeatherVibeCommand = 0
+
+
 # Toggle weather profiles (automatic weather engine).
 # When disabled, manual commands (.wvibe set / setRaw) still work
 # but profiles will not drive weather automatically.

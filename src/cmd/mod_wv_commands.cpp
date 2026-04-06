@@ -2,6 +2,7 @@
 
 #include "Chat.h"
 #include "ChatCommand.h"
+#include "Config.h"
 #include "Player.h"
 #include "ScriptMgr.h"
 
@@ -10,6 +11,30 @@
 
 using Acore::ChatCommands::ChatCommandTable;
 using Acore::ChatCommands::Console;
+
+// ============================================================
+// Helper – runtime permission gate.
+// WeatherVibeCommand = 0  -> GM only (default)
+// WeatherVibeCommand = 1  -> everyone
+// Returns true if the caller is allowed to use commands.
+// ============================================================
+static bool HasWvibePermission(ChatHandler* handler)
+{
+    if (sConfigMgr->GetOption<int32>("WeatherVibeCommand", 0) == 1)
+        return true;
+
+    Player* player = handler->GetPlayer();
+    if (!player)
+        return true; // console always allowed
+
+    if (player->GetSession()->GetSecurity() < SEC_GAMEMASTER)
+    {
+        handler->SendSysMessage("|cff00ff00WeatherVibe:|r Commands are restricted to GMs.");
+        return false;
+    }
+
+    return true;
+}
 
 // ============================================================
 // CommandScript class
@@ -28,6 +53,9 @@ public:
     // ----------------------------------------------------------
     static bool HandleWvibeSet(ChatHandler* handler, uint32 zoneId, uint32 stateVal, float percentage)
     {
+        if (!HasWvibePermission(handler))
+            return false;
+
         if (!sWeatherVibeCore.IsEnabled())
         {
             handler->SendSysMessage("|cff00ff00WeatherVibe:|r Module is disabled in config.");
@@ -54,6 +82,9 @@ public:
     // ----------------------------------------------------------
     static bool HandleWvibeSetRaw(ChatHandler* handler, uint32 zoneId, uint32 stateVal, float rawGrade)
     {
+        if (!HasWvibePermission(handler))
+            return false;
+
         if (!sWeatherVibeCore.IsEnabled())
         {
             handler->SendSysMessage("|cff00ff00WeatherVibe:|r Module is disabled in config.");
@@ -80,6 +111,9 @@ public:
     // ----------------------------------------------------------
     static bool HandleWvibeShow(ChatHandler* handler)
     {
+        if (!HasWvibePermission(handler))
+            return false;
+
         if (!sWeatherVibeCore.IsEnabled())
         {
             handler->SendSysMessage("|cff00ff00WeatherVibe:|r Module is disabled in config.");
@@ -119,6 +153,9 @@ public:
     // ----------------------------------------------------------
     static bool HandleWvibeWhere(ChatHandler* handler)
     {
+        if (!HasWvibePermission(handler))
+            return false;
+
         Player* player = handler->GetPlayer();
         if (!player)
         {
@@ -137,6 +174,9 @@ public:
     // ----------------------------------------------------------
     static bool HandleWvibeHelp(ChatHandler* handler)
     {
+        if (!HasWvibePermission(handler))
+            return false;
+
         handler->SendSysMessage("|cff00ff00WeatherVibe:|r commands:");
         handler->SendSysMessage("  .wvibe set [zoneId] [state] [pct:0..100]");
         handler->SendSysMessage("  .wvibe setRaw [zoneId] [state] [raw:0..1]");
@@ -150,17 +190,19 @@ public:
     }
 
     // ----------------------------------------------------------
-    // Command table
+    // Command table – registered at SEC_PLAYER so everyone can
+    // attempt the command; actual permission is checked at
+    // runtime via HasWvibePermission() in each handler.
     // ----------------------------------------------------------
     ChatCommandTable GetCommands() const override
     {
         static ChatCommandTable wvibeTable =
         {
-            { "set",    HandleWvibeSet,    SEC_ADMINISTRATOR, Console::Yes },
-            { "setRaw", HandleWvibeSetRaw, SEC_ADMINISTRATOR, Console::Yes },
-            { "show",   HandleWvibeShow,   SEC_ADMINISTRATOR, Console::Yes },
-            { "where",  HandleWvibeWhere,  SEC_ADMINISTRATOR, Console::Yes },
-            { "help",   HandleWvibeHelp,   SEC_ADMINISTRATOR, Console::Yes },
+            { "set",    HandleWvibeSet,    SEC_PLAYER, Console::Yes },
+            { "setRaw", HandleWvibeSetRaw, SEC_PLAYER, Console::Yes },
+            { "show",   HandleWvibeShow,   SEC_PLAYER, Console::Yes },
+            { "where",  HandleWvibeWhere,  SEC_PLAYER, Console::Yes },
+            { "help",   HandleWvibeHelp,   SEC_PLAYER, Console::Yes },
         };
         static ChatCommandTable root =
         {
